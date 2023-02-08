@@ -1,7 +1,7 @@
 <template>
     <aside id="component-list" class="border border-dark p-3">
         <h6>List of available components</h6>
-        <input type="text" placeholder="Search components..." @input="onSearchComponents"/>
+        <input type="text" placeholder="Search components..." v-model="componentFilter"/>
         <div class="d-flex flex-column">
             <div class="w-100 mt-4" v-for="(configurations, namespace, index) in configurationsByNamespaces" :key="index">
                 <h6>{{ namespace }} components</h6>
@@ -40,12 +40,8 @@ export default defineComponent({
     },
     data() {
         return {
-            configurations: getConfigurations()
-        }
-    },
-    methods: {
-        onSearchComponents() {
-            // search components
+            configurations: getConfigurations(),
+            componentFilter: ''
         }
     },
     computed: {
@@ -63,13 +59,15 @@ export default defineComponent({
 
             namespaces.forEach(namespace => {
                 const associatedConfigurations: Array<ComponentConfiguration> = Array.from(this.configurations.values())
-                    .filter(config => config.namespace === namespace)
+                    .filter(config => config.namespace === namespace &&
+                        config.name.toLowerCase().includes(this.componentFilter.toLowerCase())
+                    )
 
                 configs[namespace] = associatedConfigurations;
             })
 
             return configs;
-        },
+        }
     },
 })
 
@@ -78,9 +76,7 @@ export default defineComponent({
 <style>
 
 #component-list {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    min-height: 100vh;
     width: calc(100%/4);
     overflow-y: scroll;
 }
@@ -94,6 +90,7 @@ export default defineComponent({
 
 .component-list-item:hover {
     cursor: pointer;
+    background-color: #ceeaee;
 }
 
 </style>
