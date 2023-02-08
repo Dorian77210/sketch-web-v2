@@ -12,9 +12,19 @@ import 'bootstrap/dist/js/bootstrap.js'
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPlay)
+
+// Vue draggable resizable
+import Vue3DraggableResizable from 'vue3-draggable-resizable'
+import 'vue3-draggable-resizable/dist/Vue3DraggableResizable.css'
 
 createApp(App).use(store)
     .use(router)
     .use(BootstrapVue3)
     .component('font-awesome-icon', FontAwesomeIcon)
+    .use(Vue3DraggableResizable)
     .mount('#app')
