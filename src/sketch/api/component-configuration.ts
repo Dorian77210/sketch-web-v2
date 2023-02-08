@@ -12,7 +12,7 @@ export type ComponentSlotConfiguration = {
 export type ComponentConfiguration = {
     name: string;
     namespace: string;
-    slotsConfiurations?: Array<ComponentSlotConfiguration>;
+    slotsConfigurations?: Array<ComponentSlotConfiguration>;
     popup: object;
     returnType: Class<unknown>;
     icon: {

@@ -11,10 +11,11 @@
         >
         <div class="table border-0">            
             <div 
-                v-if="configuration.slotsConfiurations" 
+                v-if="configuration.slotsConfigurations" 
                 class="row-fluid" 
                 >
                 <div 
+                    v-for="(slotConfiguration, index) in configuration.slotsConfigurations" :key="index"
                     class="slot"
                     ref="inputSlotUI"
                 >

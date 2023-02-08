@@ -34,7 +34,7 @@ export const configuration: ComponentConfiguration = {
     name: 'Sequence number',
     popup: SketchNumberInputPopup,
     returnType: Number,
-    slotsConfiurations: [{
+    slotsConfigurations: [{
         name: 'begin',
         methodName: 'setBegin',
         type: Number
