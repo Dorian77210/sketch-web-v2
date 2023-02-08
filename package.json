@@ -10,6 +10,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons-vue": "^1.8.1",
+    "bootstrap-switch-button": "^1.1.0",
+    "bootstrap-vue-3": "^0.5.1",
+    "uuidv4": "^6.2.13",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
