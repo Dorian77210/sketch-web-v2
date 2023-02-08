@@ -6,11 +6,12 @@
             <div class="w-100 mt-4" v-for="(configurations, namespace, index) in configurationsByNamespaces" :key="index">
                 <h6>{{ namespace }} components</h6>
                 <div class="d-flex flex-wrap collapse collapse-horizontal" :id="`collapse${namespace}`">
-                    <div v-for="(configuration, configIndex) in configurations" :key="configIndex"
-                    class="d-flex flex-column component-list-item"
+                    <div v-for="(sketchConfiguration, configIndex) in configurations" :key="configIndex"
+                        class="d-flex flex-column component-list-item"
+                        @click="onComponentSelected($event, sketchConfiguration.componentClass)"
                     >
-                        <font-awesome-icon :icon="`fa-solid ${configuration.icon.name}`"></font-awesome-icon>
-                        <span class="text-center">{{ configuration.name }}</span>
+                        <font-awesome-icon :icon="`fa-solid ${sketchConfiguration.configuration.icon.name}`"></font-awesome-icon>
+                        <span class="text-center">{{ sketchConfiguration.configuration.name }}</span>
                     </div>
                 </div>
             </div>
@@ -27,8 +28,16 @@ import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 import { getConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 
+import SketchComponent from '@/sketch/api/sketch-component';
+import { Class, opt } from '@/sketch/api/types';
+
+type SketchComponentConfiguration = {
+    configuration: ComponentConfiguration;
+    componentClass: Class<SketchComponent<unknown>>;
+}
+
 interface ConfigurationsByNamespace {
-    [name: string]: Array<ComponentConfiguration>;
+    [name: string]: Array<SketchComponentConfiguration>;
 }
 
 export default defineComponent({
@@ -41,7 +50,8 @@ export default defineComponent({
     data() {
         return {
             configurations: getConfigurations(),
-            componentFilter: ''
+            componentFilter: '',
+            currentElementSelected: opt<HTMLElement>() 
         }
     },
     computed: {
@@ -58,10 +68,17 @@ export default defineComponent({
             })
 
             namespaces.forEach(namespace => {
-                const associatedConfigurations: Array<ComponentConfiguration> = Array.from(this.configurations.values())
-                    .filter(config => config.namespace === namespace &&
-                        config.name.toLowerCase().includes(this.componentFilter.toLowerCase())
-                    )
+                const associatedConfigurations: Array<SketchComponentConfiguration> = new Array<SketchComponentConfiguration>();
+
+                // filter components in the configurations maps
+                this.configurations.forEach((configuration, componentClass) => {
+                    if (configuration.namespace.toLowerCase().includes(this.componentFilter.toLowerCase())) {
+                        associatedConfigurations.push({
+                            configuration,
+                            componentClass
+                        })
+                    }
+                })
 
                 configs[namespace] = associatedConfigurations;
             })
@@ -69,6 +86,21 @@ export default defineComponent({
             return configs;
         }
     },
+    methods: {
+        onComponentSelected(event: Event, selectedComponent: Class<SketchComponent<unknown>>) : void {
+            if (this.currentElementSelected) {
+                this.currentElementSelected.classList.remove('component-list-item-selected');
+            }
+
+            this.currentElementSelected = event.target as HTMLElement;
+            while (!this.currentElementSelected.classList.contains('component-list-item')) {
+                this.currentElementSelected = this.currentElementSelected.parentElement as HTMLElement;
+            }
+            
+            this.currentElementSelected.classList.add('component-list-item-selected');
+            this.$props.boardManager.setSelectedComponent(selectedComponent);
+        }
+    }
 })
 
 </script>
@@ -90,6 +122,10 @@ export default defineComponent({
 
 .component-list-item:hover {
     cursor: pointer;
+    background-color: #ceeaee;
+}
+
+.component-list-item-selected {
     background-color: #ceeaee;
 }
 

@@ -34,6 +34,15 @@ export const configuration: ComponentConfiguration = {
     name: 'Sequence number',
     popup: SketchNumberInputPopup,
     returnType: Number,
+    slotsConfiurations: [{
+        name: 'begin',
+        methodName: 'setBegin',
+        type: Number
+    }, {
+        name: 'end',
+        methodName: 'setEnd',
+        type: Number
+    }],
     icon: {
         name: 'fa-arrow-down-1-9',
         fa: faArrowDown19
