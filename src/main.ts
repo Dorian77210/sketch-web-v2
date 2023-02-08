@@ -10,7 +10,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 createApp(App).use(store)
     .use(router)
     .use(BootstrapVue3)
+    .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app')
