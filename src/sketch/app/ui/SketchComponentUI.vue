@@ -9,15 +9,12 @@
             :draggable="true"
             :resizable="true"
         >
-        <div class="table border-0">            
-            <div 
-                v-if="configuration.slotsConfigurations" 
-                class="row-fluid" 
-                >
+        <div class="border-0 d-flex mh-100" style="height: 100%">            
+            <div class="d-flex flex-column slot-container" v-if="configuration.slotsConfigurations">
                 <div 
                     v-for="(slotConfiguration, index) in configuration.slotsConfigurations" :key="index"
                     class="slot"
-                    ref="inputSlotUI"
+                    data-toggle="tooltip" data-placement="left" :title="slotConfiguration.name"
                 >
                     <pre></pre>
                 </div>
@@ -28,7 +25,7 @@
                 <font-awesome-icon icon="fa-solid fa-play"></font-awesome-icon>
             </div>
 
-            <div v-if="configuration.returnType" class="row-fluid">
+            <div v-if="configuration.returnType" class="slot-container d-flex flex-column">
                 <div
                     class="slot"
                     ref="outputSlotUI"
@@ -46,14 +43,11 @@
 import { defineComponent, PropType } from 'vue';
 
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
-
-import { ComponentUIConfiguration } from './utils';
-
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 
 export default defineComponent({
     components: {
-        Vue3DraggableResizable
+        Vue3DraggableResizable,
     },
     props: {
         x: {
@@ -92,15 +86,24 @@ export default defineComponent({
     width: 100%;
     padding: 0;
 }
+
 .row-fluid {height: 100%; display:table-cell; vertical-align: middle;}
-.centering {
-    float: none;
-    margin: 0 auto;
+
+.slot-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
 }
-.unselected-slot
-{
+
+.slot {
     background-color: black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
 }
+
 .slot:hover, .selected-slot
 {
     background-color: red;

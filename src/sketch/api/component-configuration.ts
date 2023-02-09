@@ -1,5 +1,5 @@
 import { Class } from './types';
-import { DefineComponent } from 'vue';
+import { Component } from 'vue';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export type ComponentSlotConfiguration = {
@@ -13,8 +13,8 @@ export type ComponentConfiguration = {
     name: string;
     namespace: string;
     slotsConfigurations?: Array<ComponentSlotConfiguration>;
-    popup: object;
-    returnType: Class<unknown>;
+    popup: Component;
+    returnType?: Class<unknown>;
     icon: {
         name: string;
         fa: IconDefinition
