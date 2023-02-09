@@ -8,6 +8,7 @@
             :active="true"
             :draggable="true"
             :resizable="true"
+            :dragging="$emit('on-drag', $props.component)"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
             <div class="d-flex flex-column slot-container" v-if="inputSlotModels.length">
@@ -160,7 +161,7 @@ export default defineComponent({
 
 .component-ui
 {
-    background-color: yellow;
+    background-color: #ceeaee;
     position: absolute;
 }
 

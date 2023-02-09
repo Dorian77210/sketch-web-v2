@@ -9,6 +9,7 @@
                 :x="componentWrapper.x"
                 :y="componentWrapper.y"
                 @on-slot-selected="onSlotSelected"
+                @on-drag="onDrag"
             />
         </div>
     </div>
@@ -63,7 +64,8 @@ export default defineComponent({
         return {
             componentsMap: new Map<ComponentWrapper, ComponentConfiguration>(),
             slots: new ArrayStack<ComponentSlot>(),
-            workflow: new SketchComponentWorkflow()
+            workflow: new SketchComponentWorkflow(),
+            links: new Map<SketchComponent<unknown>, Array<LeaderLine>>()
         }
     },
 
@@ -126,16 +128,32 @@ export default defineComponent({
                         console.error("Error during the creation of link");
                     } else {
                         console.log('creation');
-                        new LeaderLine({
+                        const line = new LeaderLine({
                             start: source.ui,
                             end: destination.ui
                         })
-                        // success !
+
+                        if (!this.links.has(destination.model.targetComponent)) {
+                            this.links.set(destination.model.targetComponent, Array<LeaderLine>());
+                        }
+
+                        this.links.get(destination.model.targetComponent)?.push(line);
+
+                        if (!this.links.has(source.model.targetComponent)) {
+                            this.links.set(source.model.targetComponent, Array<LeaderLine>());
+                        }
+
+                        this.links.get(source.model.targetComponent)?.push(line);
                     }
                 } else {
                     console.error('link error');
                 }
             }
+        },
+        onDrag(component: SketchComponent<unknown>) {
+            // update all the links of the component
+            const lines: Array<LeaderLine> | undefined = this.links.get(component);
+            lines?.forEach(line => line.position());
         }
     }
 });
