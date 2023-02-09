@@ -130,7 +130,8 @@ export default defineComponent({
                         console.log('creation');
                         const line = new LeaderLine({
                             start: source.ui,
-                            end: destination.ui
+                            end: destination.ui,
+                            color: 'black'
                         })
 
                         if (!this.links.has(destination.model.targetComponent)) {

@@ -7,7 +7,7 @@
             v-model:y="componentUIConfiguration.y"
             :active="true"
             :draggable="true"
-            :resizable="true"
+            :resizable="false"
             :dragging="$emit('on-drag', $props.component)"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
@@ -22,10 +22,12 @@
                     <pre></pre>
                 </div>
             </div>
-            <div class="row-fluid">
-                <span class="align-text-bottom noselect">{{ configuration.name }}</span>
-                <br/>
-                <font-awesome-icon icon="fa-solid fa-play"></font-awesome-icon>
+            <div class="table p-1">
+                <div class="row-fluid">
+                    <span class="align-text-bottom noselect">{{ configuration.name }}</span>
+                    <br/>
+                    <font-awesome-icon icon="fa-solid fa-play"></font-awesome-icon>
+                </div>
             </div>
 
             <div v-if="outputSlotModel" class="slot-container d-flex flex-column"
@@ -80,8 +82,8 @@ export default defineComponent({
     data() {
         return {
             componentUIConfiguration: {
-                height: 120,
-                width: 120,
+                height: 130,
+                width: 130,
                 x: this.$props.x,
                 y: this.$props.y
             },
