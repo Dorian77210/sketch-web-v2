@@ -30,8 +30,9 @@ export function getConfigurations() : SketchComponentConfigurations {
     return configurations;
 }
 
-function getSlotByEntryName(entries: Array<ComponentSlotConfiguration>, entryName: string) : ComponentSlotConfiguration {
-    return entries.filter(entry => entry.entryName === entryName)[0];
+export function getSlotByEntryName(entries: Array<ComponentSlotConfiguration>, entryName: string) : ComponentSlotConfiguration | undefined{
+    const results = entries.filter(entry => entry.entryName === entryName);
+    return results.length > 0 ? results[0] : undefined;
 }
 
 export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
@@ -50,7 +51,7 @@ export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
     }
 
     const targetSlot = getSlotByEntryName(targetConfiguration.slotsConfigurations, entryName);
-    if (targetSlot.type !== sourceConfiguration.returnType) {
+    if (targetSlot?.type !== sourceConfiguration.returnType) {
         return false;
     }
 

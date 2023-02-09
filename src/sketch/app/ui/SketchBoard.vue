@@ -18,6 +18,8 @@
 
 import { defineComponent } from 'vue';
 
+import LeaderLine from 'leader-line-new';
+
 import SketchBoardManager from '../core/sketch-board-manager';
 
 import { Class } from '@/sketch/api/types';
@@ -31,6 +33,10 @@ import { ArrayStack } from '@/sketch/api/data-structures';
 import { ComponentSlotModel } from './utils';
 
 import { canCreateLinkBetween } from '@/sketch/api/sketch-component-configuration-manager';
+
+import SketchComponentWorkflow from '../core/sketch-component-workflow';
+
+
 
 type ComponentSlot = {
     ui: HTMLElement;
@@ -56,7 +62,8 @@ export default defineComponent({
     data() {
         return {
             componentsMap: new Map<ComponentWrapper, ComponentConfiguration>(),
-            slots: new ArrayStack<ComponentSlot>()
+            slots: new ArrayStack<ComponentSlot>(),
+            workflow: new SketchComponentWorkflow()
         }
     },
 
@@ -115,7 +122,16 @@ export default defineComponent({
             } else {
                 if (destination.model.entryName && canCreateLinkBetween(source.model.targetComponent, destination.model.targetComponent, destination.model.entryName)) {
                     // check in the workflow that the lnik is not existing
-                    console.log('creation of link');
+                    if (this.workflow.createLinkBetween(source.model.targetComponent, destination.model.targetComponent, destination.model.entryName) === false) {
+                        console.error("Error during the creation of link");
+                    } else {
+                        console.log('creation');
+                        new LeaderLine({
+                            start: source.ui,
+                            end: destination.ui
+                        })
+                        // success !
+                    }
                 } else {
                     console.error('link error');
                 }

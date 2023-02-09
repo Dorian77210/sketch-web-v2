@@ -13,7 +13,7 @@
             <div class="d-flex flex-column slot-container" v-if="inputSlotModels.length">
                 <div 
                     v-for="(slotConfiguration, index) in inputSlotModels" :key="index"
-                    class="slot"
+                    class="slot input-slot"
                     :class="{ 'selected-slot': slotConfiguration.isSelected }"
                     data-toggle="tooltip" data-placement="left" :title="slotConfiguration.entryName"
                     @click="selectSlot($event, slotConfiguration as ComponentSlotModel)"
@@ -31,7 +31,7 @@
                 @click="selectSlot($event, outputSlotModel as ComponentSlotModel)"
             >
                 <div
-                    class="slot"
+                    class="slot output-slot"
                     :class="{ 'selected-slot': outputSlotModel.isSelected }"
                     ref="outputSlotUI"
                 >
@@ -139,11 +139,18 @@ export default defineComponent({
 }
 
 .slot {
-    background-color: black;
     width: 20px;
     height: 20px;
     display: flex;
     align-items: center;
+}
+
+.input-slot {
+    background-color: green;
+}
+
+.output-slot {
+    background-color: black;
 }
 
 .slot:hover, .selected-slot
