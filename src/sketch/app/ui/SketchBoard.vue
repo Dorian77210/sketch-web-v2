@@ -86,7 +86,7 @@ export default defineComponent({
                 ui
             }
 
-            if (this.slots.contains(componentSlot)) {
+            if (this.slots.peek()?.model === model) {
                 this.slots.clear();
                 model.isSelected = false;
             } else {

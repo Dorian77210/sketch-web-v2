@@ -41,8 +41,6 @@ export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
     const sourceConfiguration: ComponentConfiguration = getConfigurationOf(sourceComponent.constructor as Class<SketchComponent<unknown>>);
     const targetConfiguration: ComponentConfiguration = getConfigurationOf(targetComponent.constructor as Class<SketchComponent<unknown>>);
 
-    console.log(sourceConfiguration, targetConfiguration);
-
     if (!targetConfiguration.slotsConfigurations) {
         return false;
     }
@@ -52,8 +50,9 @@ export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
     }
 
     const targetSlot = getSlotByEntryName(targetConfiguration.slotsConfigurations, entryName);
-
-    console.log(targetSlot);
+    if (targetSlot.type !== sourceConfiguration.returnType) {
+        return false;
+    }
 
     return true;
 }
