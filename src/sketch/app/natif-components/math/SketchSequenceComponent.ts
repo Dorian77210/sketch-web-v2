@@ -30,7 +30,7 @@ export class SketchSequenceComponent extends SketchComponent<Array<number>> {
 }
 
 export const configuration: ComponentConfiguration = {
-    namespace: 'inputs',
+    namespace: 'Math',
     name: 'Sequence number',
     popup: SketchNumberInputPopup,
     returnType: Number,

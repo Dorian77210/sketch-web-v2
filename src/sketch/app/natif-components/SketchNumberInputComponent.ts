@@ -28,7 +28,7 @@ export class SketchNumberInputComponent extends SketchComponent<number> {
 }
 
 export const configuration: ComponentConfiguration = {
-    namespace: 'inputs',
+    namespace: 'Inputs',
     name: 'Number input',
     popup: SketchNumberInputPopup,
     returnType: Number,

@@ -72,7 +72,7 @@ export default defineComponent({
 
                 // filter components in the configurations maps
                 this.configurations.forEach((configuration, componentClass) => {
-                    if (configuration.name.toLowerCase().includes(this.componentFilter.toLowerCase())) {
+                    if (configuration.name.toLowerCase().includes(this.componentFilter.toLowerCase()) && namespace === configuration.namespace) {
                         associatedConfigurations.push({
                             configuration,
                             componentClass
