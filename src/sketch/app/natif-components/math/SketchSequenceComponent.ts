@@ -35,11 +35,11 @@ export const configuration: ComponentConfiguration = {
     popup: SketchNumberInputPopup,
     returnType: Number,
     slotsConfigurations: [{
-        name: 'begin',
+        entryName: 'begin',
         methodName: 'setBegin',
         type: Number
     }, {
-        name: 'end',
+        entryName: 'end',
         methodName: 'setEnd',
         type: Number
     }],

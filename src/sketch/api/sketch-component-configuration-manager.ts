@@ -1,4 +1,4 @@
-import { ComponentConfiguration } from "./component-configuration";
+import { ComponentConfiguration, ComponentSlotConfiguration } from "./component-configuration";
 import SketchComponent from "./sketch-component";
 import { Class } from "./types";
 
@@ -30,3 +30,30 @@ export function getConfigurations() : SketchComponentConfigurations {
     return configurations;
 }
 
+function getSlotByEntryName(entries: Array<ComponentSlotConfiguration>, entryName: string) : ComponentSlotConfiguration {
+    return entries.filter(entry => entry.entryName === entryName)[0];
+}
+
+export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
+    targetComponent: SketchComponent<unknown>,
+    entryName: string) : boolean
+{
+    const sourceConfiguration: ComponentConfiguration = getConfigurationOf(sourceComponent.constructor as Class<SketchComponent<unknown>>);
+    const targetConfiguration: ComponentConfiguration = getConfigurationOf(targetComponent.constructor as Class<SketchComponent<unknown>>);
+
+    console.log(sourceConfiguration, targetConfiguration);
+
+    if (!targetConfiguration.slotsConfigurations) {
+        return false;
+    }
+
+    if (!sourceConfiguration.returnType) {
+        return false;
+    }
+
+    const targetSlot = getSlotByEntryName(targetConfiguration.slotsConfigurations, entryName);
+
+    console.log(targetSlot);
+
+    return true;
+}

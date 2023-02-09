@@ -3,7 +3,7 @@ import { Component } from 'vue';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export type ComponentSlotConfiguration = {
-    name: string;
+    entryName: string;
     methodName: string;
     type: Class<unknown>;
     order?: number;

@@ -8,6 +8,7 @@
                 :configuration="configuration"
                 :x="componentWrapper.x"
                 :y="componentWrapper.y"
+                @on-slot-selected="onSlotSelected"
             />
         </div>
     </div>
@@ -19,12 +20,22 @@ import { defineComponent } from 'vue';
 
 import SketchBoardManager from '../core/sketch-board-manager';
 
-import { Class, opt } from '@/sketch/api/types';
+import { Class } from '@/sketch/api/types';
 import SketchComponent from '@/sketch/api/sketch-component';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
 
 import SketchComponentUI from './SketchComponentUI.vue';
+
+import { ArrayStack } from '@/sketch/api/data-structures';
+import { ComponentSlotModel } from './utils';
+
+import { canCreateLinkBetween } from '@/sketch/api/sketch-component-configuration-manager';
+
+type ComponentSlot = {
+    ui: HTMLElement;
+    model: ComponentSlotModel;
+}
 
 type ComponentWrapper = {
     component: SketchComponent<unknown>;
@@ -44,7 +55,8 @@ export default defineComponent({
     },
     data() {
         return {
-            componentsMap: new Map<ComponentWrapper, ComponentConfiguration>()
+            componentsMap: new Map<ComponentWrapper, ComponentConfiguration>(),
+            slots: new ArrayStack<ComponentSlot>()
         }
     },
 
@@ -64,6 +76,48 @@ export default defineComponent({
                         y: y
                     };
                     this.componentsMap.set(wrapper, associatedConfiguration);
+                }
+            }
+        },
+
+        onSlotSelected(model: ComponentSlotModel, ui: HTMLElement) {
+            const componentSlot: ComponentSlot = {
+                model,
+                ui
+            }
+
+            if (this.slots.contains(componentSlot)) {
+                this.slots.clear();
+                model.isSelected = false;
+            } else {
+                this.slots.push(componentSlot);
+                model.isSelected = true;
+            }
+
+            if (this.slots.size() === 2) {
+                const inputSlot: ComponentSlot = this.slots.pop() as ComponentSlot;
+                const outputSlot: ComponentSlot = this.slots.pop() as ComponentSlot;
+
+                inputSlot.model.isSelected = false;
+                outputSlot.model.isSelected = false;
+
+                this.__createLinkBetween(outputSlot, inputSlot);
+            }
+        },
+
+        __createLinkBetween(source : ComponentSlot, destination: ComponentSlot) : void {
+            if (source.model.type === 'in'
+                || destination.model.type === 'out'
+                || source.ui === destination.ui
+            ) {
+                // todo: console component
+                console.error('The creation of link has failed')
+            } else {
+                if (destination.model.entryName && canCreateLinkBetween(source.model.targetComponent, destination.model.targetComponent, destination.model.entryName)) {
+                    // check in the workflow that the lnik is not existing
+                    console.log('creation of link');
+                } else {
+                    console.error('link error');
                 }
             }
         }

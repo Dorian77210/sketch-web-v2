@@ -10,11 +10,13 @@
             :resizable="true"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
-            <div class="d-flex flex-column slot-container" v-if="configuration.slotsConfigurations">
+            <div class="d-flex flex-column slot-container" v-if="inputSlotModels.length">
                 <div 
-                    v-for="(slotConfiguration, index) in configuration.slotsConfigurations" :key="index"
+                    v-for="(slotConfiguration, index) in inputSlotModels" :key="index"
                     class="slot"
-                    data-toggle="tooltip" data-placement="left" :title="slotConfiguration.name"
+                    :class="{ 'selected-slot': slotConfiguration.isSelected }"
+                    data-toggle="tooltip" data-placement="left" :title="slotConfiguration.entryName"
+                    @click="selectSlot($event, slotConfiguration as ComponentSlotModel)"
                 >
                     <pre></pre>
                 </div>
@@ -25,9 +27,12 @@
                 <font-awesome-icon icon="fa-solid fa-play"></font-awesome-icon>
             </div>
 
-            <div v-if="configuration.returnType" class="slot-container d-flex flex-column">
+            <div v-if="outputSlotModel" class="slot-container d-flex flex-column"
+                @click="selectSlot($event, outputSlotModel as ComponentSlotModel)"
+            >
                 <div
                     class="slot"
+                    :class="{ 'selected-slot': outputSlotModel.isSelected }"
                     ref="outputSlotUI"
                 >
                     <pre></pre>
@@ -45,6 +50,10 @@ import { defineComponent, PropType } from 'vue';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 
+import { ComponentSlotModel } from './utils';
+import SketchComponent from '@/sketch/api/sketch-component';
+import { opt } from '@/sketch/api/types';
+
 export default defineComponent({
     components: {
         Vue3DraggableResizable,
@@ -61,6 +70,10 @@ export default defineComponent({
         configuration: {
             required: true,
             type: Object as PropType<ComponentConfiguration>
+        },
+        component: {
+            required: true,
+            type: Object as PropType<SketchComponent<unknown>>
         }
     },
     data() {
@@ -70,7 +83,36 @@ export default defineComponent({
                 width: 120,
                 x: this.$props.x,
                 y: this.$props.y
+            },
+            inputSlotModels: Array<ComponentSlotModel>(),
+            outputSlotModel: opt<ComponentSlotModel>(),
+        }
+    },
+    beforeMount() {
+        if (this.$props.configuration.slotsConfigurations) {
+            const models: Array<ComponentSlotModel> = this.$props.configuration.slotsConfigurations.map(configuration => {
+                return {
+                    isSelected: false,
+                    targetComponent: this.$props.component,
+                    entryName: configuration.entryName,
+                    type: 'in'
+                }
+            })
+
+            this.inputSlotModels.push(...models);
+        }
+
+        if (this.$props.configuration.returnType) {
+            this.outputSlotModel = {
+                isSelected: false,
+                targetComponent: this.$props.component,
+                type: 'out'
             }
+        }
+    },
+    methods: {
+        selectSlot(event: Event, slot: ComponentSlotModel) {
+            this.$emit('on-slot-selected', slot, event.target as HTMLElement)
         }
     }
 });
