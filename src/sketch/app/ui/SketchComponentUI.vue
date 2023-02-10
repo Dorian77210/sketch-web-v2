@@ -10,6 +10,7 @@
             :resizable="false"
             :dragging="$emit('on-drag', $props.component)"
             @click="$emit('on-component-selected', $props.component)"
+            @dblclick="openPopupConfiguration"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
             <div class="d-flex flex-column slot-container" v-if="inputSlotModels.length">
@@ -27,7 +28,7 @@
                 <div class="row-fluid">
                     <span class="align-text-bottom noselect">{{ configuration.name }}</span>
                     <br/>
-                    <font-awesome-icon icon="fa-solid fa-play"></font-awesome-icon>
+                    <font-awesome-icon icon="fa-solid fa-play" class="play-icon"></font-awesome-icon>
                 </div>
             </div>
 
@@ -44,12 +45,17 @@
             </div>
         </div>
         </Vue3DraggableResizable>
+        <component v-if="popupVisible"
+            :is="popup"
+            :component="$props.component"
+            @close-popup="popupVisible = false"
+        ></component>
     </div>
 </template>
 
 <script lang="ts">
 
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, Component } from 'vue';
 
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
@@ -57,6 +63,8 @@ import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 import { ComponentSlotModel } from './utils';
 import SketchComponent from '@/sketch/api/sketch-component';
 import { opt } from '@/sketch/api/types';
+import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
+import { Class } from '@/sketch/api/types';
 
 export default defineComponent({
     components: {
@@ -90,6 +98,7 @@ export default defineComponent({
             },
             inputSlotModels: Array<ComponentSlotModel>(),
             outputSlotModel: opt<ComponentSlotModel>(),
+            popupVisible: false,
         }
     },
     beforeMount() {
@@ -114,9 +123,18 @@ export default defineComponent({
             }
         }
     },
+    computed: {
+        popup() : Component {
+            const configuration = getConfigurationOf(this.$props.component.constructor as Class<SketchComponent<unknown>>);
+            return configuration.popup;
+        }
+    },
     methods: {
         selectSlot(event: Event, slot: ComponentSlotModel) {
             this.$emit('on-slot-selected', slot, event.target as HTMLElement)
+        },
+        openPopupConfiguration() : void {
+            this.popupVisible = true;
         }
     }
 });

@@ -1,7 +1,11 @@
 <template>
     <aside id="component-list" class="border border-dark p-3">
         <h6>List of available components</h6>
-        <input type="text" placeholder="Search components..." v-model="componentFilter"/>
+        <v-text-field
+            label="Search components..."
+            v-model="componentFilter"
+        >
+        </v-text-field>
         <div class="d-flex flex-column">
             <div class="w-100 mt-4" v-for="(configurations, namespace, index) in configurationsByNamespaces" :key="index">
                 <h6>{{ namespace }} components</h6>
@@ -51,7 +55,8 @@ export default defineComponent({
         return {
             configurations: getConfigurations(),
             componentFilter: '',
-            currentElementSelected: opt<HTMLElement>() 
+            currentElementSelected: opt<HTMLElement>(),
+            visible: false 
         }
     },
     computed: {
@@ -99,6 +104,10 @@ export default defineComponent({
             
             this.currentElementSelected.classList.add('component-list-item-selected');
             this.$props.boardManager.setSelectedComponent(selectedComponent);
+        },
+        open() {
+            console.log('open');
+            this.visible = true;
         }
     }
 })

@@ -25,6 +25,14 @@ export class SketchNumberInputComponent extends SketchComponent<number> {
 
         return component;
     }
+
+    setValue(value: number) {
+        this.inputWrapper.setData(value);
+    }
+
+    getValue() : number | undefined {
+        return this.inputWrapper.isDataAvailable() ? this.inputWrapper.getData() : undefined;
+    }
 }
 
 export const configuration: ComponentConfiguration = {

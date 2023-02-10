@@ -16,7 +16,6 @@ export default createStore({
     },
     actions: {
         addMessage(context, message: ConsoleMessage) {
-            console.log(message);
             context.commit('ADD_MESSAGE', message);
         }
     },

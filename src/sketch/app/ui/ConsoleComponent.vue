@@ -40,7 +40,6 @@ export default defineComponent({
     },
     computed: {
         messages() {
-            console.log(store.state.consoleMessages);
             return store.state.consoleMessages
         },
         consoleClass() : string {
