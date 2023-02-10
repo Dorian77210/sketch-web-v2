@@ -7,7 +7,7 @@
             v-model:y="componentUIConfiguration.y"
             :active="true"
             :draggable="true"
-            :resizable="false"
+            :resizable="true"
             :dragging="$emit('on-drag', $props.component)"
             @click="$emit('on-component-selected', $props.component)"
             @dblclick="openPopupConfiguration"
@@ -26,7 +26,7 @@
             </div>
             <div class="table p-1">
                 <div class="row-fluid">
-                    <span class="align-text-bottom noselect">{{ configuration.name }}</span>
+                    <span class="align-text-bottom noselect" contenteditable @input="updateComponentName">{{ componentName }}</span>
                     <br/>
                     <font-awesome-icon icon="fa-solid fa-play" class="play-icon"></font-awesome-icon>
                 </div>
@@ -99,6 +99,8 @@ export default defineComponent({
             inputSlotModels: Array<ComponentSlotModel>(),
             outputSlotModel: opt<ComponentSlotModel>(),
             popupVisible: false,
+            componentName: this.configuration.name,
+            editingName: true
         }
     },
     beforeMount() {
@@ -135,6 +137,10 @@ export default defineComponent({
         },
         openPopupConfiguration() : void {
             this.popupVisible = true;
+        },
+        updateComponentName(event: Event) {
+            const element: HTMLElement = event.target as HTMLElement;
+            this.componentName = element.innerText;
         }
     }
 });
