@@ -10,6 +10,7 @@
                 :y="componentWrapper.y"
                 @on-slot-selected="onSlotSelected"
                 @on-drag="onDrag"
+                @on-component-selected="onComponentSelected"
             />
         </div>
     </div>
@@ -37,7 +38,9 @@ import { canCreateLinkBetween } from '@/sketch/api/sketch-component-configuratio
 
 import SketchComponentWorkflow from '../core/sketch-component-workflow';
 
+import { opt } from '@/sketch/api/types';
 
+import store from '@/store';
 
 type ComponentSlot = {
     ui: HTMLElement;
@@ -65,7 +68,8 @@ export default defineComponent({
             componentsMap: new Map<ComponentWrapper, ComponentConfiguration>(),
             slots: new ArrayStack<ComponentSlot>(),
             workflow: new SketchComponentWorkflow(),
-            links: new Map<SketchComponent<unknown>, Array<LeaderLine>>()
+            links: new Map<SketchComponent<unknown>, Array<LeaderLine>>(),
+            selectedComponent: opt<SketchComponent<unknown>>()
         }
     },
 
@@ -120,14 +124,19 @@ export default defineComponent({
                 || source.ui === destination.ui
             ) {
                 // todo: console component
-                console.error('The creation of link has failed')
+                store.dispatch('addMessage', {
+                    message: 'The creation of the link has failed',
+                    type: 'error'
+                });
             } else {
                 if (destination.model.entryName && canCreateLinkBetween(source.model.targetComponent, destination.model.targetComponent, destination.model.entryName)) {
                     // check in the workflow that the lnik is not existing
                     if (this.workflow.createLinkBetween(source.model.targetComponent, destination.model.targetComponent, destination.model.entryName) === false) {
-                        console.error("Error during the creation of link");
+                        store.dispatch('addMessage', {
+                            message: 'The link already exists in the app',
+                            type: 'error'
+                        })
                     } else {
-                        console.log('creation');
                         const line = new LeaderLine({
                             start: source.ui,
                             end: destination.ui,
@@ -147,7 +156,10 @@ export default defineComponent({
                         this.links.get(source.model.targetComponent)?.push(line);
                     }
                 } else {
-                    console.error('link error');
+                    store.dispatch('addMessgae', {
+                        message: "None data could pass from the source component to the target component",
+                        type: 'error'
+                    })
                 }
             }
         },
@@ -155,6 +167,10 @@ export default defineComponent({
             // update all the links of the component
             const lines: Array<LeaderLine> | undefined = this.links.get(component);
             lines?.forEach(line => line.position());
+        },
+
+        onComponentSelected(component: SketchComponent<unknown>) {
+            this.selectedComponent = component;
         }
     }
 });

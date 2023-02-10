@@ -9,6 +9,7 @@
             :draggable="true"
             :resizable="false"
             :dragging="$emit('on-drag', $props.component)"
+            @click="$emit('on-component-selected', $props.component)"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
             <div class="d-flex flex-column slot-container" v-if="inputSlotModels.length">
