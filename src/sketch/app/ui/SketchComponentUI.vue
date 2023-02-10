@@ -138,7 +138,7 @@ export default defineComponent({
     align-items: center;
     display: flex;
     justify-content: center;
-    gap: 5%;
+    gap: 15%;
 }
 
 .slot {
