@@ -14,9 +14,9 @@ import 'bootstrap/dist/js/bootstrap.js'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlay)
+library.add(faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation);
 
 // Vue draggable resizable
 import Vue3DraggableResizable from 'vue3-draggable-resizable'

@@ -13,6 +13,7 @@
                 @on-component-selected="onComponentSelected"
             />
         </div>
+        <ConsoleComponent id="console" style="max-height: 10%"/>
     </div>
 </template>
 
@@ -30,6 +31,7 @@ import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
 
 import SketchComponentUI from './SketchComponentUI.vue';
+import ConsoleComponent from './ConsoleComponent.vue';
 
 import { ArrayStack } from '@/sketch/api/data-structures';
 import { ComponentSlotModel } from './utils';
@@ -55,7 +57,8 @@ type ComponentWrapper = {
 
 export default defineComponent({
     components: {
-        SketchComponentUI
+        SketchComponentUI,
+        ConsoleComponent
     },
     props: {
         boardManager: {
@@ -126,7 +129,7 @@ export default defineComponent({
                 // todo: console component
                 store.dispatch('addMessage', {
                     message: 'The creation of the link has failed',
-                    type: 'error'
+                    level: 'error'
                 });
             } else {
                 if (destination.model.entryName && canCreateLinkBetween(source.model.targetComponent, destination.model.targetComponent, destination.model.entryName)) {
@@ -134,7 +137,7 @@ export default defineComponent({
                     if (this.workflow.createLinkBetween(source.model.targetComponent, destination.model.targetComponent, destination.model.entryName) === false) {
                         store.dispatch('addMessage', {
                             message: 'The link already exists in the app',
-                            type: 'error'
+                            level: 'error'
                         })
                     } else {
                         const line = new LeaderLine({
@@ -156,9 +159,9 @@ export default defineComponent({
                         this.links.get(source.model.targetComponent)?.push(line);
                     }
                 } else {
-                    store.dispatch('addMessgae', {
+                    store.dispatch('addMessage', {
                         message: "None data could pass from the source component to the target component",
-                        type: 'error'
+                        level: 'error'
                     })
                 }
             }
@@ -181,7 +184,7 @@ export default defineComponent({
 #sketch-board
 {
     width: 100%;
-    height: 100%;
+    height: 90%;
     background-color: gray;
 }
 

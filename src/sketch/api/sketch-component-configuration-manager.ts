@@ -39,6 +39,10 @@ export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
     targetComponent: SketchComponent<unknown>,
     entryName: string) : boolean
 {
+    if (targetComponent === sourceComponent) {
+        return false;
+    }
+    
     const sourceConfiguration: ComponentConfiguration = getConfigurationOf(sourceComponent.constructor as Class<SketchComponent<unknown>>);
     const targetConfiguration: ComponentConfiguration = getConfigurationOf(targetComponent.constructor as Class<SketchComponent<unknown>>);
 
