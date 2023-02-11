@@ -1,6 +1,6 @@
 type Message = {
     message: string;
-    level: 'error' | 'warning' | 'info';
+    level: 'error' | 'warning' | 'success';
 };
 
 export default Message;
