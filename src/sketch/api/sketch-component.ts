@@ -12,11 +12,21 @@ export default abstract class SketchComponent<T>
 {
     private __uuid: string;
 
+    /**
+     * Variable used to know if the component has to be executed again
+     */
+    private _isDirty: boolean;
+
     constructor()
     {
         this.__uuid = uuidv4();
+        this._isDirty = false;
     }
-    
+
+    get isDirty(): boolean { return this._isDirty; }
+    set isDirty(value: boolean) { this._isDirty = value;}
+    setIsDirty(value: boolean) { this._isDirty = value;}
+
     /**
      * @returns The internal id of the component.
      */

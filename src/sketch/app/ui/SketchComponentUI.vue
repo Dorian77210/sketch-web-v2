@@ -51,7 +51,7 @@
         <component v-if="popupVisible"
             :is="popup"
             :component="$props.component"
-            @close-popup="popupVisible = false"
+            @close-popup="onClosePopup"
         ></component>
     </div>
 </template>
@@ -147,6 +147,10 @@ export default defineComponent({
         updateComponentName(event: Event) {
             const element: HTMLElement = event.target as HTMLElement;
             this.componentName = element.innerText;
+        },
+        onClosePopup() {
+            this.popupVisible = false;
+            this.component.setIsDirty(true);
         }
     }
 });

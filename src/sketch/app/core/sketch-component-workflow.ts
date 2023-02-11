@@ -173,7 +173,13 @@ export default class SketchComponentWorkflow {
                 }
             }
 
-            result = currentComponent.execute();
+            if (currentComponent.isDirty) {
+                result = currentComponent.execute();
+                currentComponent.isDirty = false;
+            } else {
+                result = this.resultCache.get(currentComponent);
+            }
+
             console.log(result);
             this.resultCache.set(currentComponent, result);
         }
