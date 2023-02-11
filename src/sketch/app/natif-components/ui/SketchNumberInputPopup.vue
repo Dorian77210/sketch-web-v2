@@ -1,26 +1,12 @@
 <template>
-    <v-dialog
-    v-model="visible"
-    max-width="400"
-    persistent
-  >
-    <v-card>
-        <v-card-title class="text-h5">
-            Configure the input
-        </v-card-title>
-        <v-text-field v-model="inputValue" type="number" label="Input value"></v-text-field>
-        <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-                color="green darken-1"
-                text
-                @click="close"
-            >
-            Save data
-            </v-btn>
-        </v-card-actions>
-        </v-card>
-  </v-dialog>
+    <SketchComponentModal
+        :before-close="beforeClose"
+        title="Configuration of the input"
+    >
+        <template v-slot:modal-body>
+            <v-text-field v-model="inputValue" type="number" label="Input value"></v-text-field>
+        </template>
+    </SketchComponentModal>
 </template>
 
 <script lang="ts">
@@ -29,8 +15,12 @@ import { defineComponent, PropType } from 'vue';
 
 import { SketchNumberInputComponent } from '../SketchNumberInputComponent';
 
+import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+
 export default defineComponent({
-    name: 'NumberInputComponent',
+    components: {
+        SketchComponentModal
+    },
     props: {
         component: {
             required: true,
@@ -43,15 +33,11 @@ export default defineComponent({
             inputValue: this.component.getValue() || 0
         }
     },
-
     methods: {
-        close() {
-            console.log('ok');
-            this.visible = false;
+        beforeClose() {
             this.component.setValue(this.inputValue);
-            this.$emit('close-popup');
         }
-    },
+    }
 })
 
 </script>

@@ -2,9 +2,11 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 import SketchComponent from "@/sketch/api/sketch-component";
 
-import SketchNumberInputPopup from "@/sketch/app/natif-components/ui/SketchNumberInputPopup.vue";
+import SketchSequencePopup from "@/sketch/app/natif-components/ui/math/SketchSequencePopup.vue";
 
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
+
+import SequenceData from "../data/SequenceData";
 
 /**
  * @author Dorian TERBAH
@@ -15,7 +17,9 @@ import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
  * @since 1.0
  */
 export class SketchSequenceComponent extends SketchComponent<Array<number>> {
-    
+
+    private _sequenceData: SequenceData = new SequenceData();
+
     constructor() {
         super();
     }
@@ -27,12 +31,22 @@ export class SketchSequenceComponent extends SketchComponent<Array<number>> {
     copy(): SketchComponent<number[]> {
         throw new Error("Method not implemented.");
     }
+
+    setBegin(begin: number) {
+        this._sequenceData.begin = begin;
+    }
+
+    setEnd(end: number) {
+        this._sequenceData.end = end;
+    }
+
+    getSequenceData(): SequenceData { return this._sequenceData; }
 }
 
 export const configuration: ComponentConfiguration = {
     namespace: 'Math',
     name: 'Sequence number',
-    popup: SketchNumberInputPopup,
+    popup: SketchSequencePopup,
     returnType: Number,
     slotsConfigurations: [{
         entryName: 'begin',
