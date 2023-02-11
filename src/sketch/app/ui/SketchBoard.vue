@@ -11,7 +11,6 @@
                 @on-slot-selected="onSlotSelected"
                 @on-drag="onDrag"
                 @on-component-selected="onComponentSelected"
-                @ask-for-execution="askForExecution"
             />
         </div>
     </div>
@@ -190,8 +189,14 @@ export default defineComponent({
                     level: 'error'
                 })
             }
-        }
+        },
     },
+
+    created() {
+        bus.on('ask-for-execution', (component) => {
+            this.askForExecution(component as SketchComponent<unknown>);
+        })
+    }
 });
 
 </script>

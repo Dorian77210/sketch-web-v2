@@ -31,7 +31,7 @@
                     <font-awesome-icon
                         icon="fa-solid fa-play"
                         class="play-icon"
-                        @click="$emit('ask-for-execution', component)"    
+                        @click="bus.emit('ask-for-execution', component)"    
                     ></font-awesome-icon>
                 </div>
             </div>
@@ -70,6 +70,8 @@ import { opt } from '@/sketch/api/types';
 import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
 import { Class } from '@/sketch/api/types';
 
+import bus from '../core/bus';
+
 export default defineComponent({
     components: {
         Vue3DraggableResizable,
@@ -98,13 +100,14 @@ export default defineComponent({
                 height: 130,
                 width: 130,
                 x: this.$props.x,
-                y: this.$props.y
+                y: this.$props.y,
             },
             inputSlotModels: Array<ComponentSlotModel>(),
             outputSlotModel: opt<ComponentSlotModel>(),
             popupVisible: false,
             componentName: this.configuration.name,
-            editingName: true
+            editingName: true,
+            bus
         }
     },
     beforeMount() {
