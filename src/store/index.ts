@@ -1,21 +1,21 @@
 import { createStore } from 'vuex'
 
-import ConsoleMessage from '@/sketch/app/core/console-message'
+import Message from '@/sketch/app/core/message'
 
 export default createStore({
     state: {
-        consoleMessages: Array<ConsoleMessage>()
+        messages: Array<Message>()
     },
     getters: {
-        consoleMessages: state => state.consoleMessages,
+        messages: state => state.messages,
     },
     mutations: {
-        ADD_MESSAGE(state, message: ConsoleMessage) {
-            state.consoleMessages.push(message);
+        ADD_MESSAGE(state, message: Message) {
+            state.messages.push(message);
         }
     },
     actions: {
-        addMessage(context, message: ConsoleMessage) {
+        addMessage(context, message: Message) {
             context.commit('ADD_MESSAGE', message);
         }
     },

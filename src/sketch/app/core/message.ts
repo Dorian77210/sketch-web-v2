@@ -1,6 +1,6 @@
-type ConsoleMessage = {
+type Message = {
     message: string;
     level: 'error' | 'warning' | 'info';
 };
 
-export default ConsoleMessage;
+export default Message;

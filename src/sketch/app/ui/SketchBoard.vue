@@ -13,7 +13,6 @@
                 @on-component-selected="onComponentSelected"
             />
         </div>
-        <ConsoleComponent id="console" style="max-height: 10%"/>
     </div>
 </template>
 
@@ -31,7 +30,6 @@ import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
 
 import SketchComponentUI from './SketchComponentUI.vue';
-import ConsoleComponent from './ConsoleComponent.vue';
 
 import { ArrayStack } from '@/sketch/api/data-structures';
 import { ComponentSlotModel } from './utils';
@@ -58,7 +56,6 @@ type ComponentWrapper = {
 export default defineComponent({
     components: {
         SketchComponentUI,
-        ConsoleComponent
     },
     props: {
         boardManager: {
@@ -184,7 +181,7 @@ export default defineComponent({
 #sketch-board
 {
     width: 100%;
-    height: 90%;
+    height: 100%;
     background-color: gray;
 }
 

@@ -2,6 +2,7 @@
     <div class="d-flex" id="sketch-view">
         <SketchComponentList :board-manager="sketchBoardManager" />
         <SketchBoard :board-manager="sketchBoardManager" />
+        <SketchMessages />
     </div>
 </template>
 
@@ -11,6 +12,7 @@ import { defineComponent } from 'vue';
 
 import SketchComponentList from '@/sketch/app/ui/SketchComponentList.vue';
 import SketchBoard from '@/sketch/app/ui/SketchBoard.vue';
+import SketchMessages from '@/sketch/app/ui/SketchMessages.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 import { registerConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
@@ -18,7 +20,8 @@ import { registerConfigurations } from '@/sketch/api/sketch-component-configurat
 export default defineComponent({
     components: {
         SketchComponentList,
-        SketchBoard
+        SketchBoard,
+        SketchMessages
     },
     data() {
         return {

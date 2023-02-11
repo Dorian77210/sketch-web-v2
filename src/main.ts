@@ -22,6 +22,8 @@ library.add(faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExcla
 
 import '@/assets/css/style.css';
 
+import "@mdi/font/css/materialdesignicons.css";
+
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
@@ -31,6 +33,8 @@ const vuetify = createVuetify({
     components,
     directives,
   });
+
+
 
 
 createApp(App).use(store)
