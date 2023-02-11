@@ -43,6 +43,7 @@
                     icon="fa-solid fa-play"
                     :style="{ 'color': outputSlotModel.isSelected ? 'red' : 'black' }"
                     class="play-icon"
+                    style="height: 20px;"
                 ></font-awesome-icon>
             </div>
         </div>

@@ -178,6 +178,7 @@ export default defineComponent({
         },
         askForExecution(component: SketchComponent<unknown>) {
             try {
+                bus.emit('start-execution');
                 this.workflow.execute(component);
                 store.dispatch('addMessage', {
                     message: 'Workflow executed successfully !',
@@ -188,6 +189,8 @@ export default defineComponent({
                     message: e,
                     level: 'error'
                 })
+            } finally {
+                bus.emit('end-execution');
             }
         },
     },
