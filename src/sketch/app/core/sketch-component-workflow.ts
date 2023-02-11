@@ -21,6 +21,11 @@ export default class SketchComponentWorkflow {
     private edges: Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>;
 
     /**
+     * Cache of results of component
+     */
+    private resultCache: Map<SketchComponent<unknown>, any>;
+
+    /**
      * Map a component with his children
      */
     private children: Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>;
@@ -34,6 +39,7 @@ export default class SketchComponentWorkflow {
         this.edges = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
         this.children = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
         this.orphanComponents = new Array<SketchComponent<unknown>>();
+        this.resultCache = new Map<SketchComponent<unknown>, any>();
     }
 
     /**
@@ -80,6 +86,10 @@ export default class SketchComponentWorkflow {
 
         const children = this.children.get(parent);
         children?.set(entryName, child);
+
+        if (this.resultCache.has(parent)) {
+            injectData(child, entryName, this.resultCache.get(parent));
+        }
 
         return true;
     }
@@ -142,7 +152,6 @@ export default class SketchComponentWorkflow {
     }
 
     public execute(component: SketchComponent<unknown>) : boolean {
-        const data: Map<SketchComponent<unknown>, any> = new Map<SketchComponent<unknown>, any>();
         const componentStack = this.buildExecutionQueue(component);
 
         let currentComponent: SketchComponent<unknown> | undefined;
@@ -156,7 +165,7 @@ export default class SketchComponentWorkflow {
                 if (parents) {
                     for (const entry of Array.from(parents.entries())) {
                         const entryName = entry[0];
-                        const parentResult = data.get(parents.get(entryName) as SketchComponent<unknown>);
+                        const parentResult = this.resultCache.get(parents.get(entryName) as SketchComponent<unknown>);
                         if (!injectData(currentComponent, entryName, parentResult)) {
                             throw "Impossible to pass data to component";
                         }
@@ -166,7 +175,7 @@ export default class SketchComponentWorkflow {
 
             result = currentComponent.execute();
             console.log(result);
-            data.set(currentComponent, result);
+            this.resultCache.set(currentComponent, result);
         }
         
         currentComponent = currentComponent as SketchComponent<unknown>;
