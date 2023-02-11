@@ -34,13 +34,11 @@ const vuetify = createVuetify({
     directives,
   });
 
-
-
-
-createApp(App).use(store)
+const app = createApp(App).use(store)
     .use(router)
     .use(BootstrapVue3)
     .use(vuetify)
     .use(Vue3DraggableResizable)
     .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app')
+

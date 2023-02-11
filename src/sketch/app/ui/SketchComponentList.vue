@@ -36,6 +36,8 @@ import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 import SketchComponent from '@/sketch/api/sketch-component';
 import { Class, opt } from '@/sketch/api/types';
 
+import bus from '../core/bus';
+
 type SketchComponentConfiguration = {
     configuration: ComponentConfiguration;
     componentClass: Class<SketchComponent<unknown>>;
@@ -110,6 +112,12 @@ export default defineComponent({
             console.log('open');
             this.visible = true;
         }
+    },
+    created() {
+        bus.on('create-component', () => {
+            this.currentElementSelected?.classList.remove('component-list-item-selected');
+            this.currentElementSelected = undefined;
+        })
     }
 })
 

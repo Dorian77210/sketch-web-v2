@@ -18,7 +18,7 @@
 
 <script lang="ts">
 
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 
 import LeaderLine from 'leader-line-new';
 
@@ -41,6 +41,8 @@ import SketchComponentWorkflow from '../core/sketch-component-workflow';
 import { opt } from '@/sketch/api/types';
 
 import store from '@/store';
+
+import bus from '../core/bus';
 
 type ComponentSlot = {
     ui: HTMLElement;
@@ -89,6 +91,8 @@ export default defineComponent({
                         y: y
                     };
                     this.componentsMap.set(wrapper, associatedConfiguration);
+
+                    bus.emit('create-component');
                 }
             }
         },
@@ -172,7 +176,7 @@ export default defineComponent({
         onComponentSelected(component: SketchComponent<unknown>) {
             this.selectedComponent = component;
         }
-    }
+    },
 });
 
 </script>
