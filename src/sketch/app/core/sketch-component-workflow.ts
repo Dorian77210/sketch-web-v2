@@ -2,6 +2,8 @@ import { Class } from "@/sketch/api/types";
 import SketchComponent from "@/sketch/api/sketch-component";
 import { getConfigurationOf, getSlotByEntryName } from "@/sketch/api/sketch-component-configuration-manager";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
+import { Stack, ArrayStack } from "@/sketch/api/data-structures";
+import injectData from "@/sketch/inject-data";
 
 /**
  * @author Dorian TERBAH
@@ -105,6 +107,76 @@ export default class SketchComponentWorkflow {
 
         // maybe to review
         return slot !== undefined && slot.type === parentTypeReturn;
+    }
+
+    /**
+     * Build a deque with the parents and the parents of the parents etc of the component
+     * @param component The component which one the algo has to find the parents.
+     * @return The deque with all the parents
+     */
+    private buildExecutionQueue(component: SketchComponent<unknown>) : Stack<SketchComponent<unknown>> {
+        const componentStack: Stack<SketchComponent<unknown>> = new ArrayStack<SketchComponent<unknown>>();
+        let currentComponents: Array<SketchComponent<unknown>> = [component];
+        
+        componentStack.push(component);
+        // push all the parents of the component, then the parents of the parents, etc
+        while (currentComponents.length !== 0) {
+            const tmpComponents: Array<SketchComponent<unknown>> = [];
+            currentComponents.forEach(currentComponent => {
+                if (this.hasParents(currentComponent)) {
+                    const parents = this.edges.get(currentComponent)?.values();
+                    if (parents) {
+                        Array.from(parents).forEach(parent => {
+                            componentStack.push(parent);
+                            tmpComponents.push(parent);
+                        });
+                    }
+                }
+            });
+
+            currentComponents = []
+            currentComponents.push(...tmpComponents);
+        }
+
+        return componentStack;
+    }
+
+    public execute(component: SketchComponent<unknown>) : boolean {
+        const data: Map<SketchComponent<unknown>, any> = new Map<SketchComponent<unknown>, any>();
+        const componentStack = this.buildExecutionQueue(component);
+
+        let currentComponent: SketchComponent<unknown> | undefined;
+        let result: any = null;
+
+        while (!componentStack.isEmpty()) {
+            currentComponent = componentStack.pop() as SketchComponent<unknown>;
+            
+            if (this.hasParents(currentComponent)) {
+                const parents = this.edges.get(currentComponent);
+                if (parents) {
+                    for (const entry of Array.from(parents.entries())) {
+                        const entryName = entry[0];
+                        const parentResult = data.get(parents.get(entryName) as SketchComponent<unknown>);
+                        if (!injectData(currentComponent, entryName, parentResult)) {
+                            throw "Impossible to pass data to component";
+                        }
+                    }
+                }
+            }
+
+            result = currentComponent.execute();
+            console.log(result);
+            data.set(currentComponent, result);
+        }
+        
+        currentComponent = currentComponent as SketchComponent<unknown>;
+        if (this.children.has(currentComponent)) {
+            this.children.get(currentComponent)?.forEach((comp, entryName) => {
+                injectData(comp, entryName, result);
+            })
+        }
+
+        return true;
     }
 
     /**

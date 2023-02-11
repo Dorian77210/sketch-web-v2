@@ -20,4 +20,8 @@ export default class SequenceData {
 
     get end() : number { return this._end; }
     set end(end: number) { this._end = end; }
+
+    public isValidStep() : boolean {
+        return this.begin > this.end ? this.step < 0.0 : this.step > 0.0
+    }
 }

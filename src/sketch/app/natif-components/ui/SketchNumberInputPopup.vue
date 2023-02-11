@@ -30,12 +30,12 @@ export default defineComponent({
     data() {
         return {
             visible: true,
-            inputValue: this.component.getValue() || 0
+            inputValue: this.component.getValue()?.toString() || ''
         }
     },
     methods: {
         beforeClose() {
-            this.component.setValue(this.inputValue);
+            this.component.setValue(parseFloat(this.inputValue));
         }
     }
 })

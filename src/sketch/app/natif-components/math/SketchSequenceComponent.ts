@@ -7,6 +7,7 @@ import SketchSequencePopup from "@/sketch/app/natif-components/ui/math/SketchSeq
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
 
 import SequenceData from "../data/SequenceData";
+import { NumberList } from "@/sketch/api/data-structures";
 
 /**
  * @author Dorian TERBAH
@@ -24,8 +25,24 @@ export class SketchSequenceComponent extends SketchComponent<Array<number>> {
         super();
     }
 
-    execute(): number[] {
-        throw new Error("Method not implemented.");
+    execute(): NumberList {
+        const result: NumberList = new NumberList();
+
+        if (!this._sequenceData.isValidStep()) {
+            throw "The step is not correctly defined";
+        }
+
+        const begin = this._sequenceData.begin;
+        const end = this._sequenceData.end;
+        const step = this._sequenceData.step;
+        let value = begin;
+
+        while ((step > 0.0 ? value < end : value > end)) {
+            result.push(value);
+            value += step;
+        }
+
+        return result;
     }
     
     copy(): SketchComponent<number[]> {
@@ -47,7 +64,7 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Math',
     name: 'Sequence number',
     popup: SketchSequencePopup,
-    returnType: Number,
+    returnType: NumberList,
     slotsConfigurations: [{
         entryName: 'begin',
         methodName: 'setBegin',

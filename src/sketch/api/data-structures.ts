@@ -1,3 +1,5 @@
+// ---- Stack API -----//
+
 export interface Stack<T> {
     push(item: T): void;
     pop(): T | undefined;
@@ -42,5 +44,45 @@ export class ArrayStack<T> implements Stack<T> {
 
     clear(): void {
         this.storage = [];
+    }
+}
+
+// ---- Queue API -----//
+export interface Queue<T> {
+    enqueue(item: T): void;
+    dequeue(): T | undefined;
+    size(): number;
+}
+ 
+
+export class ArrayQueue<T> implements Queue<T> {
+    private storage: T[] = [];
+  
+    constructor(private capacity: number = Infinity) {}
+  
+    enqueue(item: T): void {
+      if (this.size() === this.capacity) {
+        throw Error("Queue has reached max capacity, you cannot add more items");
+      }
+      this.storage.push(item);
+    }
+    dequeue(): T | undefined {
+      return this.storage.shift();
+    }
+    size(): number {
+      return this.storage.length;
+    }
+  }
+
+/**
+ * @author Dorian TERBAH
+ * 
+ * List that contains only numbers.
+ * 
+ * @since 1.0
+ */
+export class NumberList extends Array<number> {
+    constructor() {
+        super();
     }
 }

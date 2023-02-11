@@ -32,17 +32,17 @@ export default defineComponent({
     data() {
         return {
             visible: true,
-            begin: this.component.getSequenceData().begin,
-            end: this.component.getSequenceData().end,
-            step: this.component.getSequenceData().step
+            begin: this.component.getSequenceData().begin.toString(),
+            end: this.component.getSequenceData().end.toString(),
+            step: this.component.getSequenceData().step.toString()
         }
     },
 
     methods: {
         beforeClose() {
-            this.component.getSequenceData().begin = this.begin;
-            this.component.getSequenceData().end = this.end;
-            this.component.getSequenceData().step = this.step;
+            this.component.getSequenceData().begin = parseFloat(this.begin);
+            this.component.getSequenceData().end = parseFloat(this.end);
+            this.component.getSequenceData().step = parseFloat(this.step);
         }
     },
 })

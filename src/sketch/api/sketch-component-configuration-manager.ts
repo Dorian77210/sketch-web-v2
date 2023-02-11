@@ -30,7 +30,7 @@ export function getConfigurations() : SketchComponentConfigurations {
     return configurations;
 }
 
-export function getSlotByEntryName(entries: Array<ComponentSlotConfiguration>, entryName: string) : ComponentSlotConfiguration | undefined{
+export function getSlotByEntryName(entries: Array<ComponentSlotConfiguration>, entryName: string) : ComponentSlotConfiguration | undefined {
     const results = entries.filter(entry => entry.entryName === entryName);
     return results.length > 0 ? results[0] : undefined;
 }

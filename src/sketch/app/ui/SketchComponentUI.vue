@@ -28,7 +28,11 @@
                 <div class="row-fluid">
                     <span class="align-text-bottom noselect" contenteditable @input="updateComponentName">{{ componentName }}</span>
                     <br/>
-                    <font-awesome-icon icon="fa-solid fa-play" class="play-icon"></font-awesome-icon>
+                    <font-awesome-icon
+                        icon="fa-solid fa-play"
+                        class="play-icon"
+                        @click="$emit('ask-for-execution', component)"    
+                    ></font-awesome-icon>
                 </div>
             </div>
 

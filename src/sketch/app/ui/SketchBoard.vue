@@ -11,6 +11,7 @@
                 @on-slot-selected="onSlotSelected"
                 @on-drag="onDrag"
                 @on-component-selected="onComponentSelected"
+                @ask-for-execution="askForExecution"
             />
         </div>
     </div>
@@ -18,7 +19,7 @@
 
 <script lang="ts">
 
-import { defineComponent, inject } from 'vue';
+import { defineComponent } from 'vue';
 
 import LeaderLine from 'leader-line-new';
 
@@ -175,6 +176,20 @@ export default defineComponent({
 
         onComponentSelected(component: SketchComponent<unknown>) {
             this.selectedComponent = component;
+        },
+        askForExecution(component: SketchComponent<unknown>) {
+            try {
+                this.workflow.execute(component);
+                store.dispatch('addMessage', {
+                    message: 'Workflow executed successfully !',
+                    level: 'success'
+                })
+            } catch (e) {
+                store.dispatch('addMessage', {
+                    message: e,
+                    level: 'error'
+                })
+            }
         }
     },
 });

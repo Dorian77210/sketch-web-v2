@@ -15,8 +15,13 @@ export class SketchNumberInputComponent extends SketchComponent<number> {
     }
 
     execute(): number {
-        throw new Error("Method not implemented.");
+        if (!this.inputWrapper.isDataAvailable()) {
+            throw 'No input set in the component'
+        }
+
+        return this.inputWrapper.getData() as number;
     }
+
     copy(): SketchComponent<number> {
         const component: SketchNumberInputComponent = new SketchNumberInputComponent();
         if (this.inputWrapper.isDataAvailable()) {
