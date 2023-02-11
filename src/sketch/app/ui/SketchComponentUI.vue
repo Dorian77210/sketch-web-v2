@@ -39,13 +39,11 @@
             <div v-if="outputSlotModel" class="slot-container d-flex flex-column"
                 @click="selectSlot($event, outputSlotModel as ComponentSlotModel)"
             >
-                <div
-                    class="slot output-slot"
-                    :class="{ 'selected-slot': outputSlotModel.isSelected }"
-                    ref="outputSlotUI"
-                >
-                    <pre></pre>
-                </div>
+                <font-awesome-icon
+                    icon="fa-solid fa-play"
+                    :style="{ 'color': outputSlotModel.isSelected ? 'red' : 'black' }"
+                    class="play-icon"
+                ></font-awesome-icon>
             </div>
         </div>
         </Vue3DraggableResizable>
@@ -165,38 +163,5 @@ export default defineComponent({
 }
 
 .row-fluid {height: 100%; display:table-cell; vertical-align: middle;}
-
-.slot-container {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    gap: 15%;
-}
-
-.slot {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.input-slot {
-    background-color: green;
-}
-
-.output-slot {
-    background-color: black;
-}
-
-.slot:hover, .selected-slot
-{
-    background-color: red;
-}
-
-.component-ui
-{
-    background-color: #ceeaee;
-    position: absolute;
-}
 
 </style>
