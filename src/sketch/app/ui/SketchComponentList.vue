@@ -89,6 +89,9 @@ export default defineComponent({
                 })
 
                 configs[namespace] = associatedConfigurations;
+                if (configs[namespace].length === 0) {
+                    delete configs[namespace];
+                }
             })
 
             return configs;
