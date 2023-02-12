@@ -235,14 +235,16 @@ export default defineComponent({
             // delete the component in the workflow
             this.workflow.deleteComponent(currentComponent);
             this.selectedComponent = undefined;
-
-            console.log(this.workflow);
         }
     },
     
     created() {
         bus.on('ask-for-execution', (component) => {
             this.askForExecution(component as SketchComponent<unknown>);
+        });
+
+        bus.on('on-component-unselect', () => {
+            this.selectedComponent = undefined;
         })
     }
 });

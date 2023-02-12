@@ -11,6 +11,7 @@
             :dragging="$emit('on-drag', $props.component)"
             @click="$emit('on-component-selected', $props.component)"
             @dblclick="openPopupConfiguration"
+            @deactivated="bus.emit('on-component-unselect')"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
             <div class="d-flex flex-column slot-container" v-if="inputSlotModels.length">
@@ -151,6 +152,9 @@ export default defineComponent({
         onClosePopup() {
             this.popupVisible = false;
             this.component.setIsDirty(true);
+        },
+        onFocusOut() {
+            console.log('ok');
         }
     }
 });
