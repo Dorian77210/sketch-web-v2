@@ -10,6 +10,7 @@ const configurations: SketchComponentConfigurations = new Map<Class<SketchCompon
 
 import { SketchNumberInputComponent, configuration as SketchNumberInputConfiguration } from "../app/natif-components/SketchNumberInputComponent";
 import { SketchSequenceComponent, configuration as SketchSequenceConfiguration } from "../app/natif-components/math/SketchSequenceComponent";
+import { SketchMathFunctionComponent, configuration as SketchMathFunctionConfiguration } from "../app/natif-components/math/SketchMathFunctionComponent";
 
 export const registerConfigurations = () => {
     // Number input component
@@ -19,6 +20,11 @@ export const registerConfigurations = () => {
     // sequence component
     configurations.set(SketchSequenceComponent, SketchSequenceConfiguration);
     library.add(SketchSequenceConfiguration.icon.fa);
+
+    // math function component
+    configurations.set(SketchMathFunctionComponent, SketchMathFunctionConfiguration);
+    library.add(SketchMathFunctionConfiguration.icon.fa);
+
 }
 
 export function getConfigurationOf(componentClass: Class<SketchComponent<unknown>>) : ComponentConfiguration
@@ -55,7 +61,7 @@ export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
     }
 
     const targetSlot = getSlotByEntryName(targetConfiguration.slotsConfigurations, entryName);
-    if (targetSlot?.type !== sourceConfiguration.returnType) {
+    if ((targetSlot?.type !== sourceConfiguration.returnType)) {
         return false;
     }
 

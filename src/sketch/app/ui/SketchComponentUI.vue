@@ -30,6 +30,7 @@
             <div class="table p-1 w-50">
                 <div class="row-fluid">
                     <font-awesome-icon :icon="`fa-solid ${configuration.icon.name}`"></font-awesome-icon>
+                    <br/>
                     <span class="align-text-bottom noselect" contenteditable @input="updateComponentName">{{ componentName }}</span>
                     <br/>
                     <font-awesome-icon
@@ -173,6 +174,12 @@ export default defineComponent({
     padding: 0;
 }
 
-.row-fluid {height: 100%; display:table-cell; vertical-align: middle;}
+.row-fluid {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
 
 </style>
