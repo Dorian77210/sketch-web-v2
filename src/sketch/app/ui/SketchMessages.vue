@@ -1,12 +1,6 @@
 <template>
     <div class="d-flex flex-column" id="messages">
-        <v-alert
-            :type="message.level"
-            closable
-            class="mt-1"
-      v-for="(message, index) in messages" :key="index">
-        {{  message.message }}
-    </v-alert>
+        <SketchMessage v-for="(message, index) in messages" :key="index" :message="message" />
     </div>
 </template>
 
@@ -16,13 +10,23 @@ import { defineComponent } from 'vue';
 
 import Message from '../core/message';
 
+import SketchMessage from './SketchMessage.vue';
+
+import bus from '../core/bus';
+
 import store from '@/store';
 
 export default defineComponent({
+    components: {
+        SketchMessage
+    },
     computed: {
         messages() : Array<Message> {
             return store.getters.messages;
         }
+    },
+    mounted() {
+        bus.on('delete-message', message => store.dispatch('deleteMessage', message))
     }
 })
 
