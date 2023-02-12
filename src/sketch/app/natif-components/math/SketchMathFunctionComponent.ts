@@ -26,7 +26,12 @@ export class SketchMathFunctionComponent extends SketchComponent<DataFrame> {
     public static FUNCTIONS_AVAILABLE: Map<string, MathFunction> = new Map([
         [ 'cos', Math.cos ],
         [ 'sin', Math.sin ],
-        [ 'tan', Math.tan ]
+        [ 'tan', Math.tan ],
+        [ 'acos', Math.acos ],
+        [ 'atan', Math.atan ],
+        [ 'abs', Math.abs ],
+        [ 'exp', Math.exp ],
+        [ 'log', Math.log ]
     ]);
 
     private dataWrapper: SketchWrapper<NumberList>;

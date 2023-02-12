@@ -11,6 +11,7 @@ const configurations: SketchComponentConfigurations = new Map<Class<SketchCompon
 import { SketchNumberInputComponent, configuration as SketchNumberInputConfiguration } from "../app/natif-components/SketchNumberInputComponent";
 import { SketchSequenceComponent, configuration as SketchSequenceConfiguration } from "../app/natif-components/math/SketchSequenceComponent";
 import { SketchMathFunctionComponent, configuration as SketchMathFunctionConfiguration } from "../app/natif-components/math/SketchMathFunctionComponent";
+import { SketchLineChartComponent, configuration as SketchLineChartConfiguration } from "../app/natif-components/chart/SketchLineChartComponent";
 
 export const registerConfigurations = () => {
     // Number input component
@@ -24,6 +25,10 @@ export const registerConfigurations = () => {
     // math function component
     configurations.set(SketchMathFunctionComponent, SketchMathFunctionConfiguration);
     library.add(SketchMathFunctionConfiguration.icon.fa);
+
+    // line chart component
+    configurations.set(SketchLineChartComponent, SketchLineChartConfiguration);
+    library.add(SketchLineChartConfiguration.icon.fa);
 
 }
 

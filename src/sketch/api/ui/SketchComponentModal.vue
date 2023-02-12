@@ -2,6 +2,7 @@
     <v-dialog
         v-model="visible"
         :max-width="$props.maxWidth"
+        :max-height="$props.maxHeight"
         persistent
     >
     <v-card>
@@ -14,12 +15,18 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
+                variant="flat"
+                text
+                @click="closeWithoutBefore"
+            >Close</v-btn>
+            <v-btn
                 color="green darken-1"
                 text
                 @click="close"
             >
             Save
             </v-btn>
+
         </v-card-actions>
     </v-card>
   </v-dialog>
@@ -32,6 +39,10 @@ import { defineComponent } from 'vue';
 export default defineComponent({
     props: {
         maxWidth: {
+            type: Number,
+            default: 400
+        },
+        maxHeight: {
             type: Number,
             default: 400
         },
@@ -52,6 +63,10 @@ export default defineComponent({
     methods: {
         close() {
             this.beforeClose();
+            this.visible = false;
+            this.$emit('close-popup');
+        },
+        closeWithoutBefore() {
             this.visible = false;
             this.$emit('close-popup');
         }

@@ -169,6 +169,7 @@ export default class SketchComponentWorkflow {
                         if (!injectData(currentComponent, entryName, parentResult)) {
                             throw "Impossible to pass data to component";
                         }
+                        currentComponent.isDirty = true;
                     }
                 }
             }
