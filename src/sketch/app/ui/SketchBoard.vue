@@ -1,6 +1,6 @@
 <template>
     <div class="w-100">
-        <div id="sketch-board" @click="onBoardClick($event)">
+        <div id="sketch-board" @click="onBoardClick($event)" @keydown="onKeyDown" tabindex="1">
             <SketchComponentUI
                 v-for="[componentWrapper, configuration] in componentsMap"
                 :key="componentWrapper.component.getID()"
@@ -44,6 +44,9 @@ import store from '@/store';
 
 import bus from '../core/bus';
 
+import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
+import { MapUtils } from '../core/utils';
+
 type ComponentSlot = {
     ui: HTMLElement;
     model: ComponentSlotModel;
@@ -54,6 +57,11 @@ type ComponentWrapper = {
     x: number;
     y: number;
 };
+
+type LinkAssociation = {
+    source: SketchComponent<unknown>;
+    destination: SketchComponent<unknown>;
+}
 
 export default defineComponent({
     components: {
@@ -70,7 +78,7 @@ export default defineComponent({
             componentsMap: new Map<ComponentWrapper, ComponentConfiguration>(),
             slots: new ArrayStack<ComponentSlot>(),
             workflow: new SketchComponentWorkflow(),
-            links: new Map<SketchComponent<unknown>, Array<LeaderLine>>(),
+            links: new Map<LinkAssociation, LeaderLine>(),
             selectedComponent: opt<SketchComponent<unknown>>()
         }
     },
@@ -146,18 +154,14 @@ export default defineComponent({
                             end: destination.ui,
                             color: 'black'
                         })
-
-                        if (!this.links.has(destination.model.targetComponent)) {
-                            this.links.set(destination.model.targetComponent, Array<LeaderLine>());
+                        
+                        // insert the line
+                        const linkAssociation: LinkAssociation = {
+                            source: source.model.targetComponent,
+                            destination: destination.model.targetComponent
                         }
 
-                        this.links.get(destination.model.targetComponent)?.push(line);
-
-                        if (!this.links.has(source.model.targetComponent)) {
-                            this.links.set(source.model.targetComponent, Array<LeaderLine>());
-                        }
-
-                        this.links.get(source.model.targetComponent)?.push(line);
+                        this.links.set(linkAssociation, line);
                     }
                 } else {
                     store.dispatch('addMessage', {
@@ -169,8 +173,14 @@ export default defineComponent({
         },
         onDrag(component: SketchComponent<unknown>) {
             // update all the links of the component
-            const lines: Array<LeaderLine> | undefined = this.links.get(component);
-            lines?.forEach(line => line.position());
+            const lines: Array<LeaderLine> = [];
+            this.links.forEach((line, association) => {
+                if ((association.source === component) || (association.destination === component)) {
+                    lines.push(line);
+                }
+            })
+
+            lines.forEach(line => line.position());
         },
 
         onComponentSelected(component: SketchComponent<unknown>) {
@@ -193,8 +203,43 @@ export default defineComponent({
                 bus.emit('end-execution');
             }
         },
-    },
+        onKeyDown(event: KeyboardEvent) {
+            const { key } = event;
+            if (isDeleteKey(key)) {
+                if (this.selectedComponent !== undefined) {
+                    this.__deleteCurrentComponent();
+                }
+            }
 
+            event.stopPropagation();
+        },
+        __deleteCurrentComponent() {
+            const currentComponent = this.selectedComponent as SketchComponent<unknown>;
+
+            const wrapper = Array.from(this.componentsMap.keys()).filter(w => w.component === this.selectedComponent)[0];
+            this.componentsMap.delete(wrapper)
+            // delete associated links
+            const newLinks = new Map<LinkAssociation, LeaderLine>();
+            const linesToDelete = new Array<LeaderLine>();
+
+            this.links.forEach((line, association) => {
+                if ((association.source === currentComponent) || (association.destination === currentComponent)) {
+                    linesToDelete.push(line);
+                } else {
+                    newLinks.set(association, line);
+                }
+            });
+
+            this.links = newLinks;
+            linesToDelete.forEach(line => line.remove());
+            // delete the component in the workflow
+            this.workflow.deleteComponent(currentComponent);
+            this.selectedComponent = undefined;
+
+            console.log(this.workflow);
+        }
+    },
+    
     created() {
         bus.on('ask-for-execution', (component) => {
             this.askForExecution(component as SketchComponent<unknown>);

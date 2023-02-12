@@ -218,6 +218,36 @@ export default class SketchComponentWorkflow {
         }
     }
 
+    public deleteComponent(component: SketchComponent<unknown>) {
+        this.orphanComponents = this.orphanComponents.filter(c => c !== component);
+        console.log(this.edges.get(component));
+        this.edges.delete(component);
+        this.children.delete(component);
+
+        // remove links where the component is a parent
+        this.edges.forEach((parents, comp) => {
+            const entriesToDelete: Array<string> = [];
+            parents.forEach((parent, entry) => {
+                if (parent === component) {
+                    entriesToDelete.push(entry);
+                }
+            });
+
+            entriesToDelete.forEach(entry => parents.delete(entry));
+        });
+
+        this.children.forEach((children, comp) => {
+            const entriesToDelete: Array<string> = [];
+            children.forEach((child, entry) => {
+                if (child === component) {
+                    entriesToDelete.push(entry);
+                }
+            })
+
+            entriesToDelete.forEach(entry => children.delete(entry));
+        })
+    }
+
     public clear() : void {
         this.edges.clear();
         this.orphanComponents = [];
