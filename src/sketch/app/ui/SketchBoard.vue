@@ -45,7 +45,6 @@ import store from '@/store';
 import bus from '../core/bus';
 
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
-import { MapUtils } from '../core/utils';
 
 type ComponentSlot = {
     ui: HTMLElement;

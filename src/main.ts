@@ -34,7 +34,7 @@ const vuetify = createVuetify({
     directives,
   });
 
-const app = createApp(App).use(store)
+createApp(App).use(store)
     .use(router)
     .use(BootstrapVue3)
     .use(vuetify)
