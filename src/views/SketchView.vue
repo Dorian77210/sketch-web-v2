@@ -10,6 +10,7 @@
             color="green"
             id="spinner"
         ></v-progress-circular>
+        <SketchNavigationDrawer />
     </div>
 </template>
 
@@ -24,13 +25,16 @@ import SketchMessages from '@/sketch/app/ui/SketchMessages.vue';
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 import { registerConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
 
+import SketchNavigationDrawer from '@/sketch/app/ui/SketchNavigationDrawer.vue';
+
 import bus from '@/sketch/app/core/bus';
 
 export default defineComponent({
     components: {
         SketchComponentList,
         SketchBoard,
-        SketchMessages
+        SketchMessages,
+        SketchNavigationDrawer
     },
     data() {
         return {
