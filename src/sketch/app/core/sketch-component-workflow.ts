@@ -3,7 +3,7 @@ import SketchComponent from "@/sketch/api/sketch-component";
 import { getConfigurationOf, getSlotByEntryName } from "@/sketch/api/sketch-component-configuration-manager";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import { Stack, ArrayStack } from "@/sketch/api/data-structures";
-import injectData from "@/sketch/inject-data";
+import injectData from "@/sketch/app/core/inject-data";
 
 /**
  * @author Dorian TERBAH

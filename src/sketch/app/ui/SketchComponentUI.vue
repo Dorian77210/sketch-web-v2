@@ -14,19 +14,22 @@
             @deactivated="bus.emit('on-component-unselect')"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
-            <div class="d-flex flex-column slot-container" v-if="inputSlotModels.length">
-                <div 
+            <div class="w-25">
+                <div v-if="inputSlotModels.length" class="d-flex flex-column slot-container">
+                    <div 
                     v-for="(slotConfiguration, index) in inputSlotModels" :key="index"
-                    class="slot input-slot"
-                    :class="{ 'selected-slot': slotConfiguration.isSelected }"
-                    data-toggle="tooltip" data-placement="left" :title="slotConfiguration.entryName"
-                    @click="selectSlot($event, slotConfiguration as ComponentSlotModel)"
-                >
-                    <pre></pre>
+                        class="slot input-slot"
+                        :class="{ 'selected-slot': slotConfiguration.isSelected }"
+                        data-toggle="tooltip" data-placement="left" :title="slotConfiguration.entryName"
+                        @click="selectSlot($event, slotConfiguration as ComponentSlotModel)"
+                    >
+                        <pre></pre>
+                    </div>
                 </div>
             </div>
-            <div class="table p-1">
+            <div class="table p-1 w-50">
                 <div class="row-fluid">
+                    <font-awesome-icon :icon="`fa-solid ${configuration.icon.name}`"></font-awesome-icon>
                     <span class="align-text-bottom noselect" contenteditable @input="updateComponentName">{{ componentName }}</span>
                     <br/>
                     <font-awesome-icon
@@ -37,14 +40,14 @@
                 </div>
             </div>
 
-            <div v-if="outputSlotModel" class="slot-container d-flex flex-column"
-                @click="selectSlot($event, outputSlotModel as ComponentSlotModel)"
+            <div v-if="outputSlotModel" class="slot-container d-flex flex-column w-25"
             >
                 <font-awesome-icon
                     icon="fa-solid fa-play"
                     :style="{ 'color': outputSlotModel.isSelected ? 'red' : 'black' }"
                     class="play-icon"
                     style="height: 20px;"
+                    @click="selectSlot($event, outputSlotModel as ComponentSlotModel)"
                 ></font-awesome-icon>
             </div>
         </div>
@@ -106,7 +109,6 @@ export default defineComponent({
             outputSlotModel: opt<ComponentSlotModel>(),
             popupVisible: false,
             componentName: this.configuration.name,
-            editingName: true,
             bus
         }
     },

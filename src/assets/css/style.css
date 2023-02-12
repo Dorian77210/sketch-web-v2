@@ -16,7 +16,12 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  gap: 15%;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  gap: 15px;
 }
 
 .slot {
@@ -31,6 +36,7 @@
 .slot:hover, .selected-slot
 {
   background-color: red;
+  color: red;
 }
 
 .component-ui
