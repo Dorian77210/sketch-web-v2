@@ -195,14 +195,16 @@ export default defineComponent({
             this.selectedComponent = model.component;
             this.selectedComponentModel = model;
         },
-        askForExecution(component: SketchComponent<unknown>) {
+        async askForExecution(component: SketchComponent<unknown>) {
             try {
                 bus.emit('start-execution');
-                this.workflow.execute(component);
-                store.dispatch('addMessage', {
-                    message: 'Workflow executed successfully !',
-                    level: 'success'
-                })
+                const executionResult = await this.workflow.execute(component);
+                if (executionResult) {
+                        store.dispatch('addMessage', {
+                        message: 'Workflow executed successfully !',
+                        level: 'success'
+                    });
+                }
             } catch (e) {
                 store.dispatch('addMessage', {
                     message: e,
@@ -248,8 +250,8 @@ export default defineComponent({
     },
     
     created() {
-        bus.on('ask-for-execution', (component) => {
-            this.askForExecution(component as SketchComponent<unknown>);
+        bus.on('ask-for-execution', async (component) => {
+            await this.askForExecution(component as SketchComponent<unknown>);
         });
 
         bus.on('on-component-unselect', () => {

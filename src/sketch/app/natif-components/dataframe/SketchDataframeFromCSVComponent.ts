@@ -40,6 +40,12 @@ export class SketchDataframeFromCSVComponent extends SketchComponent<DataFrame> 
         throw 'No data set to load dataframe';
     }
 
+    async beforeExecute() {
+        if (this.wrapper.isDataAvailable()) {
+            DataFrame.fromCSV(this.wrapper.getData()).then(data => this.data = data);
+        }
+    }
+
     copy(): SketchComponent<DataFrame> {
         throw new Error("Method not implemented.");
     }

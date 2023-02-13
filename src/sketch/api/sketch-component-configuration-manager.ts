@@ -13,6 +13,7 @@ import { SketchSequenceComponent, configuration as SketchSequenceConfiguration }
 import { SketchMathFunctionComponent, configuration as SketchMathFunctionConfiguration } from "../app/natif-components/math/SketchMathFunctionComponent";
 import { SketchLineChartComponent, configuration as SketchLineChartConfiguration } from "../app/natif-components/chart/SketchLineChartComponent";
 import { SketchDataframeFromCSVComponent, configuration as SketchDataframeFromCSVConfiguration } from "../app/natif-components/dataframe/SketchDataframeFromCSVComponent";
+import { SketchDataframeViewerComponent, configuration as SketchDataframeViewerConfiguration } from "../app/natif-components/dataframe/SketchDataframeViewerComponent";
 
 export const registerConfigurations = () => {
     // Number input component
@@ -34,6 +35,10 @@ export const registerConfigurations = () => {
     // dataframe CSV loader
     configurations.set(SketchDataframeFromCSVComponent, SketchDataframeFromCSVConfiguration);
     library.add(SketchDataframeFromCSVConfiguration.icon.fa);
+
+    // dataframe viewer
+    configurations.set(SketchDataframeViewerComponent, SketchDataframeViewerConfiguration);
+    library.add(SketchDataframeViewerConfiguration.icon.fa);
 
 }
 

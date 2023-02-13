@@ -41,6 +41,10 @@ export default abstract class SketchComponent<T>
      */
     abstract execute(): T;
 
+    async beforeExecute()  {
+        // to implement if you want to make any async calls before the execute call
+    }
+
     /**
      * @return A copy of the component.
      */

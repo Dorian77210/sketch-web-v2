@@ -37,7 +37,7 @@
                         {{ componentModel.config.text.value }}
                     </span>
                     <br/>
-                    <font-awesome-icon
+                    <font-awesome-icon v-if="configuration.returnType"
                         icon="fa-solid fa-play"
                         class="play-icon"
                         @click="bus.emit('ask-for-execution', componentModel.component)"    

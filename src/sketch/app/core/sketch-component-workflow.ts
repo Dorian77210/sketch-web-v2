@@ -151,7 +151,7 @@ export default class SketchComponentWorkflow {
         return componentStack;
     }
 
-    public execute(component: SketchComponent<unknown>) : boolean {
+    public async execute(component: SketchComponent<unknown>)  {
         const componentStack = this.buildExecutionQueue(component);
 
         let currentComponent: SketchComponent<unknown> | undefined;
@@ -175,6 +175,7 @@ export default class SketchComponentWorkflow {
             }
 
             if (currentComponent.isDirty) {
+                await currentComponent.beforeExecute();
                 result = currentComponent.execute();
                 currentComponent.isDirty = false;
             } else {
