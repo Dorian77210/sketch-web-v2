@@ -44,6 +44,7 @@
                                 v-model="text.value"
                             >
                             </v-text-field>
+                            <v-color-picker v-model="text.color"></v-color-picker>
                         </v-expansion-panel-text>
                     </v-expansion-panel>
                 </v-expansion-panels>

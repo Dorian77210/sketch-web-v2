@@ -31,7 +31,7 @@
                 <div class="row-fluid">
                     <font-awesome-icon :icon="`fa-solid ${configuration.icon.name}`"></font-awesome-icon>
                     <br/>
-                    <span class="align-text-bottom noselect" style="word-wrap: break-word;">
+                    <span class="align-text-bottom noselect" style="word-wrap: break-word;" :style="{ color: componentModel.config.text.color }">
                         {{ componentModel.config.text.value }}
                     </span>
                     <br/>
