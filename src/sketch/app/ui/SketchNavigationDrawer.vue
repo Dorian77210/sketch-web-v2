@@ -35,17 +35,28 @@
                             <v-color-picker v-model="backgroundColor"></v-color-picker>
                         </v-expansion-panel-text>
                     </v-expansion-panel>
+                    
+                    <v-expansion-panel>
+                        <v-expansion-panel-title>Text settings</v-expansion-panel-title>
+                        <v-expansion-panel-text>
+                            <v-text-field
+                                label="Search components..."
+                                v-model="text.value"
+                            >
+                            </v-text-field>
+                        </v-expansion-panel-text>
+                    </v-expansion-panel>
                 </v-expansion-panels>
             
-            <v-divider></v-divider>
-            <div class="-flex justify-space-around align-center flex-column flex-sm-row fill-height">
-                <v-btn
-                    color="success"
-                    @click="saveSettings"
-                >
-                    Save
-                </v-btn>
-            </div>
+                <v-divider></v-divider>
+                <div class="-flex justify-space-around align-center flex-column flex-sm-row fill-height">
+                    <v-btn
+                        color="success"
+                        @click="saveSettings"
+                    >
+                        Save
+                    </v-btn>
+                </div>
             </div>
         </v-navigation-drawer>
         <v-main style="height: 250px"></v-main>
@@ -69,16 +80,21 @@ export default defineComponent({
             drawer: true,
             rail: true,
             componentModel: opt<ComponentModel>(),
-            backgroundColor: ''
+            backgroundColor: '',
+            text: {
+                value: '',
+                color: ''
+            }
         }
     },
     methods: {
         saveSettings() {
-            const model: ComponentModel = this.componentModel as ComponentModel;
-
             // emit event with the new settings
             const settings: ComponentModelConfig = {
-                text: model.config.text,
+                text: {
+                    value: this.text.value,
+                    color: this.text.color
+                },
                 backgroundColor: this.backgroundColor,
             }
 
@@ -88,8 +104,11 @@ export default defineComponent({
     mounted() {
         bus.on('on-component-selected', (componentModel) => {
             this.componentModel = componentModel as ComponentModel;
-
             this.backgroundColor = this.componentModel.config.backgroundColor;
+            this.text = {
+                value: this.componentModel.config.text.value,
+                color: this.componentModel.config.text.color
+            }
         });
 
         bus.on('on-component-unselected', () => {

@@ -31,7 +31,7 @@
                 <div class="row-fluid">
                     <font-awesome-icon :icon="`fa-solid ${configuration.icon.name}`"></font-awesome-icon>
                     <br/>
-                    <span class="align-text-bottom noselect" contenteditable @input="updateComponentName">
+                    <span class="align-text-bottom noselect" style="word-wrap: break-word;">
                         {{ componentModel.config.text.value }}
                     </span>
                     <br/>
@@ -143,10 +143,6 @@ export default defineComponent({
         },
         openPopupConfiguration() : void {
             this.popupVisible = true;
-        },
-        updateComponentName(event: Event) {
-            const element: HTMLElement = event.target as HTMLElement;
-            this.componentName = element.innerText;
         },
         onClosePopup() {
             this.popupVisible = false;
