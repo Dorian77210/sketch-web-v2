@@ -28,6 +28,14 @@
                 :length="pageCount"
             ></v-pagination>    
         </div>
+
+        <v-text-field
+            label="Data chunk size"
+            v-model="chunkSize"
+            type="number"
+            :rules="fieldRules"
+        ></v-text-field>
+
     </template>
 
 
@@ -54,8 +62,11 @@ export default defineComponent({
     },
     data() {
         return {
-            chunkSize: 10,
-            page: 1
+            chunkSize: 20,
+            page: 1,
+            fieldRules: [
+                (value: number) => value > 0
+            ]
         }
     },
     components: {

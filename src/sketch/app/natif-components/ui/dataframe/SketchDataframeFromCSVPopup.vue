@@ -39,7 +39,7 @@ export default defineComponent({
     },
     data() {
         return {
-            file: opt<File>()
+            file: this.component.wrapper.getData()
         }
     },
     methods: {

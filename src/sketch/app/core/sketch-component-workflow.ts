@@ -180,6 +180,9 @@ export default class SketchComponentWorkflow {
                 currentComponent.isDirty = false;
             } else {
                 result = this.resultCache.get(currentComponent);
+                if (!result) {
+                    throw 'There was an error during the execution of the workflow';
+                }
             }
 
             console.log(result);
