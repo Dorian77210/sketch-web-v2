@@ -9,9 +9,9 @@
             :draggable="true"
             :resizable="true"
             :dragging="$emit('on-drag', componentModel.component)"
-            @click="$emit('on-component-selected', componentModel)"
+            @click="onClick"
             @dblclick="openPopupConfiguration"
-            @deactivated="bus.emit('on-component-unselect')"
+            :style="{ backgroundColor: componentModel.config.backgroundColor }"
         >
         <div class="border-0 d-flex mh-100" style="height: 100%">            
             <div class="w-25">
@@ -31,7 +31,9 @@
                 <div class="row-fluid">
                     <font-awesome-icon :icon="`fa-solid ${configuration.icon.name}`"></font-awesome-icon>
                     <br/>
-                    <span class="align-text-bottom noselect" contenteditable @input="updateComponentName">{{ componentName }}</span>
+                    <span class="align-text-bottom noselect" contenteditable @input="updateComponentName">
+                        {{ componentModel.config.text.value }}
+                    </span>
                     <br/>
                     <font-awesome-icon
                         icon="fa-solid fa-play"
@@ -152,6 +154,9 @@ export default defineComponent({
         },
         onFocusOut() {
             console.log('ok');
+        },
+        onClick() {
+            bus.emit('on-component-selected', this.componentModel)
         }
     }
 });

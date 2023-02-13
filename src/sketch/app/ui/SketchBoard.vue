@@ -8,7 +8,6 @@
                 :configuration="configuration"
                 @on-slot-selected="onSlotSelected"
                 @on-drag="onDrag"
-                @on-component-selected="onComponentSelected"
             />
         </div>
     </div>
@@ -44,7 +43,7 @@ import bus from '../core/bus';
 
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
 
-import { ComponentModel } from './utils';
+import { ComponentModel, ComponentModelConfig } from './utils';
 
 type ComponentSlot = {
     ui: HTMLElement;
@@ -73,7 +72,8 @@ export default defineComponent({
             slots: new ArrayStack<ComponentSlot>(),
             workflow: new SketchComponentWorkflow(),
             links: new Map<LinkAssociation, LeaderLine>(),
-            selectedComponent: opt<SketchComponent<unknown>>()
+            selectedComponent: opt<SketchComponent<unknown>>(),
+            selectedComponentModel: opt<ComponentModel>()
         }
     },
 
@@ -89,12 +89,25 @@ export default defineComponent({
                     const component: SketchComponent<unknown> = new selectedComponentClass();
                     const model: ComponentModel = {
                         component: component,
-                        x: x,
-                        y: y
+                        x,
+                        y,
+                        config: {
+                            text: {
+                                value: associatedConfiguration.name,
+                                color: 'black'
+                            },
+                            backgroundColor: '#ceeaee'
+                        }
                     };
-                    this.componentsMap.set(model, associatedConfiguration);
 
+                    this.componentsMap.set(model, associatedConfiguration);
                     bus.emit('create-component');
+                    bus.emit('on-component-selected', model);
+                }
+            } else {
+                const target: HTMLElement = event.target as HTMLElement;
+                if (target.id === 'sketch-board') {
+                    bus.emit('on-component-unselected');
                 }
             }
         },
@@ -179,6 +192,7 @@ export default defineComponent({
 
         onComponentSelected(model: ComponentModel) {
             this.selectedComponent = model.component;
+            this.selectedComponentModel = model;
         },
         askForExecution(component: SketchComponent<unknown>) {
             try {
@@ -239,6 +253,16 @@ export default defineComponent({
 
         bus.on('on-component-unselect', () => {
             this.selectedComponent = undefined;
+        });
+
+        bus.on('on-component-selected', (componentModel) => {
+            this.onComponentSelected(componentModel as ComponentModel);
+        });
+
+        bus.on('on-settings-updated', (settings) => {
+            if (this.selectedComponentModel !== undefined) {
+                this.selectedComponentModel.config = settings as ComponentModelConfig;
+            }
         })
     }
 });

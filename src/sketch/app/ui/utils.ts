@@ -14,8 +14,17 @@ export type ComponentSlotModel = {
     entryName?: string;
 }
 
+export type ComponentModelConfig = {
+    text: {
+        value: string;
+        color: string;
+    },
+    backgroundColor: string;
+}
+
 export type ComponentModel = {
     component: SketchComponent<unknown>;
     x: number;
     y: number;
+    config: ComponentModelConfig;
 };
