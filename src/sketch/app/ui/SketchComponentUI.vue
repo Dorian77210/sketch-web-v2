@@ -8,8 +8,8 @@
             :active="true"
             :draggable="true"
             :resizable="true"
-            :dragging="$emit('on-drag', $props.component)"
-            @click="$emit('on-component-selected', $props.component)"
+            :dragging="$emit('on-drag', componentModel.component)"
+            @click="$emit('on-component-selected', componentModel)"
             @dblclick="openPopupConfiguration"
             @deactivated="bus.emit('on-component-unselect')"
         >
@@ -36,7 +36,7 @@
                     <font-awesome-icon
                         icon="fa-solid fa-play"
                         class="play-icon"
-                        @click="bus.emit('ask-for-execution', component)"    
+                        @click="bus.emit('ask-for-execution', componentModel.component)"    
                     ></font-awesome-icon>
                 </div>
             </div>
@@ -55,7 +55,7 @@
         </Vue3DraggableResizable>
         <component v-if="popupVisible"
             :is="popup"
-            :component="$props.component"
+            :component="componentModel.component"
             @close-popup="onClosePopup"
         ></component>
     </div>
@@ -76,26 +76,20 @@ import { Class } from '@/sketch/api/types';
 
 import bus from '../core/bus';
 
+import { ComponentModel } from './utils';
+
 export default defineComponent({
     components: {
         Vue3DraggableResizable,
     },
     props: {
-        x: {
-            required: true,
-            type: Number
-        },
-        y: {
-            required: true,
-            type: Number
-        },
         configuration: {
             required: true,
             type: Object as PropType<ComponentConfiguration>
         },
-        component: {
+        componentModel: {
             required: true,
-            type: Object as PropType<SketchComponent<unknown>>
+            type: Object as PropType<ComponentModel>
         }
     },
     data() {
@@ -103,8 +97,8 @@ export default defineComponent({
             componentUIConfiguration: {
                 height: 130,
                 width: 130,
-                x: this.$props.x,
-                y: this.$props.y,
+                x: this.componentModel.x,
+                y: this.componentModel.y,
             },
             inputSlotModels: Array<ComponentSlotModel>(),
             outputSlotModel: opt<ComponentSlotModel>(),
@@ -118,7 +112,7 @@ export default defineComponent({
             const models: Array<ComponentSlotModel> = this.$props.configuration.slotsConfigurations.map(configuration => {
                 return {
                     isSelected: false,
-                    targetComponent: this.$props.component,
+                    targetComponent: this.componentModel.component,
                     entryName: configuration.entryName,
                     type: 'in'
                 }
@@ -130,14 +124,14 @@ export default defineComponent({
         if (this.$props.configuration.returnType) {
             this.outputSlotModel = {
                 isSelected: false,
-                targetComponent: this.$props.component,
+                targetComponent: this.componentModel.component,
                 type: 'out'
             }
         }
     },
     computed: {
         popup() : Component {
-            const configuration = getConfigurationOf(this.$props.component.constructor as Class<SketchComponent<unknown>>);
+            const configuration = getConfigurationOf(this.componentModel.component.constructor as Class<SketchComponent<unknown>>);
             return configuration.popup;
         }
     },
@@ -154,7 +148,7 @@ export default defineComponent({
         },
         onClosePopup() {
             this.popupVisible = false;
-            this.component.setIsDirty(true);
+            this.componentModel.component.setIsDirty(true);
         },
         onFocusOut() {
             console.log('ok');

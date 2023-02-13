@@ -13,3 +13,9 @@ export type ComponentSlotModel = {
     targetComponent: SketchComponent<unknown>;
     entryName?: string;
 }
+
+export type ComponentModel = {
+    component: SketchComponent<unknown>;
+    x: number;
+    y: number;
+};

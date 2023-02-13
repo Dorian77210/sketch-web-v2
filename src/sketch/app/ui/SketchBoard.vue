@@ -2,12 +2,10 @@
     <div class="w-100">
         <div id="sketch-board" @click="onBoardClick($event)" @keydown="onKeyDown" tabindex="1">
             <SketchComponentUI
-                v-for="[componentWrapper, configuration] in componentsMap"
-                :key="componentWrapper.component.getID()"
-                :component="componentWrapper.component"
+                v-for="[componentModel, configuration] in componentsMap"
+                :key="componentModel.component.getID()"
+                :component-model="componentModel"
                 :configuration="configuration"
-                :x="componentWrapper.x"
-                :y="componentWrapper.y"
                 @on-slot-selected="onSlotSelected"
                 @on-drag="onDrag"
                 @on-component-selected="onComponentSelected"
@@ -46,16 +44,13 @@ import bus from '../core/bus';
 
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
 
+import { ComponentModel } from './utils';
+
 type ComponentSlot = {
     ui: HTMLElement;
     model: ComponentSlotModel;
 }
 
-type ComponentWrapper = {
-    component: SketchComponent<unknown>;
-    x: number;
-    y: number;
-};
 
 type LinkAssociation = {
     source: SketchComponent<unknown>;
@@ -74,7 +69,7 @@ export default defineComponent({
     },
     data() {
         return {
-            componentsMap: new Map<ComponentWrapper, ComponentConfiguration>(),
+            componentsMap: new Map<ComponentModel, ComponentConfiguration>(),
             slots: new ArrayStack<ComponentSlot>(),
             workflow: new SketchComponentWorkflow(),
             links: new Map<LinkAssociation, LeaderLine>(),
@@ -92,12 +87,12 @@ export default defineComponent({
                 const associatedConfiguration : ComponentConfiguration = getConfigurationOf(selectedComponentClass);
                 if (associatedConfiguration) {
                     const component: SketchComponent<unknown> = new selectedComponentClass();
-                    const wrapper: ComponentWrapper = {
+                    const model: ComponentModel = {
                         component: component,
                         x: x,
                         y: y
                     };
-                    this.componentsMap.set(wrapper, associatedConfiguration);
+                    this.componentsMap.set(model, associatedConfiguration);
 
                     bus.emit('create-component');
                 }
@@ -182,8 +177,8 @@ export default defineComponent({
             lines.forEach(line => line.position());
         },
 
-        onComponentSelected(component: SketchComponent<unknown>) {
-            this.selectedComponent = component;
+        onComponentSelected(model: ComponentModel) {
+            this.selectedComponent = model.component;
         },
         askForExecution(component: SketchComponent<unknown>) {
             try {
