@@ -96,7 +96,8 @@ export default defineComponent({
                                 value: associatedConfiguration.name,
                                 color: 'black'
                             },
-                            backgroundColor: '#ceeaee'
+                            backgroundColor: '#ceeaee',
+                            iconColor: 'black'
                         }
                     };
 

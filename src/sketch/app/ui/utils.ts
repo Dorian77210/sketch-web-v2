@@ -20,6 +20,7 @@ export type ComponentModelConfig = {
         color: string;
     },
     backgroundColor: string;
+    iconColor: string;
 }
 
 export type ComponentModel = {

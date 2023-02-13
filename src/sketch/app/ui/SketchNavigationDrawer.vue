@@ -47,6 +47,12 @@
                             <v-color-picker v-model="text.color"></v-color-picker>
                         </v-expansion-panel-text>
                     </v-expansion-panel>
+                    <v-expansion-panel>
+                        <v-expansion-panel-title>Icon settings</v-expansion-panel-title>
+                        <v-expansion-panel-text>
+                            <v-color-picker v-model="iconColor"></v-color-picker>
+                        </v-expansion-panel-text>
+                    </v-expansion-panel>
                 </v-expansion-panels>
             
                 <v-divider></v-divider>
@@ -85,7 +91,8 @@ export default defineComponent({
             text: {
                 value: '',
                 color: ''
-            }
+            },
+            iconColor: ''
         }
     },
     methods: {
@@ -97,6 +104,7 @@ export default defineComponent({
                     color: this.text.color
                 },
                 backgroundColor: this.backgroundColor,
+                iconColor: this.iconColor
             }
 
             bus.emit('on-settings-updated', settings);
