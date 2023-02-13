@@ -40,7 +40,7 @@
                         <v-expansion-panel-title>Text settings</v-expansion-panel-title>
                         <v-expansion-panel-text>
                             <v-text-field
-                                label="Search components..."
+                                label="Name of the component"
                                 v-model="text.value"
                             >
                             </v-text-field>
