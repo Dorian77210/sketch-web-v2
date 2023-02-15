@@ -31,7 +31,11 @@ export class SketchKMeansComponent extends SketchComponent<DataFrame> {
     }
 
     execute(): DataFrame {
-        return this.wrapper.getData() as DataFrame;
+        if (this.result) {
+            return this.result;
+        }
+
+        throw 'KMeans cannot be computed. An error occurred';
     }
 
     async beforeExecute()  {
