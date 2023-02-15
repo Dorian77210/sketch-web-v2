@@ -103,12 +103,14 @@ export default defineComponent({
             this.currentUnselectedColumn = this.currentSelectedColumn = '';
             this.allSelectedColumns.push(...this.allUnselectedColumns);
             this.allUnselectedColumns = [];
+            this.onSelectAll();
         },
 
         _onUnselectAll() {
             this.currentUnselectedColumn = this.currentSelectedColumn = '';
             this.allUnselectedColumns.push(...this.allSelectedColumns);
             this.allSelectedColumns = [];
+            this.onUnselectAll();
         }
     }
 });

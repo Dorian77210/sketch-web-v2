@@ -34,11 +34,16 @@ export class SketchDataframeFilterColumnsComponent extends SketchComponent<DataF
     }
 
     get selectedColumns(): Array<string> { return this._selectedColumns; }
+    setSelectedColumns(columns: Array<string>) { this._selectedColumns = columns; }
+
+
+
     get dataframe(): DataFrame | undefined { return this._dataframe; }
 
     setData(data: DataFrame) {
         this._dataframe = data;
     }
+
 }
 
 export const configuration: ComponentConfiguration = {
