@@ -62,7 +62,6 @@ export default defineComponent({
         },
         beforeClose() {
             this.component.setSelectedColumns(this.selectedColumns);
-            console.log(this.component.selectedColumns);
         }
     },
     computed: {

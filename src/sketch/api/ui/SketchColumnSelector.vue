@@ -7,8 +7,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(col, index) in allSelectedColumns" :key="index" class="text-center">
-                    <td @click="currentUnselectedColumn = col">{{ col }}</td>
+                <tr v-for="(col, index) in allSelectedColumns"
+                    :key="index"
+                    class="text-center"
+                    :class="{ 'selected-column': col === currentUnselectedColumn }"
+                >
+                    <td @click="selectColumn(col)">{{ col }}</td>
                 </tr>
             </tbody>
         </v-table>
@@ -30,8 +34,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(col, index) in allUnselectedColumns" :key="index" class="text-center">
-                    <td @click="currentSelectedColumn = col">{{ col }}</td>
+                <tr v-for="(col, index) in allUnselectedColumns"
+                    :key="index"
+                    class="text-center"
+                    :class="{ 'selected-column': col === currentSelectedColumn }"
+                >
+                    <td @click="unSelectColumn(col)">{{ col }}</td>
                 </tr>
             </tbody>
         </v-table>
@@ -83,19 +91,33 @@ export default defineComponent({
     methods: {
         _onSelect() {
             if (this.currentSelectedColumn) {
+                const index = this.allUnselectedColumns.indexOf(this.currentSelectedColumn);
+
                 this.allSelectedColumns.push(this.currentSelectedColumn)
                 this.allUnselectedColumns = this.allUnselectedColumns.filter(col => col !== this.currentSelectedColumn);
-                this.onSelect(this.currentSelectedColumn);
-                this.currentSelectedColumn = '';
+                this.onSelect(this.currentSelectedColumn);                
+
+                if (index !== -1 && index < this.allUnselectedColumns.length) {
+                    this.currentSelectedColumn = this.allUnselectedColumns[index];
+                } else {
+                    this.currentSelectedColumn = '';
+                }
             }
         },
 
         _onUnselect() {
             if (this.currentUnselectedColumn) {
+                const index = this.allSelectedColumns.indexOf(this.currentUnselectedColumn);
+
                 this.allUnselectedColumns.push(this.currentUnselectedColumn);
                 this.allSelectedColumns = this.allSelectedColumns.filter(col => col !== this.currentUnselectedColumn);
                 this.onUnselect(this.currentUnselectedColumn);
-                this.currentUnselectedColumn = '';
+
+                if (index !== -1 && index < this.allSelectedColumns.length) {
+                    this.currentUnselectedColumn = this.allSelectedColumns[index];
+                } else {
+                    this.currentUnselectedColumn = '';
+                }
             }
         },
 
@@ -111,6 +133,16 @@ export default defineComponent({
             this.allUnselectedColumns.push(...this.allSelectedColumns);
             this.allSelectedColumns = [];
             this.onUnselectAll();
+        },
+
+        selectColumn(col: string) {
+            this.currentUnselectedColumn = col;
+            this.currentSelectedColumn = '';
+        },
+
+        unSelectColumn(col: string) {
+            this.currentSelectedColumn = col; 
+            this.currentUnselectedColumn = ''
         }
     }
 });
@@ -126,6 +158,11 @@ export default defineComponent({
 
 td:hover {
     cursor: pointer;
+    background-color: #ceeaee;
+}
+
+.selected-column {
+    background-color: #ceeaee;
 }
 
 </style>
