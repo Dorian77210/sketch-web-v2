@@ -1,8 +1,9 @@
 <template>
     <SketchComponentModal
         title="Dataframe columns filter"
-        :min-width="600"
+        :max-width="600"
         :before-close="beforeClose"
+        :max-height="1000"
     >
 
     <template v-slot:modal-body>

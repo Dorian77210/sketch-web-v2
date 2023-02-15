@@ -27,15 +27,20 @@ export class SketchDataframeFilterColumnsComponent extends SketchComponent<DataF
     }
 
     execute(): DataFrame {
-        throw new Error("Method not implemented.");
+        if (!this._dataframe) {
+            throw 'No dataframe available';
+        }
+
+        return this._dataframe.select(...this.selectedColumns);
     }
+
+
     copy(): SketchComponent<DataFrame> {
         throw new Error("Method not implemented.");
     }
 
     get selectedColumns(): Array<string> { return this._selectedColumns; }
     setSelectedColumns(columns: Array<string>) { this._selectedColumns = columns; }
-
 
 
     get dataframe(): DataFrame | undefined { return this._dataframe; }

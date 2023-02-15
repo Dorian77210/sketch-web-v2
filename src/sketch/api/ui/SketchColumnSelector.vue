@@ -17,14 +17,22 @@
             </tbody>
         </v-table>
 
-        <div class="d-flex  justify-content-center" style="width: 30%;">
-            <v-btn icon="mdi-skip-backward" @click="_onSelectAll"></v-btn>
+        <div class="icon-container" style="width: 30%;">
+            <div>
+                <v-btn icon="mdi-skip-backward" @click="_onSelectAll"></v-btn>
+            </div>
 
-            <v-btn icon="mdi-chevron-left" @click="_onSelect"></v-btn>
+            <div>
+                <v-btn icon="mdi-chevron-left" @click="_onSelect"></v-btn>
+            </div>
 
-            <v-btn icon="mdi-fast-forward" @click="_onUnselectAll"></v-btn>
+            <div>
+                <v-btn icon="mdi-skip-forward" @click="_onUnselectAll"></v-btn>
+            </div>
 
-            <v-btn icon="mdi-chevron-right" @click="_onUnselect"></v-btn>
+            <div>
+                <v-btn icon="mdi-chevron-right" @click="_onUnselect"></v-btn>
+            </div>
         </div>
 
         <v-table style="width: 35%">
@@ -97,8 +105,12 @@ export default defineComponent({
                 this.allUnselectedColumns = this.allUnselectedColumns.filter(col => col !== this.currentSelectedColumn);
                 this.onSelect(this.currentSelectedColumn);                
 
-                if (index !== -1 && index < this.allUnselectedColumns.length) {
-                    this.currentSelectedColumn = this.allUnselectedColumns[index];
+                if (index !== -1) {
+                    if (index < this.allUnselectedColumns.length - 1) {
+                        this.currentSelectedColumn = this.allUnselectedColumns[index];
+                    } else  {
+                        this.currentSelectedColumn = this.allUnselectedColumns[index - 1];
+                    }
                 } else {
                     this.currentSelectedColumn = '';
                 }
@@ -113,8 +125,12 @@ export default defineComponent({
                 this.allSelectedColumns = this.allSelectedColumns.filter(col => col !== this.currentUnselectedColumn);
                 this.onUnselect(this.currentUnselectedColumn);
 
-                if (index !== -1 && index < this.allSelectedColumns.length) {
-                    this.currentUnselectedColumn = this.allSelectedColumns[index];
+                if (index !== -1) {
+                    if (index < this.allSelectedColumns.length) {
+                        this.currentUnselectedColumn = this.allSelectedColumns[index];
+                    } else {
+                        this.currentUnselectedColumn = this.allSelectedColumns[index - 1];
+                    }
                 } else {
                     this.currentUnselectedColumn = '';
                 }
@@ -164,5 +180,13 @@ td:hover {
 .selected-column {
     background-color: #ceeaee;
 }
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 
 </style>
