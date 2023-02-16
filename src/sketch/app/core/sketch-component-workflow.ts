@@ -225,7 +225,6 @@ export default class SketchComponentWorkflow {
 
     public deleteComponent(component: SketchComponent<unknown>) {
         this.orphanComponents = this.orphanComponents.filter(c => c !== component);
-        console.log(this.edges.get(component));
         this.edges.delete(component);
         this.children.delete(component);
 

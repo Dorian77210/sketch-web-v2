@@ -68,8 +68,6 @@ export default defineComponent({
                 }]
             }
 
-            console.log(configuration);
-
             return configuration;
         }
     }

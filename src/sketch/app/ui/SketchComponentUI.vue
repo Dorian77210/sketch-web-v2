@@ -151,7 +151,7 @@ export default defineComponent({
             this.componentModel.component.setIsDirty(true);
         },
         onFocusOut() {
-            console.log('ok');
+            //
         },
         onClick() {
             bus.emit('on-component-selected', this.componentModel)

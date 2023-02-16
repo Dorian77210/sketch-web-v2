@@ -16,6 +16,7 @@ import { SketchDataframeFromCSVComponent, configuration as SketchDataframeFromCS
 import { SketchDataframeViewerComponent, configuration as SketchDataframeViewerConfiguration } from "../app/natif-components/dataframe/SketchDataframeViewerComponent";
 import { SketchDataframeFilterColumnsComponent, configuration as SketchDataFilterColumnsConfiguration } from "../app/natif-components/dataframe/SketchDataframeFilterColumnsComponent";
 import { SketchKMeansComponent, configuration as SketchKMeansConfiguration } from "../app/natif-components/dataframe/SketchKMeans";
+import { SketchScatterChartComponent, configuration as SketchScatterChartConfiguration } from "../app/natif-components/chart/SketchScatterChartComponent";
 
 export const registerConfigurations = () => {
     // Number input component
@@ -33,6 +34,11 @@ export const registerConfigurations = () => {
     // line chart component
     configurations.set(SketchLineChartComponent, SketchLineChartConfiguration);
     library.add(SketchLineChartConfiguration.icon.fa);
+
+    // scatter chart component
+    configurations.set(SketchScatterChartComponent, SketchScatterChartConfiguration);
+    library.add(SketchScatterChartConfiguration.icon.fa);
+
 
     // dataframe CSV loader
     configurations.set(SketchDataframeFromCSVComponent, SketchDataframeFromCSVConfiguration);

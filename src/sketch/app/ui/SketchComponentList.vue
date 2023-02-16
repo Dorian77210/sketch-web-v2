@@ -112,7 +112,6 @@ export default defineComponent({
             this.$props.boardManager.setSelectedComponent(selectedComponent);
         },
         open() {
-            console.log('open');
             this.visible = true;
         }
     },
