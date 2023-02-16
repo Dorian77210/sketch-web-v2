@@ -22,10 +22,24 @@ export default class DataframeService extends HTTPService {
         const dict = data.toDict();
         dict.labels = result.data.labels;
 
-        console.log(dict)
-
         const dataframe: DataFrame = new DataFrame(dict);
         
         return dataframe;
+    }
+
+    public static async elbow(data: DataFrame, maxClusters: number) : Promise<DataFrame> {
+        const url = this.buildURL('elbow');
+
+        const result = await axios.post(url, {
+            data: {
+                dataframe: data.toCSV(),
+                maxClusters
+            }
+        });
+
+        return new DataFrame({
+            inertia: result.data.inertia,
+            clusters: result.data.clusters,
+        });
     }
 }
