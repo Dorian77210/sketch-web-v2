@@ -37,9 +37,11 @@ export default class DataframeService extends HTTPService {
             }
         });
 
+        console.log(result);
+
         return new DataFrame({
-            inertia: result.data.inertia,
-            clusters: result.data.clusters,
+            clusters: result.data.result.clusters,
+            inertia: result.data.result.inertias
         });
     }
 }

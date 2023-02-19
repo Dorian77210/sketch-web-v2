@@ -17,6 +17,7 @@ import { SketchDataframeViewerComponent, configuration as SketchDataframeViewerC
 import { SketchDataframeFilterColumnsComponent, configuration as SketchDataFilterColumnsConfiguration } from "../app/natif-components/dataframe/SketchDataframeFilterColumnsComponent";
 import { SketchKMeansComponent, configuration as SketchKMeansConfiguration } from "../app/natif-components/dataframe/SketchKMeans";
 import { SketchScatterChartComponent, configuration as SketchScatterChartConfiguration } from "../app/natif-components/chart/SketchScatterChartComponent";
+import { SketchElbowMethodComponent, configuration as SketchElbowMethodConfiguration } from "../app/natif-components/dataframe/SketchElbowMethodComponent";
 
 export const registerConfigurations = () => {
     // Number input component
@@ -55,6 +56,10 @@ export const registerConfigurations = () => {
     // kmeans 
     configurations.set(SketchKMeansComponent, SketchKMeansConfiguration);
     library.add(SketchKMeansConfiguration.icon.fa);
+
+    // elbow method
+    configurations.set(SketchElbowMethodComponent, SketchElbowMethodConfiguration);
+    library.add(SketchElbowMethodConfiguration.icon.fa);
 }
 
 export function getConfigurationOf(componentClass: Class<SketchComponent<unknown>>) : ComponentConfiguration
