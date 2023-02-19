@@ -4,6 +4,7 @@ const saveFile = (content: string, fileType: string, saveAs: string) => {
     a.download = saveAs;
     a.href = window.URL.createObjectURL(blob);
     a.click();
+    a.remove();
 }
 
 export default saveFile;
