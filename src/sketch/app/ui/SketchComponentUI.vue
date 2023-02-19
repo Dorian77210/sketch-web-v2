@@ -20,9 +20,11 @@
                     v-for="(slotConfiguration, index) in inputSlotModels" :key="index"
                         class="slot input-slot"
                         :class="{ 'selected-slot': slotConfiguration.isSelected }"
-                        data-toggle="tooltip" data-placement="left" :title="slotConfiguration.entryName"
                         @click="selectSlot($event, slotConfiguration as ComponentSlotModel)"
                     >
+                        <v-tooltip activator="parent" location="start">
+                            {{  slotConfiguration.entryName }}
+                        </v-tooltip>
                         <pre></pre>
                     </div>
                 </div>
