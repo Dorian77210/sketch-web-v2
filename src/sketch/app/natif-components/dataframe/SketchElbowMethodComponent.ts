@@ -4,7 +4,7 @@ import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import DataFrame from "dataframe-js";
 import DataframeService from "../services/dataframe/DataframeService";
 
-import { faCircleNodes } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 import SketchElbowMethodPopup from '@/sketch/app/natif-components/ui/dataframe/SketchElbowMethodPopup.vue';
@@ -72,7 +72,7 @@ export const configuration: ComponentConfiguration = {
         type: DataFrame
     }],
     icon: {
-        name: 'fa-circle-nodes',
-        fa: faCircleNodes
+        name: 'fa-magnifying-glass-chart',
+        fa: faMagnifyingGlassChart
     }
 }
