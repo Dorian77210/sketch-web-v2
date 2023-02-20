@@ -6,38 +6,8 @@
     >
 
     <template v-slot:modal-body v-if="component.wrapper.isDataAvailable()">
-        <v-table fixed-header height="500px">
-            <thead>
-                <tr>
-                    <th v-for="(header, index) in headers" :key="index" class="text-center">
-                        {{  header }}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(dataChunk, dataChunkIndex) in dataChunks" :key="dataChunkIndex">
-                    <td v-for="(data, dataIndex) in dataChunk" :key="dataIndex" class="text-center">
-                        {{ data }}
-                    </td>
-                </tr> 
-            </tbody>
-        </v-table>
-        <div class="text-center">
-            <v-pagination
-                v-model="page"
-                :length="pageCount"
-            ></v-pagination>    
-        </div>
-
-        <v-text-field
-            label="Data chunk size"
-            v-model="chunkSize"
-            type="number"
-            :rules="fieldRules"
-        ></v-text-field>
-
+        <SketchDataframeViewer :dataframe="dataframe" />
     </template>
-
 
     </SketchComponentModal>
 </template>
@@ -52,6 +22,8 @@ import { SketchDataframeViewerComponent } from '../../dataframe/SketchDataframeV
 
 import DataFrame from 'dataframe-js';
 import SketchWrapper from '@/sketch/api/sketch-wrapper';
+
+import SketchDataframeViewer from './SketchDataframeViewer.vue';
 
 export default defineComponent({
     props: {
@@ -70,7 +42,8 @@ export default defineComponent({
         }
     },
     components: {
-        SketchComponentModal
+        SketchComponentModal,
+        SketchDataframeViewer
     },
     computed: {
         headers() : string[] {
@@ -108,6 +81,9 @@ export default defineComponent({
             }
 
             return dataframe.toArray().slice(begin, end);
+        },
+        dataframe() : DataFrame {
+            return this.component.wrapper.getData() as DataFrame;
         }
     }
 
