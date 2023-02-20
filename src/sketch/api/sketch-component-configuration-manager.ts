@@ -19,6 +19,8 @@ import { SketchKMeansComponent, configuration as SketchKMeansConfiguration } fro
 import { SketchScatterChartComponent, configuration as SketchScatterChartConfiguration } from "../app/natif-components/chart/SketchScatterChartComponent";
 import { SketchElbowMethodComponent, configuration as SketchElbowMethodConfiguration } from "../app/natif-components/dataframe/SketchElbowMethodComponent";
 import { SketchDataframeShuffleComponent, configuration as SketchDataframeShuffleConfiguration } from "../app/natif-components/dataframe/SketchDataframeShuffleComponent";
+import { SketchDataframeToCSVComponent, configuration as SketchDataframeToCSVConfiguration } from "../app/natif-components/dataframe/SketchDataframeToCSVComponent";
+
 
 export const registerConfigurations = () => {
     // Number input component
@@ -65,6 +67,10 @@ export const registerConfigurations = () => {
     // shuffle dataframe
     configurations.set(SketchDataframeShuffleComponent, SketchDataframeShuffleConfiguration);
     library.add(SketchDataframeShuffleConfiguration.icon.fa);
+
+    // save dataframe to csv
+    configurations.set(SketchDataframeToCSVComponent, SketchDataframeToCSVConfiguration);
+    library.add(SketchDataframeToCSVConfiguration.icon.fa);
 }
 
 export function getConfigurationOf(componentClass: Class<SketchComponent<unknown>>) : ComponentConfiguration
