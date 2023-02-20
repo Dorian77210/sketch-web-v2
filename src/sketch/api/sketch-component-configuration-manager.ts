@@ -20,6 +20,7 @@ import { SketchScatterChartComponent, configuration as SketchScatterChartConfigu
 import { SketchElbowMethodComponent, configuration as SketchElbowMethodConfiguration } from "../app/natif-components/dataframe/SketchElbowMethodComponent";
 import { SketchDataframeShuffleComponent, configuration as SketchDataframeShuffleConfiguration } from "../app/natif-components/dataframe/SketchDataframeShuffleComponent";
 import { SketchDataframeToCSVComponent, configuration as SketchDataframeToCSVConfiguration } from "../app/natif-components/dataframe/SketchDataframeToCSVComponent";
+import { SketchDataframeUnionComponent, configuration as SketchDataframeUnionConfiguration } from "../app/natif-components/dataframe/SketchDataframeUnionComponent";
 
 
 export const registerConfigurations = () => {
@@ -71,6 +72,10 @@ export const registerConfigurations = () => {
     // save dataframe to csv
     configurations.set(SketchDataframeToCSVComponent, SketchDataframeToCSVConfiguration);
     library.add(SketchDataframeToCSVConfiguration.icon.fa);
+
+    // union of dataframe
+    configurations.set(SketchDataframeUnionComponent, SketchDataframeUnionConfiguration);
+    library.add(SketchDataframeUnionConfiguration.icon.fa);
 }
 
 export function getConfigurationOf(componentClass: Class<SketchComponent<unknown>>) : ComponentConfiguration
