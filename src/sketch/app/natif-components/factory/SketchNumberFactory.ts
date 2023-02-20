@@ -11,7 +11,7 @@ export default class SketchNumberFactory implements SketchComponentFactory<Sketc
     fromJSON(rawJson: string) : SketchNumberInputComponent {
         const component = new SketchNumberInputComponent();
         const inputComponentJSON: SketchNumberInputComponentJSON = JSON.parse(rawJson);
-        component.setValue(inputComponentJSON.value);
+        component.setValue(inputComponentJSON.value ?? 0);
         return component;
     }
 

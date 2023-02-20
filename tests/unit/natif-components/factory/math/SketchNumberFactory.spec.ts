@@ -14,7 +14,12 @@ describe('Test the factory for the SketchNumberComponent', () => {
 
     it('Parse a SketchNumberComponent from a JSON without number value', () => {
         component = factory.fromJSON(JSON.stringify({}));
-        expect(component.getValue()).to.be.undefined;
+        expect(component.getValue()).equals(0);
+    });
+
+    it('Parse a SketchNumberComponent from an empty JSON', () => {
+        component = factory.fromJSON(JSON.stringify({ }));
+        expect(component.getValue()).equals(0);
     });
 
     it('Serialize a SketchNumberComponent with number set', () => {

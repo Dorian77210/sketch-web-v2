@@ -18,12 +18,15 @@ type MathFunction = (value: number) => number;
  * 
  * @since 1.0
  */
+
+export type MathStringFunction = 'cos' | 'sin' | 'tan' | 'acos' | 'atan' | 'abs' | 'exp' | 'log';
+
 export class SketchMathFunctionComponent extends SketchComponent<DataFrame> {
 
     /**
      * List of all function available
      */
-    public static FUNCTIONS_AVAILABLE: Map<string, MathFunction> = new Map([
+    public static FUNCTIONS_AVAILABLE: Map<MathStringFunction, MathFunction> = new Map([
         [ 'cos', Math.cos ],
         [ 'sin', Math.sin ],
         [ 'tan', Math.tan ],
@@ -36,12 +39,12 @@ export class SketchMathFunctionComponent extends SketchComponent<DataFrame> {
 
     private dataWrapper: SketchWrapper<NumberList>;
 
-    private _functionName: string;
+    private _functionName: MathStringFunction;
 
     constructor() {
         super();
         this.dataWrapper = new SketchWrapper<NumberList>();
-        this._functionName = '';
+        this._functionName = 'cos';
     }    
 
     execute(): DataFrame {
@@ -75,7 +78,7 @@ export class SketchMathFunctionComponent extends SketchComponent<DataFrame> {
         this.dataWrapper.setData(data);
     }    
 
-    setFunctionName(name: string) { this._functionName = name; }
+    setFunctionName(name: MathStringFunction) { this._functionName = name; }
     get functionName() { return this._functionName; }
 }
 
