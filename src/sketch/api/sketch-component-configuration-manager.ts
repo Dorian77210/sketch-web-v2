@@ -21,7 +21,7 @@ import { SketchElbowMethodComponent, configuration as SketchElbowMethodConfigura
 import { SketchDataframeShuffleComponent, configuration as SketchDataframeShuffleConfiguration } from "../app/natif-components/dataframe/SketchDataframeShuffleComponent";
 import { SketchDataframeToCSVComponent, configuration as SketchDataframeToCSVConfiguration } from "../app/natif-components/dataframe/SketchDataframeToCSVComponent";
 import { SketchDataframeUnionComponent, configuration as SketchDataframeUnionConfiguration } from "../app/natif-components/dataframe/SketchDataframeUnionComponent";
-
+import { SketchCustomFunctionComponent, configuration as SketchCustomFunctionConfiguration } from "../app/natif-components/math/SketchCustomFunctionComponent";
 
 export const registerConfigurations = () => {
     // Number input component
@@ -76,6 +76,10 @@ export const registerConfigurations = () => {
     // union of dataframe
     configurations.set(SketchDataframeUnionComponent, SketchDataframeUnionConfiguration);
     library.add(SketchDataframeUnionConfiguration.icon.fa);
+
+    // custom function
+    configurations.set(SketchCustomFunctionComponent, SketchCustomFunctionConfiguration);
+    library.add(SketchCustomFunctionConfiguration.icon.fa);
 }
 
 export function getConfigurationOf(componentClass: Class<SketchComponent<unknown>>) : ComponentConfiguration
