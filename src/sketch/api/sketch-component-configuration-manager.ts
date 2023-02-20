@@ -22,6 +22,8 @@ import { SketchDataframeShuffleComponent, configuration as SketchDataframeShuffl
 import { SketchDataframeToCSVComponent, configuration as SketchDataframeToCSVConfiguration } from "../app/natif-components/dataframe/SketchDataframeToCSVComponent";
 import { SketchDataframeUnionComponent, configuration as SketchDataframeUnionConfiguration } from "../app/natif-components/dataframe/SketchDataframeUnionComponent";
 import { SketchCustomFunctionComponent, configuration as SketchCustomFunctionConfiguration } from "../app/natif-components/math/SketchCustomFunctionComponent";
+import { SketchDerivativeFunctionComponent, configuration as SketchDerivativeFunctionConfiguration } from "../app/natif-components/math/SketchDerivativeFunctionComponent";
+
 
 export const registerConfigurations = () => {
     // Number input component
@@ -80,6 +82,10 @@ export const registerConfigurations = () => {
     // custom function
     configurations.set(SketchCustomFunctionComponent, SketchCustomFunctionConfiguration);
     library.add(SketchCustomFunctionConfiguration.icon.fa);
+
+    // derivative of custom function
+    configurations.set(SketchDerivativeFunctionComponent, SketchDerivativeFunctionConfiguration);
+    library.add(SketchDerivativeFunctionConfiguration.icon.fa);
 }
 
 export function getConfigurationOf(componentClass: Class<SketchComponent<unknown>>) : ComponentConfiguration
