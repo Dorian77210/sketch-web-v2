@@ -10,15 +10,15 @@ let component: SketchElbowMethodComponent;
 
 describe('Test the factory for the SketchElbowMethodComponent', () => {
     it('Parse a SketchElbowMethodComponent with a valid JSON', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             maxClusters: 10
-        }));
+        });
 
         expect(component.maxClusters).equals(10);
     });
 
     it('Parse a SketchElbowMethodComponent with an empty JSON', () => {
-        component = factory.fromJSON(JSON.stringify({}));
+        component = factory.fromJSON({});
 
         expect(component.maxClusters).equals(0);
     });

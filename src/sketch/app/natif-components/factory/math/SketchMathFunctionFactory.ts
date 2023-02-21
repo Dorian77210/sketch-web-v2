@@ -12,9 +12,9 @@ export default class SketchMathFunctionFactory implements SketchComponentFactory
 
     private static DEFAULT_FUNCTION_NAME : 'cos';
 
-    fromJSON(rawJson: string): SketchMathFunctionComponent {
+    fromJSON(rawJson: object): SketchMathFunctionComponent {
         const component = new SketchMathFunctionComponent();
-        const json: SketchMathFunctionJSON = JSON.parse(rawJson);
+        const json: SketchMathFunctionJSON = rawJson as SketchMathFunctionJSON;
         component.setFunctionName(json.functionName ?? DEFAULT_FUNCTION_NAME);
         return component;
     }

@@ -8,9 +8,9 @@ interface SketchKMeansJSON {
 
 export default class SketchKMeansFactory implements SketchComponentFactory<SketchKMeansComponent> {
     
-    fromJSON(rawJson: string): SketchKMeansComponent {
+    fromJSON(rawJson: object): SketchKMeansComponent {
         const component = new SketchKMeansComponent();
-        const json: SketchKMeansJSON = JSON.parse(rawJson);
+        const json: SketchKMeansJSON = rawJson as SketchKMeansJSON;
         component.setClusters(json.clusters ?? 0);
         return component;
     }

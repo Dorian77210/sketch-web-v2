@@ -8,9 +8,9 @@ type SketchCustomFunctionJSON = {
 
 export default class SketchDerivativeFunctionFactory implements SketchComponentFactory<SketchDerivativeFunctionComponent> {
     
-    fromJSON(rawJson: string): SketchDerivativeFunctionComponent {
+    fromJSON(rawJson: object): SketchDerivativeFunctionComponent {
         const component = new SketchDerivativeFunctionComponent();
-        const json: SketchCustomFunctionJSON = JSON.parse(rawJson);
+        const json: SketchCustomFunctionJSON = rawJson as SketchCustomFunctionJSON;
         component.setCustomFunction(json.customFunction ?? '');
         return component;
     }

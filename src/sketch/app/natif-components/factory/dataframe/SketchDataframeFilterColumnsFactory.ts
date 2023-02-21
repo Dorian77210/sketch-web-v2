@@ -8,9 +8,9 @@ interface SketchDataframeFilterColumnsJSON {
 
 export default class  SketchDataframeFilterColumnsFactory implements SketchComponentFactory<SketchDataframeFilterColumnsComponent> {
     
-    fromJSON(rawJson: string): SketchDataframeFilterColumnsComponent {
+    fromJSON(rawJson: object): SketchDataframeFilterColumnsComponent {
         const component = new SketchDataframeFilterColumnsComponent();
-        const json: SketchDataframeFilterColumnsJSON = JSON.parse(rawJson);
+        const json: SketchDataframeFilterColumnsJSON = rawJson as SketchDataframeFilterColumnsJSON;
         component.setSelectedColumns(json.selectedColumns ?? []);
         return component;
     }

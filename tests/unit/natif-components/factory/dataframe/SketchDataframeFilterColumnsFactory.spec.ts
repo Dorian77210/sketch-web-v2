@@ -11,23 +11,23 @@ let component: SketchDataframeFilterColumnsComponent;
 
 describe('Test the factory for the SketchDataframeFilterColumnsComponent', () => {
     it('Parse a SketchDataframeFilterColumnsComponent from a valid JSON', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             selectedColumns: ['a', 'b', 'c']
-        }));
+        });
 
         expect(component.selectedColumns).deep.equals(['a', 'b', 'c']);
     });
 
     it('Parse a SketchDataframeFilterColumnsComponent with an empty list of columns', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             selectedColumns: []
-        }));
+        });
 
         expect(component.selectedColumns).deep.equals([]);
     });
 
     it('Parse a SketchDataframeFilterColumnsComponent with an empty JSON', () => {
-        component = factory.fromJSON(JSON.stringify({}));
+        component = factory.fromJSON({});
 
         expect(component.selectedColumns).deep.equals([]);
     });

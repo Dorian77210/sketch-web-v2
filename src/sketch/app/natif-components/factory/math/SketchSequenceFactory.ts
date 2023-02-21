@@ -10,9 +10,9 @@ interface SketchSequenceJSON {
 
 export default class SketchSequenceFactory implements SketchComponentFactory<SketchSequenceComponent> {
 
-    fromJSON(rawJson: string): SketchSequenceComponent {
+    fromJSON(rawJson: object): SketchSequenceComponent {
         const component = new SketchSequenceComponent();
-        const json: SketchSequenceJSON = JSON.parse(rawJson);
+        const json: SketchSequenceJSON = rawJson as SketchSequenceJSON;
         component.getSequenceData().begin = json.begin ?? 0;
         component.getSequenceData().end = json.end ?? 0;
         component.getSequenceData().step = json.step ?? 0;

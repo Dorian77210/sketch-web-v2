@@ -10,6 +10,6 @@ import SketchComponent from "../sketch-component";
  */
 
 export default interface SketchComponentFactory<U extends SketchComponent<unknown>> {
-    fromJSON(json: string): U;
+    fromJSON(json: object): U;
     toJSON(component: U) : object;
 }

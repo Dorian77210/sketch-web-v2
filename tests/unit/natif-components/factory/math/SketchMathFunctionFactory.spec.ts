@@ -10,15 +10,15 @@ let component: SketchMathFunctionComponent;
 
 describe('Test the factory for the SketchMathFunctionFactory', () => {
     it('Parse a SketchMathFunctionFactory from a valid JSON', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             functionName: 'tan'
-        }));
+        });
 
         expect(component.functionName).equals('tan');
     });
 
     it('Parse a SketchMathFunction from an empty string', () => {
-        component = factory.fromJSON(JSON.stringify({}));
+        component = factory.fromJSON({});
         expect(component.functionName).equals('cos');
     });
 

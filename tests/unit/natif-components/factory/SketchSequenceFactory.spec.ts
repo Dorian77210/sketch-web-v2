@@ -9,11 +9,11 @@ let component: SketchSequenceComponent;
 
 describe('Test the factory for the SketchSequenceComponent', () => {
     it('Parse a SketchSequenceComponent from a valid JSON', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             end: 10,
             begin: 9,
             step: 0.1
-        }));
+        });
 
         expect(component.getSequenceData().begin).equals(9);
         expect(component.getSequenceData().end).equals(10);
@@ -21,10 +21,10 @@ describe('Test the factory for the SketchSequenceComponent', () => {
     });
 
     it('Parse a SketchSequenceComponent from a JSON without end', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             begin: 10,
             step: 0.1
-        }));
+        });
 
         expect(component.getSequenceData().begin).equals(10);
         expect(component.getSequenceData().step).equals(0.1);
@@ -32,10 +32,10 @@ describe('Test the factory for the SketchSequenceComponent', () => {
     });
 
     it('Parse a SketchSequenceComponent from a JSON without begin', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             step: 0.1,
             end: 10
-        }));
+        });
 
         expect(component.getSequenceData().begin).equals(0);
         expect(component.getSequenceData().step).equals(0.1);
@@ -43,10 +43,10 @@ describe('Test the factory for the SketchSequenceComponent', () => {
     });
 
     it('Parse a SketchSequenceComponent from a JSON without step', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             begin: 10,
             end: 93
-        }));
+        });
 
         expect(component.getSequenceData().begin).equals(10);
         expect(component.getSequenceData().step).equals(0);
@@ -54,7 +54,7 @@ describe('Test the factory for the SketchSequenceComponent', () => {
     });
 
     it('Parse a SketchSequenceComponent from an empty JSON', () => {
-        component = factory.fromJSON(JSON.stringify({}));
+        component = factory.fromJSON({});
 
         expect(component.getSequenceData().begin).equals(0);
         expect(component.getSequenceData().end).equals(0);

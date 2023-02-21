@@ -8,9 +8,9 @@ interface SketchNumberInputComponentJSON {
 
 export default class SketchNumberFactory implements SketchComponentFactory<SketchNumberInputComponent> {
 
-    fromJSON(rawJson: string) : SketchNumberInputComponent {
+    fromJSON(rawJson: object) : SketchNumberInputComponent {
         const component = new SketchNumberInputComponent();
-        const inputComponentJSON: SketchNumberInputComponentJSON = JSON.parse(rawJson);
+        const inputComponentJSON: SketchNumberInputComponentJSON = rawJson as SketchNumberInputComponentJSON;
         component.setValue(inputComponentJSON.value ?? 0);
         return component;
     }

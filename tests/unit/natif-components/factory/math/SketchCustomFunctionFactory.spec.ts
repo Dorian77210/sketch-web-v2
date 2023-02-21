@@ -10,15 +10,15 @@ let component: SketchCustomFunctionComponent;
 
 describe('Test the factory for the SketchCustomFunctionComponent', () => {
     it('Parse a SketchCustomFunctionComponent from a valid JSON', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             customFunction: 'x^2 + 4'
-        }));
+        });
 
         expect(component.customFunction).equals('x^2 + 4');
     });
 
     it('Parse a SketchCustomFunctionComponent from an empty JSON', () => {
-        component = factory.fromJSON(JSON.stringify({}));
+        component = factory.fromJSON({});
 
         expect(component.customFunction).equals('');
     });

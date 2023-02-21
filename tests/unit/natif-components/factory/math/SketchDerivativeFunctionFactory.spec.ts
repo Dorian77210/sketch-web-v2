@@ -10,15 +10,15 @@ let component: SketchDerivativeFunctionComponent;
 
 describe('Test the factory for the SketchDerivativeFunctionFactory', () => {
     it('Parse a SketchDerivativeFunctionComponent from a valid JSON', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             customFunction: 'x^2'
-        }));
+        });
 
         expect(component.customFunction).equals('x^2');
     });
 
     it('Parse a SketchDerivativeFunctionComponent from an empty string', () => {
-        component = factory.fromJSON(JSON.stringify({}));
+        component = factory.fromJSON({});
         expect(component.customFunction).equals('');
     });
 

@@ -10,15 +10,15 @@ const factory = new SketchKMeansFactory();
 
 describe('Test the factory for the SKetchKMeansComponent', () => {
     it('Parse a SketchKMeansComponent with a valid JSON', () => {
-        component = factory.fromJSON(JSON.stringify({
+        component = factory.fromJSON({
             clusters: 10
-        }));
+        });
 
         expect(component.clusters).equals(10);
     });
 
     it('Parse a SketchKMeansComponent with an empty JSON', () => {
-        component = factory.fromJSON(JSON.stringify({}));
+        component = factory.fromJSON({});
 
         expect(component.clusters).equals(0);
     });

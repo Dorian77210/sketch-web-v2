@@ -5,7 +5,7 @@ import { SketchDataframeViewerComponent } from "../../dataframe/SketchDataframeV
 export default class SketchDataframeViewerFactory implements SketchComponentFactory<SketchDataframeViewerComponent> {
     
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    fromJSON(_json: string): SketchDataframeViewerComponent {
+    fromJSON(_json: object): SketchDataframeViewerComponent {
         return new SketchDataframeViewerComponent();
     }
 

@@ -8,9 +8,9 @@ type SketchElbowMethodJSON = {
 
 export default class SketchElbowMethodFactory implements SketchComponentFactory<SketchElbowMethodComponent> {
 
-    fromJSON(rawJson: string): SketchElbowMethodComponent {
+    fromJSON(rawJson: object): SketchElbowMethodComponent {
         const component = new SketchElbowMethodComponent();
-        const json: SketchElbowMethodJSON = JSON.parse(rawJson);
+        const json: SketchElbowMethodJSON = rawJson as SketchElbowMethodJSON;
         component.setMaxClusters(json.maxClusters ?? 0);
         return component;
     }
