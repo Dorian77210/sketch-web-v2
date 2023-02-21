@@ -100,6 +100,9 @@ export default defineComponent({
                     };
 
                     this.componentsMap.set(model, associatedConfiguration);
+
+                    this.workflow.insertComponent(component);
+
                     bus.emit('create-component');
                     bus.emit('on-component-selected', model);
                 }

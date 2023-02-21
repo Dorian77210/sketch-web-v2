@@ -18,7 +18,7 @@ export default class SketchComponentWorkflow {
      * Edges of the workflow. Each component will be mapped with their
      * entries names and the parent component associated.
      */
-    private edges: Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>;
+    private _edges: Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>;
 
     /**
      * Cache of results of component
@@ -28,18 +28,26 @@ export default class SketchComponentWorkflow {
     /**
      * Map a component with his children
      */
-    private children: Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>;
+    private _children: Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>;
 
     /**
      * Components that doesn't have any link with other components
      */
-    private orphanComponents: Array<SketchComponent<unknown>>;
+    private _orphanComponents: Array<SketchComponent<unknown>>;
 
     constructor() {
-        this.edges = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
-        this.children = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
-        this.orphanComponents = new Array<SketchComponent<unknown>>();
+        this._edges = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
+        this._children = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
+        this._orphanComponents = new Array<SketchComponent<unknown>>();
         this.resultCache = new Map<SketchComponent<unknown>, any>();
+    }
+
+    get edges(): Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>> { return this._edges; }
+    get children(): Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>> { return this._children; }
+    
+    get orphanComponents(): Array<SketchComponent<unknown>> { return this._orphanComponents; }
+    set orphanComponents(value: Array<SketchComponent<unknown>>) {
+        this._orphanComponents = value;
     }
 
     /**
@@ -229,7 +237,7 @@ export default class SketchComponentWorkflow {
         this.children.delete(component);
 
         // remove links where the component is a parent
-        this.edges.forEach((parents, comp) => {
+        this.edges.forEach((parents) => {
             const entriesToDelete: Array<string> = [];
             parents.forEach((parent, entry) => {
                 if (parent === component) {
@@ -240,7 +248,7 @@ export default class SketchComponentWorkflow {
             entriesToDelete.forEach(entry => parents.delete(entry));
         });
 
-        this.children.forEach((children, comp) => {
+        this.children.forEach((children) => {
             const entriesToDelete: Array<string> = [];
             children.forEach((child, entry) => {
                 if (child === component) {
@@ -254,6 +262,7 @@ export default class SketchComponentWorkflow {
 
     public clear() : void {
         this.edges.clear();
+        this.children.clear();
         this.orphanComponents = [];
     }
 }
