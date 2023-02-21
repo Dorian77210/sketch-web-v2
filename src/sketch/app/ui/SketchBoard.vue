@@ -70,7 +70,7 @@ export default defineComponent({
         return {
             componentsMap: new Map<ComponentModel, ComponentConfiguration>(),
             slots: new ArrayStack<ComponentSlot>(),
-            workflow: new SketchComponentWorkflow(),
+            workflow: this.boardManager.workflow,
             links: new Map<LinkAssociation, LeaderLine>(),
             selectedComponent: opt<SketchComponent<unknown>>(),
             selectedComponentModel: opt<ComponentModel>()
@@ -266,7 +266,7 @@ export default defineComponent({
             if (this.selectedComponentModel !== undefined) {
                 this.selectedComponentModel.config = settings as ComponentModelConfig;
             }
-        })
+        });
     }
 });
 

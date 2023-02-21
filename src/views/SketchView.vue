@@ -1,4 +1,5 @@
 <template>
+    <SketchBoardNavbar />
     <div class="d-flex" id="sketch-view">
         <SketchComponentList :board-manager="sketchBoardManager" />
         <SketchBoard :board-manager="sketchBoardManager" />
@@ -21,6 +22,7 @@ import { defineComponent } from 'vue';
 import SketchComponentList from '@/sketch/app/ui/SketchComponentList.vue';
 import SketchBoard from '@/sketch/app/ui/SketchBoard.vue';
 import SketchMessages from '@/sketch/app/ui/SketchMessages.vue';
+import SketchBoardNavbar from '@/sketch/app/ui/SketchBoardNavbar.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 import { registerConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
@@ -34,14 +36,27 @@ export default defineComponent({
         SketchComponentList,
         SketchBoard,
         SketchMessages,
-        SketchNavigationDrawer
+        SketchNavigationDrawer,
+        SketchBoardNavbar
     },
     data() {
         return {
             sketchBoardManager: new SketchBoardManager(),
-            spinnerVisible: false
+            spinnerVisible: false,
+            saving: false
         }
     },
+    methods: {
+        saveBoard() {
+
+            console.log('save b');
+        },
+        saveBoardAs() {
+            console.log('Save board as');
+        }
+    },
+
+
     beforeCreate() {
         registerConfigurations();
         bus.on('start-execution', () => {
@@ -51,6 +66,10 @@ export default defineComponent({
         bus.on('end-execution', () => {
             this.spinnerVisible = false;
         });
+
+        // saving event
+        bus.on('save-board', () => this.saveBoard());
+        bus.on('save-board-as', () => this.saveBoardAs());
     }
 });
 

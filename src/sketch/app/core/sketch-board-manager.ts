@@ -1,5 +1,6 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import { Class } from '@/sketch/api/types';
+import SketchComponentWorkflow from "./sketch-component-workflow";
 
 /**
  * @author Dorian Terbah
@@ -12,10 +13,15 @@ export default class SketchBoardManager
 {
     private selectedComponent?: Class<SketchComponent<unknown>>;
 
+    private _workflow: SketchComponentWorkflow;
+
     constructor()
     {
         this.selectedComponent = undefined;
+        this._workflow = new SketchComponentWorkflow();
     }
+
+    get workflow(): SketchComponentWorkflow { return this._workflow; }
 
     public setSelectedComponent(componentClass: Class<SketchComponent<unknown>>)
     {
