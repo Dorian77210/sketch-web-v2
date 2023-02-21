@@ -99,6 +99,11 @@ export default class SketchComponentWorkflow {
             injectData(child, entryName, this.resultCache.get(parent));
         }
 
+        // remove the components from the orphan components
+        this.orphanComponents = this.orphanComponents.filter(component => {
+            return component !== parent && component !== child
+        });
+
         return true;
     }
 

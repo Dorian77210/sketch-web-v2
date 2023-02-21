@@ -5,7 +5,9 @@ import SketchComponentWorkflow from "./sketch-component-workflow";
 
 import { getConfigurationOf } from "@/sketch/api/sketch-component-configuration-manager";
 
-import Save, { ComponentSaveConfiguration } from "./save";
+import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration } from "./save";
+import { ComponentModel } from "../ui/utils";
+import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 /**
  * @author Dorian Terbah
@@ -22,15 +24,21 @@ export default class SketchBoardManager
 
     private _saveFilename: string | undefined;
 
+    private _componentModels: Map<ComponentModel, ComponentConfiguration>;
+
     constructor()
     {
         this.selectedComponent = undefined;
         this._workflow = new SketchComponentWorkflow();
+        this._componentModels = new Map();
     }
 
     get workflow(): SketchComponentWorkflow { return this._workflow; }
+
     get saveFilename(): string | undefined { return this._saveFilename; }
     set saveFilename(value: string | undefined) { this._saveFilename = value; }
+
+    get componentModels(): Map<ComponentModel, ComponentConfiguration> { return this._componentModels; }
 
     public setSelectedComponent(componentClass: Class<SketchComponent<unknown>>)
     {
@@ -47,25 +55,49 @@ export default class SketchBoardManager
     public saveBoard() {
         // save the board
         const components = this.getComponents();
+
         const factories = this.getFactoriesByComponentClass(components);
-        console.log(factories);
 
         const save: Save = {
-            components: new Array<ComponentSaveConfiguration>()
-        }
+            components: new Array<ComponentSaveConfiguration>(),
+            links: new Array<ComponentLinkConfiguration>()
+        };
 
-
+        // insert the components data
         components.forEach(component => {
             const factory = factories.get(component.constructor as Class<SketchComponent<unknown>>) as SketchComponentFactory<SketchComponent<unknown>>;
+            const config = Array.from(
+                this.componentModels.keys()
+            ).filter(model => model.component === component)[0];
+
             const componentJSON = {
                 type: component.constructor.name,
-                json: factory.toJSON(component)
+                json: factory.toJSON(component),
+                id: component.getID(),
+                componentConfiguration: {
+                    x: config.x,
+                    y: config.y,
+                    style: config.config
+                }
             };
             
             save.components.push(componentJSON);
         })
 
-        console.log(JSON.stringify(save));
+        // insert the links of the parents
+        this.workflow.edges.forEach((parentData, child) => {
+            parentData.forEach((parent, entryName) => {
+                const link: ComponentLinkConfiguration = {
+                    parent: parent.getID(),
+                    child: child.getID(),
+                    entryName: entryName
+                };
+
+                save.links.push(link);
+            })
+        });
+
+        console.log(save);
     }
 
     private getComponents(): Array<SketchComponent<unknown>> {

@@ -52,6 +52,7 @@ type ComponentSlot = {
 type LinkAssociation = {
     source: SketchComponent<unknown>;
     destination: SketchComponent<unknown>;
+    entryName: string;
 }
 
 export default defineComponent({
@@ -66,7 +67,7 @@ export default defineComponent({
     },
     data() {
         return {
-            componentsMap: new Map<ComponentModel, ComponentConfiguration>(),
+            componentsMap: this.boardManager.componentModels,
             slots: new ArrayStack<ComponentSlot>(),
             workflow: this.boardManager.workflow,
             links: new Map<LinkAssociation, LeaderLine>(),
@@ -167,7 +168,8 @@ export default defineComponent({
                         // insert the line
                         const linkAssociation: LinkAssociation = {
                             source: source.model.targetComponent,
-                            destination: destination.model.targetComponent
+                            destination: destination.model.targetComponent,
+                            entryName: destination.model.entryName
                         }
 
                         this.links.set(linkAssociation, line);
