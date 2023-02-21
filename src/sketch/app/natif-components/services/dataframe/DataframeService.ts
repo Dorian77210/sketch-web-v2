@@ -1,7 +1,7 @@
 import HTTPService from "@/sketch/api/service/HTTPService";
-
-import DataFrame, { Row } from "dataframe-js";
 import axios from "axios";
+
+import DataFrame from "dataframe-js";
 
 export default class DataframeService extends HTTPService {
 
