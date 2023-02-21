@@ -105,7 +105,9 @@ export default class SketchBoardManager
     }
 
     public reconstructWorkflow(data: string) {
-        console.log(data);
+        const save: Save = JSON.parse(data);
+
+        console.log(save);
     }
 
     private getComponents(): Array<SketchComponent<unknown>> {

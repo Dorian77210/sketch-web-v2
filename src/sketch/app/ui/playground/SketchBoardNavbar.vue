@@ -60,7 +60,7 @@ export default defineComponent({
 <style>
 
 #logo {
-    width: 6%;
+    width: 4.5%;
 }
 
 .navbar-item:hover {
