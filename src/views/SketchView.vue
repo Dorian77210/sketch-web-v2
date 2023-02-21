@@ -13,8 +13,7 @@
         ></v-progress-circular>
         <SketchNavigationDrawer />
 
-        
-
+        <SketchSaveModal :save-board="_saveBoard" v-if="needFilenameForSave" />
     </div>
 </template>
 
@@ -34,28 +33,43 @@ import SketchNavigationDrawer from '@/sketch/app/ui/playground/SketchNavigationD
 
 import bus from '@/sketch/app/core/bus';
 
+import SketchSaveModal from '@/sketch/app/ui/playground/SketchSaveModal.vue';
+
 export default defineComponent({
     components: {
         SketchComponentList,
         SketchBoard,
         SketchMessages,
         SketchNavigationDrawer,
-        SketchBoardNavbar
+        SketchBoardNavbar,
+        SketchSaveModal
     },
     data() {
         return {
             sketchBoardManager: new SketchBoardManager(),
             spinnerVisible: false,
-            saving: false
+            needFilenameForSave: false
         }
     },
     methods: {
-        saveBoard() {
-
-            console.log('save b');
+        onSaveBoard() {
+            const filename = this.sketchBoardManager.saveFilename;
+            if (!filename) {
+                this.needFilenameForSave = true;
+            } else {
+                this._saveBoard(filename);
+            }
         },
-        saveBoardAs() {
+        onSaveBoardAs() {
             console.log('Save board as');
+        },
+
+        _saveBoard(filename: string) {
+            this.needFilenameForSave = false;
+            
+            if (filename) {
+                this.sketchBoardManager.saveFilename = filename;
+            }
         }
     },
 
@@ -71,8 +85,8 @@ export default defineComponent({
         });
 
         // saving event
-        bus.on('save-board', () => this.saveBoard());
-        bus.on('save-board-as', () => this.saveBoardAs());
+        bus.on('save-board', () => this.onSaveBoard());
+        bus.on('save-board-as', () => this.onSaveBoardAs());
     }
 });
 

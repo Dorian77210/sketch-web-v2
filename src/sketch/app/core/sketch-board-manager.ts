@@ -15,6 +15,8 @@ export default class SketchBoardManager
 
     private _workflow: SketchComponentWorkflow;
 
+    private _saveFilename: string | undefined;
+
     constructor()
     {
         this.selectedComponent = undefined;
@@ -22,6 +24,8 @@ export default class SketchBoardManager
     }
 
     get workflow(): SketchComponentWorkflow { return this._workflow; }
+    get saveFilename(): string | undefined { return this._saveFilename; }
+    set saveFilename(value: string | undefined) { this._saveFilename = value; }
 
     public setSelectedComponent(componentClass: Class<SketchComponent<unknown>>)
     {
