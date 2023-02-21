@@ -8,6 +8,8 @@ import DataFrame from "dataframe-js";
 
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 
+import SketchLineChartFactory from "../factory/chart/SketchLineChartFactory";
+
 
 /**
  * @author Dorian TERBAH
@@ -44,6 +46,7 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Chart',
     name: 'Line chart',
     popup: SketchLineChartPopup,
+    factory: SketchLineChartFactory,
     slotsConfigurations: [{
         entryName: 'data',
         methodName: 'setData',

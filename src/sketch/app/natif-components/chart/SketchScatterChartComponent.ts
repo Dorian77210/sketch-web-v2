@@ -9,6 +9,8 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
+import SketchScatterChartFactory from "../factory/SketchScatterChartFactory";
+
 /**
  * @author Dorian TERBAH
  * 
@@ -43,6 +45,7 @@ export const configuration : ComponentConfiguration = {
     namespace: 'Chart',
     name: 'Scatter chart',
     popup: SketchScatterChartPopup,
+    factory: SketchScatterChartFactory,
     slotsConfigurations: [{
         entryName: 'data',
         methodName: 'setData',

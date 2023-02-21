@@ -10,6 +10,7 @@ import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import SketchDataframeToCSVPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeToCSVPopup.vue';
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
+import SketchDataframeToCSVFactory from "../factory/dataframe/SketchDataframeToCSVFactory";
 
 /**
  * 
@@ -68,6 +69,7 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Save as CSV',
     popup: SketchDataframeToCSVPopup,
+    factory: SketchDataframeToCSVFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',

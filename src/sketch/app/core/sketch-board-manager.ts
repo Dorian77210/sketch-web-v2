@@ -38,4 +38,9 @@ export default class SketchBoardManager
         this.selectedComponent = undefined;
         return componentClass;
     }
+
+    public saveBoard() {
+        // save the board
+        
+    }
 }

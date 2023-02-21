@@ -8,6 +8,8 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 import SketchDataframeUnionPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeUnionPopup.vue';
 
+import SketchDataframeUnionFactory from "../factory/dataframe/SketchDataframeUnionFactory";
+
 /**
  * @author Dorian TERBAH
  * 
@@ -63,6 +65,7 @@ export const configuration: ComponentConfiguration = {
     name: 'Dataframe union',
     returnType: DataFrame,
     popup: SketchDataframeUnionPopup,
+    factory: SketchDataframeUnionFactory,
     slotsConfigurations: [{
         entryName: 'left dataframe',
         methodName: 'setLeftDataframe',

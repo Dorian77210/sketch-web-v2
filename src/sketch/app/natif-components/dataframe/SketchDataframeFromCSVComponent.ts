@@ -7,6 +7,8 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import SketchDataframeFromCSVPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeFromCSVPopup.vue';
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 
+import SketchDataframeFromCSVFactory from "../factory/dataframe/SketchDataframeFromCSVFactory";
+
 /**
  * 
  * @author Dorian TERBAH
@@ -62,6 +64,7 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'CSV Loader',
     popup: SketchDataframeFromCSVPopup,
+    factory: SketchDataframeFromCSVFactory,
     returnType: DataFrame,
     icon: {
         name: 'fa-file-csv',

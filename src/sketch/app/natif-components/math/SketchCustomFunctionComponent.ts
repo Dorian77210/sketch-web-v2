@@ -11,6 +11,8 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
 
+import SketchCustomFunctionFactory from "../factory/math/SketchCustomFunctionFactory";
+
 /**
  * @author Dorian TERBAH
  * 
@@ -68,6 +70,7 @@ export const configuration : ComponentConfiguration = {
     name: 'Custom function',
     popup: SketchCustomFunctionPopup,
     returnType: DataFrame,
+    factory: SketchCustomFunctionFactory,
     slotsConfigurations: [{
         entryName: 'numbers',
         methodName: 'setData',

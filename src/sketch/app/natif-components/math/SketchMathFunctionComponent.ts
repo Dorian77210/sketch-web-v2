@@ -8,6 +8,8 @@ import SketchMathFunctionPopup from '@/sketch/app/natif-components/ui/math/Sketc
 import { NumberList } from "@/sketch/api/data-structures";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 
+import SketchMathFunctionFactory from "../factory/math/SketchMathFunctionFactory";
+
 type MathFunction = (value: number) => number;
 
 /**
@@ -88,6 +90,7 @@ export const configuration: ComponentConfiguration = {
     name: 'Math function',
     popup: SketchMathFunctionPopup,
     returnType: DataFrame,
+    factory: SketchMathFunctionFactory,
     slotsConfigurations: [{
         entryName: 'data',
         methodName: 'setData',

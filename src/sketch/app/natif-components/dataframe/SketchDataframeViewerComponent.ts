@@ -8,6 +8,8 @@ import { faTable } from "@fortawesome/free-solid-svg-icons";
 
 import SketchDataframeViewerPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeViewerPopup.vue';
 
+import SketchDataframeViewerFactory from "../factory/dataframe/SketchDataframeViewerFactory";
+
 /**
  * 
  * @author Dorian TERBAH
@@ -43,6 +45,7 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Dataframe viewer',
     popup: SketchDataframeViewerPopup,
+    factory: SketchDataframeViewerFactory,
     slotsConfigurations: [{
         type: DataFrame,
         entryName: 'dataframe',

@@ -8,6 +8,8 @@ import SketchDataframeShufflePopup from '@/sketch/app/natif-components/ui/datafr
 import { faShuffle } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
+import SketchDataframeShuffleFactory from "../factory/dataframe/SketchDataframeShuffleFactory";
+
 /**
  * 
  * @author Dorian TERBAH
@@ -51,6 +53,7 @@ export const configuration : ComponentConfiguration = {
     name: 'Dataframe Shuffler',
     returnType: DataFrame,
     popup: SketchDataframeShufflePopup,
+    factory: SketchDataframeShuffleFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',

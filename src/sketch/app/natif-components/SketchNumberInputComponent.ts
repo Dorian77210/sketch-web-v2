@@ -5,6 +5,8 @@ import SketchNumberInputPopup from "@/sketch/app/natif-components/ui/SketchNumbe
 
 import { faKeyboard } from "@fortawesome/free-solid-svg-icons";
 
+import SketchNumberFactory from "./factory/SketchNumberFactory";
+
 export class SketchNumberInputComponent extends SketchComponent<number> {
 
     private readonly inputWrapper: SketchWrapper<number>;
@@ -44,6 +46,7 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Inputs',
     name: 'Number input',
     popup: SketchNumberInputPopup,
+    factory: SketchNumberFactory,
     returnType: Number,
     icon: {
         name: 'fa-keyboard',

@@ -9,6 +9,7 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 import SketchElbowMethodPopup from '@/sketch/app/natif-components/ui/dataframe/SketchElbowMethodPopup.vue';
 
+import SketchElbowMethodFactory from "../factory/dataframe/SketchElbowMethodFactory";
 
 /**
  * 
@@ -66,6 +67,7 @@ export const configuration: ComponentConfiguration = {
     name: 'Elbow method',
     popup: SketchElbowMethodPopup,
     returnType: DataFrame,
+    factory: SketchElbowMethodFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',

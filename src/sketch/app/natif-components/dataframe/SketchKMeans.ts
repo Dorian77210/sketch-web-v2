@@ -9,6 +9,8 @@ import SketchKMeansPopup from '@/sketch/app/natif-components/ui/dataframe/Sketch
 
 import DataframeService from "../services/dataframe/DataframeService";
 
+import SketchKMeansFactory from "../factory/dataframe/SketchKMeansFactory";
+
 /**
  * 
  * @author Dorian TERBAH
@@ -67,6 +69,7 @@ export const configuration: ComponentConfiguration = {
     name: 'KMeans',
     popup: SketchKMeansPopup,
     returnType: DataFrame,
+    factory: SketchKMeansFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',

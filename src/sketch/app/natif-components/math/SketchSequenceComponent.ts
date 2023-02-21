@@ -9,6 +9,8 @@ import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
 import SequenceData from "../data/SequenceData";
 import { NumberList } from "@/sketch/api/data-structures";
 
+import SketchSequenceFactory from "../factory/math/SketchSequenceFactory";
+
 /**
  * @author Dorian TERBAH
  * 
@@ -65,6 +67,7 @@ export const configuration: ComponentConfiguration = {
     name: 'Sequence number',
     popup: SketchSequencePopup,
     returnType: NumberList,
+    factory: SketchSequenceFactory,
     slotsConfigurations: [{
         entryName: 'begin',
         methodName: 'setBegin',

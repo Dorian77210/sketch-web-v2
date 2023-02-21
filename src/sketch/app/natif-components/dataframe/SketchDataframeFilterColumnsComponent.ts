@@ -7,6 +7,8 @@ import SketchDataframeFilterColumnsPopup from '@/sketch/app/natif-components/ui/
 
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
+import SketchDataframeFilterColumnsFactory from "../factory/dataframe/SketchDataframeFilterColumnsFactory";
+
 /**
  * 
  * @author Dorian TERBAH
@@ -55,6 +57,7 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Filter columns',
     popup: SketchDataframeFilterColumnsPopup,
+    factory: SketchDataframeFilterColumnsFactory,
     returnType: DataFrame,
     slotsConfigurations: [{
         entryName: 'dataframe',

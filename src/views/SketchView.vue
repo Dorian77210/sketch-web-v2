@@ -66,9 +66,9 @@ export default defineComponent({
 
         _saveBoard(filename: string) {
             this.needFilenameForSave = false;
-            
             if (filename) {
                 this.sketchBoardManager.saveFilename = filename;
+                this.sketchBoardManager.saveBoard();
             }
         }
     },

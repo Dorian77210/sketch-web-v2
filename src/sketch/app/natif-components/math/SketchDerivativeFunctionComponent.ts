@@ -10,6 +10,8 @@ import { faCalculator } from "@fortawesome/free-solid-svg-icons";
 import SketchCustomFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchCustomFunctionPopup.vue';
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
+import SketchDerivativeFunctionFactory from "../factory/math/SketchDerivativeFunctionFactory";
+
 /**
  * @author Dorian TERBAH
  * 
@@ -68,6 +70,7 @@ export const configuration : ComponentConfiguration = {
     name: 'Derivative function',
     popup: SketchCustomFunctionPopup,
     returnType: DataFrame,
+    factory: SketchDerivativeFunctionFactory,
     slotsConfigurations: [{
         entryName: 'numbers',
         methodName: 'setData',
