@@ -8,6 +8,9 @@ import { getConfigurationOf } from "@/sketch/api/sketch-component-configuration-
 import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration } from "./save";
 import { ComponentModel } from "../ui/utils";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
+import saveFile from "@/sketch/api/file-saver";
+
+import { LZString } from "lzstring.ts/build/LZString";
 
 /**
  * @author Dorian Terbah
@@ -22,7 +25,7 @@ export default class SketchBoardManager
 
     private _workflow: SketchComponentWorkflow;
 
-    private _saveFilename: string | undefined;
+    private _saveFilename = '';
 
     private _componentModels: Map<ComponentModel, ComponentConfiguration>;
 
@@ -35,8 +38,8 @@ export default class SketchBoardManager
 
     get workflow(): SketchComponentWorkflow { return this._workflow; }
 
-    get saveFilename(): string | undefined { return this._saveFilename; }
-    set saveFilename(value: string | undefined) { this._saveFilename = value; }
+    get saveFilename(): string { return this._saveFilename; }
+    set saveFilename(value: string) { this._saveFilename = value; }
 
     get componentModels(): Map<ComponentModel, ComponentConfiguration> { return this._componentModels; }
 
@@ -97,7 +100,9 @@ export default class SketchBoardManager
             })
         });
 
-        console.log(save);
+        // finally, save the workflow in the save
+        const encodedData = LZString.compress(JSON.stringify(save));
+        saveFile(encodedData, 'konect', this.saveFilename);
     }
 
     private getComponents(): Array<SketchComponent<unknown>> {
