@@ -37,12 +37,18 @@ export default defineComponent({
             fileItems: [{
                 title: 'Save',
                 onClick: () => {
-                    bus.emit('save-board')
+                    bus.emit('save-board');
                 }
             }, {
                 title: 'Save as',
                 onClick: () => {
-                    bus.emit('save-board-as')
+                    bus.emit('save-board-as');
+                }
+            }, {
+                title: 'Open file',
+                divider: true,
+                onClick: () => {
+                    bus.emit('open-file');
                 }
             }] 
         }

@@ -5,7 +5,7 @@ import SketchComponentWorkflow from "./sketch-component-workflow";
 
 import { getConfigurationOf } from "@/sketch/api/sketch-component-configuration-manager";
 
-import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration } from "./save";
+import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration, SAVE_EXTENSION } from "./save";
 import { ComponentModel } from "../ui/utils";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import saveFile from "@/sketch/api/file-saver";
@@ -101,8 +101,11 @@ export default class SketchBoardManager
         });
 
         // finally, save the workflow in the save
-        const encodedData = LZString.compress(JSON.stringify(save));
-        saveFile(encodedData, 'konect', this.saveFilename);
+        saveFile(JSON.stringify(save), SAVE_EXTENSION, this.saveFilename);
+    }
+
+    public reconstructWorkflow(data: string) {
+        console.log(data);
     }
 
     private getComponents(): Array<SketchComponent<unknown>> {

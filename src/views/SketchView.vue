@@ -14,6 +14,7 @@
         <SketchNavigationDrawer />
 
         <SketchSaveModal :save-board="_saveBoard" v-if="needFilenameForSave" />
+        <SketchOpenFileModal :on-received-file="_onReceivedFile" v-if="needToOpenFile" />
     </div>
 </template>
 
@@ -34,6 +35,7 @@ import SketchNavigationDrawer from '@/sketch/app/ui/playground/SketchNavigationD
 import bus from '@/sketch/app/core/bus';
 
 import SketchSaveModal from '@/sketch/app/ui/playground/SketchSaveModal.vue';
+import SketchOpenFileModal from '@/sketch/app/ui/playground/SketchOpenFileModal.vue';
 
 export default defineComponent({
     components: {
@@ -42,13 +44,15 @@ export default defineComponent({
         SketchMessages,
         SketchNavigationDrawer,
         SketchBoardNavbar,
-        SketchSaveModal
+        SketchSaveModal,
+        SketchOpenFileModal
     },
     data() {
         return {
             sketchBoardManager: new SketchBoardManager(),
             spinnerVisible: false,
-            needFilenameForSave: false
+            needFilenameForSave: false,
+            needToOpenFile: false
         }
     },
     methods: {
@@ -63,12 +67,24 @@ export default defineComponent({
         onSaveBoardAs() {
             this.needFilenameForSave = true;
         },
+        onOpenFile() {
+            this.needToOpenFile = true;
+        },
 
         _saveBoard(filename: string) {
             this.needFilenameForSave = false;
             if (filename) {
                 this.sketchBoardManager.saveFilename = filename;
                 this.sketchBoardManager.saveBoard();
+            }
+        },
+
+
+        async _onReceivedFile(file: File | undefined) {
+            this.needToOpenFile = false;
+            if (file) {
+                const fileContent = await file.text();
+                this.sketchBoardManager.reconstructWorkflow(fileContent);
             }
         }
     },
@@ -87,6 +103,9 @@ export default defineComponent({
         // saving event
         bus.on('save-board', () => this.onSaveBoard());
         bus.on('save-board-as', () => this.onSaveBoardAs());
+
+        // open file events
+        bus.on('open-file', () => this.onOpenFile());
     }
 });
 

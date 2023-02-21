@@ -17,7 +17,7 @@
 
 import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
 
-import { defineComponent, PropType } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
     components: {

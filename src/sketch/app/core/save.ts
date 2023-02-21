@@ -17,6 +17,8 @@ export interface ComponentLinkConfiguration {
     entryName: string;
 }
 
+export const SAVE_EXTENSION = 'konect';
+
 export default interface Save {
     components: Array<ComponentSaveConfiguration>;
     links: Array<ComponentLinkConfiguration>;
