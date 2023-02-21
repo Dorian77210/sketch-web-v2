@@ -12,6 +12,9 @@
             id="spinner"
         ></v-progress-circular>
         <SketchNavigationDrawer />
+
+        
+
     </div>
 </template>
 
@@ -19,15 +22,15 @@
 
 import { defineComponent } from 'vue';
 
-import SketchComponentList from '@/sketch/app/ui/SketchComponentList.vue';
-import SketchBoard from '@/sketch/app/ui/SketchBoard.vue';
-import SketchMessages from '@/sketch/app/ui/SketchMessages.vue';
-import SketchBoardNavbar from '@/sketch/app/ui/SketchBoardNavbar.vue';
+import SketchComponentList from '@/sketch/app/ui/playground/SketchComponentList.vue';
+import SketchBoard from '@/sketch/app/ui/playground/SketchBoard.vue';
+import SketchMessages from '@/sketch/app/ui/playground/SketchMessages.vue';
+import SketchBoardNavbar from '@/sketch/app/ui/playground/SketchBoardNavbar.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 import { registerConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
 
-import SketchNavigationDrawer from '@/sketch/app/ui/SketchNavigationDrawer.vue';
+import SketchNavigationDrawer from '@/sketch/app/ui/playground/SketchNavigationDrawer.vue';
 
 import bus from '@/sketch/app/core/bus';
 

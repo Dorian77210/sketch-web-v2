@@ -75,11 +75,11 @@
 
 import { defineComponent } from 'vue';
 
-import bus from '../core/bus';
+import bus from '../../core/bus';
 
 import { opt } from '@/sketch/api/types';
 
-import { ComponentModel, ComponentModelConfig } from './utils';
+import { ComponentModel, ComponentModelConfig } from '../utils';
 
 export default defineComponent({
     data() {

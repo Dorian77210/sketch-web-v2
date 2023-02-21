@@ -8,11 +8,11 @@
 
 import { defineComponent } from 'vue';
 
-import Message from '../core/message';
+import Message from '../../core/message';
 
 import SketchMessage from './SketchMessage.vue';
 
-import bus from '../core/bus';
+import bus from '../../core/bus';
 
 import store from '@/store';
 

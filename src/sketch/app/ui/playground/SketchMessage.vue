@@ -14,8 +14,8 @@
 <script lang="ts">
 
 import { defineComponent, PropType } from 'vue';
-import Message from '../core/message';
-import bus from '../core/bus';
+import Message from '../../core/message';
+import bus from '../../core/bus';
 
 export default defineComponent({
     props: {

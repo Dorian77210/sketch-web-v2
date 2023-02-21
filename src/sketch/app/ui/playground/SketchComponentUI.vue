@@ -74,15 +74,15 @@ import { defineComponent, PropType, Component } from 'vue';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 
-import { ComponentSlotModel } from './utils';
+import { ComponentSlotModel } from '../utils';
 import SketchComponent from '@/sketch/api/sketch-component';
 import { opt } from '@/sketch/api/types';
 import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
 import { Class } from '@/sketch/api/types';
 
-import bus from '../core/bus';
+import bus from '../../core/bus';
 
-import { ComponentModel } from './utils';
+import { ComponentModel } from '../utils';
 
 export default defineComponent({
     components: {

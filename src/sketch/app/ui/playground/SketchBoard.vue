@@ -19,7 +19,7 @@ import { defineComponent } from 'vue';
 
 import LeaderLine from 'leader-line-new';
 
-import SketchBoardManager from '../core/sketch-board-manager';
+import SketchBoardManager from '../../core/sketch-board-manager';
 
 import { Class } from '@/sketch/api/types';
 import SketchComponent from '@/sketch/api/sketch-component';
@@ -29,21 +29,21 @@ import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-
 import SketchComponentUI from './SketchComponentUI.vue';
 
 import { ArrayStack } from '@/sketch/api/data-structures';
-import { ComponentSlotModel } from './utils';
+import { ComponentSlotModel } from '../utils';
 
 import { canCreateLinkBetween } from '@/sketch/api/sketch-component-configuration-manager';
 
-import SketchComponentWorkflow from '../core/sketch-component-workflow';
+import SketchComponentWorkflow from '../../core/sketch-component-workflow';
 
 import { opt } from '@/sketch/api/types';
 
 import store from '@/store';
 
-import bus from '../core/bus';
+import bus from '../../core/bus';
 
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
 
-import { ComponentModel, ComponentModelConfig } from './utils';
+import { ComponentModel, ComponentModelConfig } from '../utils';
 
 type ComponentSlot = {
     ui: HTMLElement;

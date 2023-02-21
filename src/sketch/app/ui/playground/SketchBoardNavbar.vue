@@ -29,7 +29,7 @@
 
 import { defineComponent } from 'vue';
 
-import bus from '../core/bus';
+import bus from '../../core/bus';
 
 export default defineComponent({
     data() {

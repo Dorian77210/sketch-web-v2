@@ -36,7 +36,7 @@ import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 import SketchComponent from '@/sketch/api/sketch-component';
 import { Class, opt } from '@/sketch/api/types';
 
-import bus from '../core/bus';
+import bus from '../../core/bus';
 
 type SketchComponentConfiguration = {
     configuration: ComponentConfiguration;
