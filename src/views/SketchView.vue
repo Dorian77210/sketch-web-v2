@@ -61,7 +61,7 @@ export default defineComponent({
             }
         },
         onSaveBoardAs() {
-            console.log('Save board as');
+            this.needFilenameForSave = true;
         },
 
         _saveBoard(filename: string) {

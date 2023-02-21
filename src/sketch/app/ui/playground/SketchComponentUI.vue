@@ -8,7 +8,7 @@
             :active="true"
             :draggable="true"
             :resizable="true"
-            :dragging="$emit('on-drag', componentModel.component)"
+            @dragging="$emit('on-drag', componentModel, $event.x, $event.y)"
             @click="onClick"
             @dblclick="openPopupConfiguration"
             :style="{ backgroundColor: componentModel.config.backgroundColor }"

@@ -33,8 +33,6 @@ import { ComponentSlotModel } from '../utils';
 
 import { canCreateLinkBetween } from '@/sketch/api/sketch-component-configuration-manager';
 
-import SketchComponentWorkflow from '../../core/sketch-component-workflow';
-
 import { opt } from '@/sketch/api/types';
 
 import store from '@/store';
@@ -179,7 +177,12 @@ export default defineComponent({
                 }
             }
         },
-        onDrag(component: SketchComponent<unknown>) {
+        onDrag(componentModel: ComponentModel, x: number, y: number) {
+            // update coords
+            componentModel.x = x;
+            componentModel.y = y;
+            const component = componentModel.component;
+
             // update all the links of the component
             const lines: Array<LeaderLine> = [];
             this.links.forEach((line, association) => {
