@@ -3,7 +3,6 @@ import DataFrame from "dataframe-js";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import { faTable } from "@fortawesome/free-solid-svg-icons";
-import SketchDataframeViewerFactory from "../factory/dataframe/SketchDataframeViewerFactory";
 
 /**
  * 
@@ -39,7 +38,6 @@ export class SketchDataframeViewerComponent extends SketchComponent<void> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Dataframe viewer',
-    factory: SketchDataframeViewerFactory,
     slotsConfigurations: [{
         type: DataFrame,
         entryName: 'dataframe',

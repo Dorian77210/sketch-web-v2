@@ -3,7 +3,6 @@ import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import DataFrame from "dataframe-js";
 import { faCodeMerge } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchDataframeUnionFactory from "../factory/dataframe/SketchDataframeUnionFactory";
 
 /**
  * @author Dorian TERBAH
@@ -59,7 +58,6 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Dataframe union',
     returnType: DataFrame,
-    factory: SketchDataframeUnionFactory,
     slotsConfigurations: [{
         entryName: 'left dataframe',
         methodName: 'setLeftDataframe',

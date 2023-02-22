@@ -35,7 +35,25 @@ import SketchKMeansPopup from '@/sketch/app/natif-components/ui/dataframe/Sketch
 import SketchCustomFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchCustomFunctionPopup.vue';
 import SketchMathFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchMathFunctionPopup.vue';
 import SketchSequencePopup from "@/sketch/app/natif-components/ui/math/SketchSequencePopup.vue";
+import SketchComponentFactory from "@/sketch/api/factory/SketchComponentFactory";
 
+// ----- Imports of the factories ----- //
+import SketchNumberFactory from "./factory/SketchNumberFactory";
+import SketchSequenceFactory from "./factory/math/SketchSequenceFactory";
+import SketchMathFunctionFactory from "./factory/math/SketchMathFunctionFactory";
+import SketchLineChartFactory from "./factory/chart/SketchLineChartFactory";
+import SketchScatterChartFactory from "./factory/SketchScatterChartFactory";
+import SketchDataframeFromCSVFactory from "./factory/dataframe/SketchDataframeFromCSVFactory";
+import SketchDataframeViewerFactory from "./factory/dataframe/SketchDataframeViewerFactory";
+import SketchDataframeFilterColumnsFactory from "./factory/dataframe/SketchDataframeFilterColumnsFactory";
+import SketchKMeansFactory from "./factory/dataframe/SketchKMeansFactory";
+import SketchElbowMethodFactory from "./factory/dataframe/SketchElbowMethodFactory";
+import SketchDataframeShuffleFactory from "./factory/dataframe/SketchDataframeShuffleFactory";
+import SketchDataframeToCSVFactory from "./factory/dataframe/SketchDataframeToCSVFactory";
+import SketchDataframeUnionFactory from "./factory/dataframe/SketchDataframeUnionFactory";
+import SketchCustomFunctionFactory from "./factory/math/SketchCustomFunctionFactory";
+import SketchDerivativeFunctionFactory from "./factory/math/SketchDerivativeFunctionFactory";
+import SketchComponent from "@/sketch/api/sketch-component";
 
 // Register all configurations for the components
 export const mapComponentWithConfiguration = new Map<GenericSketchComponentClass, ComponentConfiguration>();
@@ -73,3 +91,22 @@ mapComponentWithPopup.set(SketchDataframeToCSVComponent, SketchDataframeToCSVPop
 mapComponentWithPopup.set(SketchDataframeShuffleComponent, SketchDataframeShufflePopup);
 mapComponentWithPopup.set(SketchLineChartComponent, SketchLineChartPopup);
 mapComponentWithPopup.set(SketchScatterChartComponent, SketchScatterChartPopup);
+
+
+
+export const mapComponentWithFactory = new Map<GenericSketchComponentClass, SketchComponentFactory<SketchComponent<unknown>>>();
+mapComponentWithFactory.set(SketchNumberInputComponent, new SketchNumberFactory());
+mapComponentWithFactory.set(SketchSequenceComponent, new SketchSequenceFactory());
+mapComponentWithFactory.set(SketchDataframeFilterColumnsComponent, new SketchDataframeFilterColumnsFactory());
+mapComponentWithFactory.set(SketchDataframeFromCSVComponent, new SketchDataframeFromCSVFactory());
+mapComponentWithFactory.set(SketchDerivativeFunctionComponent, new SketchDerivativeFunctionFactory());
+mapComponentWithFactory.set(SketchCustomFunctionComponent, new SketchCustomFunctionFactory());
+mapComponentWithFactory.set(SketchKMeansComponent, new SketchKMeansFactory());
+mapComponentWithFactory.set(SketchElbowMethodComponent, new SketchElbowMethodFactory());
+mapComponentWithFactory.set(SketchDataframeViewerComponent, new SketchDataframeViewerFactory());
+mapComponentWithFactory.set(SketchDataframeUnionComponent, new SketchDataframeUnionFactory());
+mapComponentWithFactory.set(SketchMathFunctionComponent, new SketchMathFunctionFactory());
+mapComponentWithFactory.set(SketchDataframeToCSVComponent, new SketchDataframeToCSVFactory());
+mapComponentWithFactory.set(SketchDataframeShuffleComponent, new SketchDataframeShuffleFactory());
+mapComponentWithFactory.set(SketchLineChartComponent, new SketchLineChartFactory());
+mapComponentWithFactory.set(SketchScatterChartComponent, new SketchScatterChartFactory());

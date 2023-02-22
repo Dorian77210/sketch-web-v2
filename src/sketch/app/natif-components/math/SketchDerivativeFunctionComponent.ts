@@ -5,7 +5,6 @@ import DataFrame from "dataframe-js";
 import { MathNode, derivative } from "mathjs";
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchDerivativeFunctionFactory from "../factory/math/SketchDerivativeFunctionFactory";
 
 /**
  * @author Dorian TERBAH
@@ -64,7 +63,6 @@ export const configuration : ComponentConfiguration = {
     namespace: 'Math',
     name: 'Derivative function',
     returnType: DataFrame,
-    factory: SketchDerivativeFunctionFactory,
     slotsConfigurations: [{
         entryName: 'numbers',
         methodName: 'setData',

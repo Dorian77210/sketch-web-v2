@@ -5,7 +5,6 @@ import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import { parse, MathNode } from 'mathjs';
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
-import SketchCustomFunctionFactory from "../factory/math/SketchCustomFunctionFactory";
 
 /**
  * @author Dorian TERBAH
@@ -63,7 +62,6 @@ export const configuration : ComponentConfiguration = {
     namespace: 'Math',
     name: 'Custom function',
     returnType: DataFrame,
-    factory: SketchCustomFunctionFactory,
     slotsConfigurations: [{
         entryName: 'numbers',
         methodName: 'setData',

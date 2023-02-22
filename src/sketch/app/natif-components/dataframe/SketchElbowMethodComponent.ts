@@ -4,7 +4,6 @@ import DataFrame from "dataframe-js";
 import DataframeService from "../services/dataframe/DataframeService";
 import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchElbowMethodFactory from "../factory/dataframe/SketchElbowMethodFactory";
 
 /**
  * 
@@ -61,7 +60,6 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Elbow method',
     returnType: DataFrame,
-    factory: SketchElbowMethodFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',

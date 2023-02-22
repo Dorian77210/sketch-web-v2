@@ -3,7 +3,6 @@ import DataFrame from "dataframe-js";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-import SketchDataframeFromCSVFactory from "../factory/dataframe/SketchDataframeFromCSVFactory";
 
 /**
  * 
@@ -59,7 +58,6 @@ export class SketchDataframeFromCSVComponent extends SketchComponent<DataFrame> 
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'CSV Loader',
-    factory: SketchDataframeFromCSVFactory,
     returnType: DataFrame,
     icon: {
         name: 'fa-file-csv',

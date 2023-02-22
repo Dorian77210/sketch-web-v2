@@ -1,12 +1,13 @@
 import SketchComponentFactory from "@/sketch/api/factory/SketchComponentFactory";
 import SketchComponent from "@/sketch/api/sketch-component";
 import SketchComponentWorkflow from "./sketch-component-workflow";
-import { getConfigurationOf } from "@/sketch/api/sketch-component-configuration-manager";
 import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration, SAVE_EXTENSION } from "./save";
 import { ComponentModel } from "../ui/utils";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import saveFile from "@/sketch/api/file-saver";
 import { GenericSketchComponentClass } from "@/sketch/api/types";
+
+import getFactoryFor from "./sketch-factory-manager";
 
 /**
  * @author Dorian Terbah
@@ -119,9 +120,8 @@ export default class SketchBoardManager
 
         components.forEach((component) => {
             const componentClass = component.constructor as GenericSketchComponentClass;
-            const configuration = getConfigurationOf(componentClass);
             if (!factories.has(componentClass)) {
-                factories.set(componentClass, new configuration.factory());
+                factories.set(componentClass, getFactoryFor(componentClass) as SketchComponentFactory<SketchComponent<unknown>>);
             }
         })
 

@@ -3,7 +3,6 @@ import DataFrame from "dataframe-js";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import SketchScatterChartFactory from "../factory/SketchScatterChartFactory";
 
 /**
  * @author Dorian TERBAH
@@ -38,7 +37,6 @@ export class SketchScatterChartComponent extends SketchComponent<void> {
 export const configuration : ComponentConfiguration = {
     namespace: 'Chart',
     name: 'Scatter chart',
-    factory: SketchScatterChartFactory,
     slotsConfigurations: [{
         entryName: 'data',
         methodName: 'setData',

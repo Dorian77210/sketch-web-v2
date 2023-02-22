@@ -4,7 +4,6 @@ import { faCircleNodes } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import DataframeService from "../services/dataframe/DataframeService";
-import SketchKMeansFactory from "../factory/dataframe/SketchKMeansFactory";
 
 /**
  * 
@@ -63,7 +62,6 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'KMeans',
     returnType: DataFrame,
-    factory: SketchKMeansFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',

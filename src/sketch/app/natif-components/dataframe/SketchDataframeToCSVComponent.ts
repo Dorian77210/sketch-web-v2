@@ -4,7 +4,6 @@ import saveFile from "@/sketch/api/file-saver";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchDataframeToCSVFactory from "../factory/dataframe/SketchDataframeToCSVFactory";
 
 /**
  * 
@@ -62,7 +61,6 @@ export class SketchDataframeToCSVComponent extends SketchComponent<DataFrame> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Save as CSV',
-    factory: SketchDataframeToCSVFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',

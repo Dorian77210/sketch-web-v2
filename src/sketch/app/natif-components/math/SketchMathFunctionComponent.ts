@@ -5,8 +5,6 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import { NumberList } from "@/sketch/api/data-structures";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 
-import SketchMathFunctionFactory from "../factory/math/SketchMathFunctionFactory";
-
 type MathFunction = (value: number) => number;
 
 /**
@@ -86,7 +84,6 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Math',
     name: 'Math function',
     returnType: DataFrame,
-    factory: SketchMathFunctionFactory,
     slotsConfigurations: [{
         entryName: 'data',
         methodName: 'setData',

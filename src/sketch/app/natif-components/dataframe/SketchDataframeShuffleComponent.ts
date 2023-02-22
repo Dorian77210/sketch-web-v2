@@ -3,7 +3,6 @@ import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import DataFrame from "dataframe-js";
 import { faShuffle } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchDataframeShuffleFactory from "../factory/dataframe/SketchDataframeShuffleFactory";
 
 /**
  * 
@@ -47,7 +46,6 @@ export const configuration : ComponentConfiguration = {
     namespace : 'Dataframe',
     name: 'Dataframe Shuffler',
     returnType: DataFrame,
-    factory: SketchDataframeShuffleFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',
         methodName: 'setData',
