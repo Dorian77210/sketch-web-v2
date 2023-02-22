@@ -1,16 +1,12 @@
 import SketchComponentFactory from "@/sketch/api/factory/SketchComponentFactory";
 import SketchComponent from "@/sketch/api/sketch-component";
-import { Class } from '@/sketch/api/types';
 import SketchComponentWorkflow from "./sketch-component-workflow";
-
 import { getConfigurationOf } from "@/sketch/api/sketch-component-configuration-manager";
-
 import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration, SAVE_EXTENSION } from "./save";
 import { ComponentModel } from "../ui/utils";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import saveFile from "@/sketch/api/file-saver";
-
-import { LZString } from "lzstring.ts/build/LZString";
+import { GenericSketchComponentClass } from "@/sketch/api/types";
 
 /**
  * @author Dorian Terbah
@@ -21,7 +17,7 @@ import { LZString } from "lzstring.ts/build/LZString";
  */
 export default class SketchBoardManager
 {
-    private selectedComponent?: Class<SketchComponent<unknown>>;
+    private selectedComponent?: GenericSketchComponentClass;
 
     private _workflow: SketchComponentWorkflow;
 
@@ -43,14 +39,14 @@ export default class SketchBoardManager
 
     get componentModels(): Map<ComponentModel, ComponentConfiguration> { return this._componentModels; }
 
-    public setSelectedComponent(componentClass: Class<SketchComponent<unknown>>)
+    public setSelectedComponent(componentClass: GenericSketchComponentClass)
     {
         this.selectedComponent = componentClass;
     }
 
-    public getAndRemoveComponentClass(): Class<SketchComponent<unknown>> | undefined
+    public getAndRemoveComponentClass(): GenericSketchComponentClass | undefined
     {
-        const componentClass: Class<SketchComponent<unknown>> | undefined = this.selectedComponent;
+        const componentClass: GenericSketchComponentClass | undefined = this.selectedComponent;
         this.selectedComponent = undefined;
         return componentClass;
     }
@@ -68,7 +64,7 @@ export default class SketchBoardManager
 
         // insert the components data
         components.forEach(component => {
-            const factory = factories.get(component.constructor as Class<SketchComponent<unknown>>) as SketchComponentFactory<SketchComponent<unknown>>;
+            const factory = factories.get(component.constructor as GenericSketchComponentClass) as SketchComponentFactory<SketchComponent<unknown>>;
             const config = Array.from(
                 this.componentModels.keys()
             ).filter(model => model.component === component)[0];
@@ -118,11 +114,11 @@ export default class SketchBoardManager
         return Array.from(components);
     }
 
-    private getFactoriesByComponentClass(components: Array<SketchComponent<unknown>>) : Map<Class<SketchComponent<unknown>>, SketchComponentFactory<SketchComponent<unknown>>> {
-        const factories : Map<Class<SketchComponent<unknown>>, SketchComponentFactory<SketchComponent<unknown>>> = new Map();
+    private getFactoriesByComponentClass(components: Array<SketchComponent<unknown>>) : Map<GenericSketchComponentClass, SketchComponentFactory<SketchComponent<unknown>>> {
+        const factories : Map<GenericSketchComponentClass, SketchComponentFactory<SketchComponent<unknown>>> = new Map();
 
         components.forEach((component) => {
-            const componentClass = component.constructor as Class<SketchComponent<unknown>>;
+            const componentClass = component.constructor as GenericSketchComponentClass;
             const configuration = getConfigurationOf(componentClass);
             if (!factories.has(componentClass)) {
                 factories.set(componentClass, new configuration.factory());

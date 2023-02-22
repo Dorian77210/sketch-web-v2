@@ -5,6 +5,8 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import { Stack, ArrayStack } from "@/sketch/api/data-structures";
 import injectData from "@/sketch/app/core/inject-data";
 
+import { GenericSketchComponentClass } from "@/sketch/api/types";
+
 /**
  * @author Dorian TERBAH
  * 
@@ -118,8 +120,8 @@ export default class SketchComponentWorkflow {
     }
 
     private isAssociationPossible(parent: SketchComponent<unknown>, child: SketchComponent<unknown>, entryName: string) : boolean {
-        const parentConfiguration: ComponentConfiguration = getConfigurationOf(parent.constructor as Class<SketchComponent<unknown>>);
-        const childConfiguration: ComponentConfiguration = getConfigurationOf(child.constructor as Class<SketchComponent<unknown>>);
+        const parentConfiguration: ComponentConfiguration = getConfigurationOf(parent.constructor as GenericSketchComponentClass);
+        const childConfiguration: ComponentConfiguration = getConfigurationOf(child.constructor as GenericSketchComponentClass);
 
         const parentTypeReturn: Class<unknown> | undefined = parentConfiguration.returnType;
         if (!childConfiguration.slotsConfigurations) {

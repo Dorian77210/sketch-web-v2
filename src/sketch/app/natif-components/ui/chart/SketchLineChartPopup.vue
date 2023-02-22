@@ -54,7 +54,6 @@ export default defineComponent({
 
 
             const data: DataFrame = this.wrapper.getData() as DataFrame;
-            const columns = data.listColumns();
 
             const configuration : ChartData<"line"> = {
                 labels: data.toArray().map(data => data[0].toFixed(2)),

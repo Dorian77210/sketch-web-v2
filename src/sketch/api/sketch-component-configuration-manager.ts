@@ -1,12 +1,14 @@
 import { ComponentConfiguration, ComponentSlotConfiguration } from "./component-configuration";
 import SketchComponent from "./sketch-component";
-import { Class } from "./types";
+
+import { GenericSketchComponentClass } from "./types";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-export type SketchComponentConfigurations = Map<Class<SketchComponent<unknown>>, ComponentConfiguration>;
+export type SketchComponentConfigurations = Map<GenericSketchComponentClass, ComponentConfiguration>;
 
-const configurations: SketchComponentConfigurations = new Map<Class<SketchComponent<unknown>>, ComponentConfiguration>();
+const configurations: SketchComponentConfigurations = new Map<GenericSketchComponentClass, ComponentConfiguration>();
+const strToComponentClass = new Map<string, GenericSketchComponentClass>();
 
 import mapComponentWithConfiguration from "../app/natif-components";
 
@@ -14,18 +16,45 @@ export const registerConfigurations = () => {
     mapComponentWithConfiguration.forEach((config, componentClass) => {
         configurations.set(componentClass, config);
         library.add(config.icon.fa);
+
+        // we need this when we will load a save
+        strToComponentClass.set(componentClass.name, componentClass);
     });
 }
 
-export function getConfigurationOf(componentClass: Class<SketchComponent<unknown>>) : ComponentConfiguration
+/**
+ * Get the configuration of a component type
+ * @param componentClass The component type
+ * @returns The component configuration associated to the class.
+ */
+export function getConfigurationOf(componentClass: GenericSketchComponentClass) : ComponentConfiguration
 {
     return configurations.get(componentClass) as ComponentConfiguration;
 }
 
+/**
+ * 
+ * @returns All the registered configurations.
+ */
 export function getConfigurations() : SketchComponentConfigurations {
     return configurations;
 }
 
+/**
+ * Get the component class associated to a string
+ * @param componentClass The string which represents the component class
+ * @returns The class found or undefined if it doesn't exist
+ */
+export function getSketchComponentClassByString(componentClass: string) : GenericSketchComponentClass | undefined {
+    return strToComponentClass.get(componentClass);
+}
+
+/**
+ * Get a component slot configuration by the entry name
+ * @param entries 
+ * @param entryName 
+ * @returns 
+ */
 export function getSlotByEntryName(entries: Array<ComponentSlotConfiguration>, entryName: string) : ComponentSlotConfiguration | undefined {
     const results = entries.filter(entry => entry.entryName === entryName);
     return results.length > 0 ? results[0] : undefined;
@@ -39,8 +68,8 @@ export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
         return false;
     }
     
-    const sourceConfiguration: ComponentConfiguration = getConfigurationOf(sourceComponent.constructor as Class<SketchComponent<unknown>>);
-    const targetConfiguration: ComponentConfiguration = getConfigurationOf(targetComponent.constructor as Class<SketchComponent<unknown>>);
+    const sourceConfiguration: ComponentConfiguration = getConfigurationOf(sourceComponent.constructor as GenericSketchComponentClass);
+    const targetConfiguration: ComponentConfiguration = getConfigurationOf(targetComponent.constructor as GenericSketchComponentClass);
 
     if (!targetConfiguration.slotsConfigurations) {
         return false;

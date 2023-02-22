@@ -21,7 +21,6 @@ import LeaderLine from 'leader-line-new';
 
 import SketchBoardManager from '../../core/sketch-board-manager';
 
-import { Class } from '@/sketch/api/types';
 import SketchComponent from '@/sketch/api/sketch-component';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
@@ -33,11 +32,11 @@ import { ComponentSlotModel } from '../utils';
 
 import { canCreateLinkBetween } from '@/sketch/api/sketch-component-configuration-manager';
 
-import { opt } from '@/sketch/api/types';
-
 import store from '@/store';
 
 import bus from '../../core/bus';
+
+import { GenericSketchComponentClass, opt } from '@/sketch/api/types';
 
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
 
@@ -80,7 +79,7 @@ export default defineComponent({
         onBoardClick(event: MouseEvent) {
             const x: number = event.x;
             const y: number = event.y;
-            const selectedComponentClass: Class<SketchComponent<unknown>> | undefined = this.$props.boardManager.getAndRemoveComponentClass();
+            const selectedComponentClass: GenericSketchComponentClass | undefined = this.$props.boardManager.getAndRemoveComponentClass();
 
             if (selectedComponentClass) {
                 const associatedConfiguration : ComponentConfiguration = getConfigurationOf(selectedComponentClass);

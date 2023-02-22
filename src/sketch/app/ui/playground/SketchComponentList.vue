@@ -33,14 +33,13 @@ import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 import { getConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 
-import SketchComponent from '@/sketch/api/sketch-component';
-import { Class, opt } from '@/sketch/api/types';
+import { opt, GenericSketchComponentClass } from '@/sketch/api/types';
 
 import bus from '../../core/bus';
 
 type SketchComponentConfiguration = {
     configuration: ComponentConfiguration;
-    componentClass: Class<SketchComponent<unknown>>;
+    componentClass: GenericSketchComponentClass;
 }
 
 interface ConfigurationsByNamespace {
@@ -98,7 +97,7 @@ export default defineComponent({
         }
     },
     methods: {
-        onComponentSelected(event: Event, selectedComponent: Class<SketchComponent<unknown>>) : void {
+        onComponentSelected(event: Event, selectedComponent: GenericSketchComponentClass) : void {
             if (this.currentElementSelected) {
                 this.currentElementSelected.classList.remove('component-list-item-selected');
             }

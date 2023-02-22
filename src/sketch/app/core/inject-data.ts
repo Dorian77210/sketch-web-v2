@@ -1,9 +1,10 @@
 import { getConfigurationOf, getSlotByEntryName } from "@/sketch/api/sketch-component-configuration-manager";
-import { Class } from "../../api/types";
 import SketchComponent from "../../api/sketch-component";
 
+import { GenericSketchComponentClass } from "../../api/types";
+
 export default function injectData(component: SketchComponent<unknown>, entryName: string, parentResult: any) : boolean {
-    const configuration = getConfigurationOf(component.constructor as Class<SketchComponent<unknown>>);
+    const configuration = getConfigurationOf(component.constructor as GenericSketchComponentClass);
     if (!configuration.slotsConfigurations) {
         return false;
     }
