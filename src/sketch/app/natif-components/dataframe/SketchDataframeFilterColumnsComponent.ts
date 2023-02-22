@@ -1,12 +1,7 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import DataFrame from "dataframe-js";
-
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
-import SketchDataframeFilterColumnsPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeFilterColumnsPopup.vue';
-
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
-
 import SketchDataframeFilterColumnsFactory from "../factory/dataframe/SketchDataframeFilterColumnsFactory";
 
 /**
@@ -56,7 +51,6 @@ export class SketchDataframeFilterColumnsComponent extends SketchComponent<DataF
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Filter columns',
-    popup: SketchDataframeFilterColumnsPopup,
     factory: SketchDataframeFilterColumnsFactory,
     returnType: DataFrame,
     slotsConfigurations: [{

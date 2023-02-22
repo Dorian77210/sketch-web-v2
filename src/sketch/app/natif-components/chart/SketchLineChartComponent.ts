@@ -1,15 +1,9 @@
 import SketchComponent from "@/sketch/api/sketch-component";
-
-import SketchLineChartPopup from '@/sketch/app/natif-components/ui/chart/SketchLineChartPopup.vue';
-
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import DataFrame from "dataframe-js";
-
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-
 import SketchLineChartFactory from "../factory/chart/SketchLineChartFactory";
-
 
 /**
  * @author Dorian TERBAH
@@ -45,7 +39,6 @@ export class SketchLineChartComponent extends SketchComponent<void> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Chart',
     name: 'Line chart',
-    popup: SketchLineChartPopup,
     factory: SketchLineChartFactory,
     slotsConfigurations: [{
         entryName: 'data',

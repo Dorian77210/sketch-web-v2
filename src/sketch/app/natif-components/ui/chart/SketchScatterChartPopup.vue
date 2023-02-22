@@ -9,7 +9,7 @@
                 v-if="!component.wrapper.isDataAvailable()"
                 type="warning"
             >
-                No data available to show the line chart
+                No data available to show the scatter chart
             </v-alert>
             <ScatterChart v-if="component.wrapper.isDataAvailable() && chartConfiguration !== undefined" :chart-data="chartConfiguration" />
         </template>

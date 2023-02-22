@@ -1,14 +1,9 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
 import DataFrame from "dataframe-js";
 import DataframeService from "../services/dataframe/DataframeService";
-
 import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
-import SketchElbowMethodPopup from '@/sketch/app/natif-components/ui/dataframe/SketchElbowMethodPopup.vue';
-
 import SketchElbowMethodFactory from "../factory/dataframe/SketchElbowMethodFactory";
 
 /**
@@ -65,7 +60,6 @@ export class SketchElbowMethodComponent extends SketchComponent<DataFrame> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Elbow method',
-    popup: SketchElbowMethodPopup,
     returnType: DataFrame,
     factory: SketchElbowMethodFactory,
     slotsConfigurations: [{

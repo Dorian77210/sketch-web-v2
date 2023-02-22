@@ -1,12 +1,8 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import DataFrame from "dataframe-js";
-
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
-import SketchDataframeFromCSVPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeFromCSVPopup.vue';
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
 import SketchDataframeFromCSVFactory from "../factory/dataframe/SketchDataframeFromCSVFactory";
 
 /**
@@ -63,7 +59,6 @@ export class SketchDataframeFromCSVComponent extends SketchComponent<DataFrame> 
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'CSV Loader',
-    popup: SketchDataframeFromCSVPopup,
     factory: SketchDataframeFromCSVFactory,
     returnType: DataFrame,
     icon: {

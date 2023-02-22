@@ -10,7 +10,7 @@ export type SketchComponentConfigurations = Map<GenericSketchComponentClass, Com
 const configurations: SketchComponentConfigurations = new Map<GenericSketchComponentClass, ComponentConfiguration>();
 const strToComponentClass = new Map<string, GenericSketchComponentClass>();
 
-import mapComponentWithConfiguration from "../app/natif-components";
+import { mapComponentWithConfiguration } from "../app/natif-components";
 
 export const registerConfigurations = () => {
     mapComponentWithConfiguration.forEach((config, componentClass) => {

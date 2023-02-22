@@ -1,13 +1,8 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
 import DataFrame from "dataframe-js";
-
-import SketchDataframeShufflePopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeShufflePopup.vue';
-
 import { faShuffle } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
 import SketchDataframeShuffleFactory from "../factory/dataframe/SketchDataframeShuffleFactory";
 
 /**
@@ -52,7 +47,6 @@ export const configuration : ComponentConfiguration = {
     namespace : 'Dataframe',
     name: 'Dataframe Shuffler',
     returnType: DataFrame,
-    popup: SketchDataframeShufflePopup,
     factory: SketchDataframeShuffleFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',

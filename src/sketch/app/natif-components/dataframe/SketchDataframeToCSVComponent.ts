@@ -1,15 +1,9 @@
 import SketchComponent from "@/sketch/api/sketch-component";
-
 import DataFrame from "dataframe-js";
-
 import saveFile from "@/sketch/api/file-saver";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
-
-import SketchDataframeToCSVPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeToCSVPopup.vue';
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
 import SketchDataframeToCSVFactory from "../factory/dataframe/SketchDataframeToCSVFactory";
 
 /**
@@ -68,7 +62,6 @@ export class SketchDataframeToCSVComponent extends SketchComponent<DataFrame> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Save as CSV',
-    popup: SketchDataframeToCSVPopup,
     factory: SketchDataframeToCSVFactory,
     slotsConfigurations: [{
         entryName: 'dataframe',

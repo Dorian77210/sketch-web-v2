@@ -1,10 +1,7 @@
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import SketchComponent from "@/sketch/api/sketch-component";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-import SketchNumberInputPopup from "@/sketch/app/natif-components/ui/SketchNumberInputPopup.vue";
-
 import { faKeyboard } from "@fortawesome/free-solid-svg-icons";
-
 import SketchNumberFactory from "./factory/SketchNumberFactory";
 
 export class SketchNumberInputComponent extends SketchComponent<number> {
@@ -45,7 +42,6 @@ export class SketchNumberInputComponent extends SketchComponent<number> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Inputs',
     name: 'Number input',
-    popup: SketchNumberInputPopup,
     factory: SketchNumberFactory,
     returnType: Number,
     icon: {

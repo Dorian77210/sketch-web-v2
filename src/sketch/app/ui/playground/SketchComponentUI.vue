@@ -76,12 +76,10 @@ import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 
 import { ComponentSlotModel } from '../utils';
 import { opt } from '@/sketch/api/types';
-import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
 import { GenericSketchComponentClass } from '@/sketch/api/types';
-
 import bus from '../../core/bus';
-
 import { ComponentModel } from '../utils';
+import getPopupByComponentClass from '../../core/sketch-popup-manager';
 
 export default defineComponent({
     components: {
@@ -136,8 +134,7 @@ export default defineComponent({
     },
     computed: {
         popup() : Component {
-            const configuration = getConfigurationOf(this.componentModel.component.constructor as GenericSketchComponentClass);
-            return configuration.popup;
+            return getPopupByComponentClass(this.componentModel.component.constructor as GenericSketchComponentClass) as Component;
         }
     },
     methods: {

@@ -1,13 +1,8 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
 import DataFrame from "dataframe-js";
-
 import { faCodeMerge } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
-import SketchDataframeUnionPopup from '@/sketch/app/natif-components/ui/dataframe/SketchDataframeUnionPopup.vue';
-
 import SketchDataframeUnionFactory from "../factory/dataframe/SketchDataframeUnionFactory";
 
 /**
@@ -64,7 +59,6 @@ export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'Dataframe union',
     returnType: DataFrame,
-    popup: SketchDataframeUnionPopup,
     factory: SketchDataframeUnionFactory,
     slotsConfigurations: [{
         entryName: 'left dataframe',

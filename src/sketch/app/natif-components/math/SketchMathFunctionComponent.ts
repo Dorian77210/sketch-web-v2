@@ -1,10 +1,7 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import DataFrame from "dataframe-js";
-
 import { faWaveSquare } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
-import SketchMathFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchMathFunctionPopup.vue';
 import { NumberList } from "@/sketch/api/data-structures";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 
@@ -88,7 +85,6 @@ export class SketchMathFunctionComponent extends SketchComponent<DataFrame> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Math',
     name: 'Math function',
-    popup: SketchMathFunctionPopup,
     returnType: DataFrame,
     factory: SketchMathFunctionFactory,
     slotsConfigurations: [{

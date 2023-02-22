@@ -2,8 +2,6 @@ import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 
 import SketchComponent from "@/sketch/api/sketch-component";
 
-import SketchSequencePopup from "@/sketch/app/natif-components/ui/math/SketchSequencePopup.vue";
-
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
 
 import SequenceData from "../data/SequenceData";
@@ -65,7 +63,6 @@ export class SketchSequenceComponent extends SketchComponent<Array<number>> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Math',
     name: 'Sequence number',
-    popup: SketchSequencePopup,
     returnType: NumberList,
     factory: SketchSequenceFactory,
     slotsConfigurations: [{

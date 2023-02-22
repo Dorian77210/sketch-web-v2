@@ -1,14 +1,9 @@
 import SketchComponent from "@/sketch/api/sketch-component";
 import DataFrame from "dataframe-js";
-
 import { faCircleNodes } from "@fortawesome/free-solid-svg-icons";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
-import SketchKMeansPopup from '@/sketch/app/natif-components/ui/dataframe/SketchKMeansPopup.vue';
-
 import DataframeService from "../services/dataframe/DataframeService";
-
 import SketchKMeansFactory from "../factory/dataframe/SketchKMeansFactory";
 
 /**
@@ -67,7 +62,6 @@ export class SketchKMeansComponent extends SketchComponent<DataFrame> {
 export const configuration: ComponentConfiguration = {
     namespace: 'Dataframe',
     name: 'KMeans',
-    popup: SketchKMeansPopup,
     returnType: DataFrame,
     factory: SketchKMeansFactory,
     slotsConfigurations: [{

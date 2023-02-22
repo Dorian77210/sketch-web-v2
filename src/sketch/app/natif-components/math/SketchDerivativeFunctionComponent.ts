@@ -1,15 +1,10 @@
 import { NumberList } from "@/sketch/api/data-structures";
 import SketchComponent from "@/sketch/api/sketch-component";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
 import DataFrame from "dataframe-js";
 import { MathNode, derivative } from "mathjs";
-
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
-
-import SketchCustomFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchCustomFunctionPopup.vue';
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
 import SketchDerivativeFunctionFactory from "../factory/math/SketchDerivativeFunctionFactory";
 
 /**
@@ -68,7 +63,6 @@ export class SketchDerivativeFunctionComponent extends SketchComponent<DataFrame
 export const configuration : ComponentConfiguration = {
     namespace: 'Math',
     name: 'Derivative function',
-    popup: SketchCustomFunctionPopup,
     returnType: DataFrame,
     factory: SketchDerivativeFunctionFactory,
     slotsConfigurations: [{

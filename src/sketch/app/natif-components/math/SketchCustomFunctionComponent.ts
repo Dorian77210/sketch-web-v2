@@ -1,16 +1,10 @@
 import SketchComponent from "@/sketch/api/sketch-component";
-
 import { NumberList } from "@/sketch/api/data-structures";
 import DataFrame from "dataframe-js";
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
-
 import { parse, MathNode } from 'mathjs';
-
-import SketchCustomFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchCustomFunctionPopup.vue';
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
-
 import SketchCustomFunctionFactory from "../factory/math/SketchCustomFunctionFactory";
 
 /**
@@ -68,7 +62,6 @@ export class SketchCustomFunctionComponent extends SketchComponent<DataFrame> {
 export const configuration : ComponentConfiguration = {
     namespace: 'Math',
     name: 'Custom function',
-    popup: SketchCustomFunctionPopup,
     returnType: DataFrame,
     factory: SketchCustomFunctionFactory,
     slotsConfigurations: [{

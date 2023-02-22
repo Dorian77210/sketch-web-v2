@@ -1,14 +1,8 @@
 import SketchComponent from "@/sketch/api/sketch-component";
-
-import SketchScatterChartPopup from '@/sketch/app/natif-components/ui/chart/SketchScatterChartPopup.vue';
-
 import DataFrame from "dataframe-js";
-
 import SketchWrapper from "@/sketch/api/sketch-wrapper";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-
 import SketchScatterChartFactory from "../factory/SketchScatterChartFactory";
 
 /**
@@ -44,7 +38,6 @@ export class SketchScatterChartComponent extends SketchComponent<void> {
 export const configuration : ComponentConfiguration = {
     namespace: 'Chart',
     name: 'Scatter chart',
-    popup: SketchScatterChartPopup,
     factory: SketchScatterChartFactory,
     slotsConfigurations: [{
         entryName: 'data',
