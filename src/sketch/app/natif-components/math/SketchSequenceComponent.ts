@@ -1,12 +1,8 @@
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-
 import SketchComponent from "@/sketch/api/sketch-component";
-
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
-
 import SequenceData from "../data/SequenceData";
 import { NumberList } from "@/sketch/api/data-structures";
-
 import SketchSequenceFactory from "../factory/math/SketchSequenceFactory";
 
 /**
