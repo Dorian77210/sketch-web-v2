@@ -92,8 +92,7 @@ mapComponentWithPopup.set(SketchDataframeShuffleComponent, SketchDataframeShuffl
 mapComponentWithPopup.set(SketchLineChartComponent, SketchLineChartPopup);
 mapComponentWithPopup.set(SketchScatterChartComponent, SketchScatterChartPopup);
 
-
-
+// register a factory for each component
 export const mapComponentWithFactory = new Map<GenericSketchComponentClass, SketchComponentFactory<SketchComponent<unknown>>>();
 mapComponentWithFactory.set(SketchNumberInputComponent, new SketchNumberFactory());
 mapComponentWithFactory.set(SketchSequenceComponent, new SketchSequenceFactory());
