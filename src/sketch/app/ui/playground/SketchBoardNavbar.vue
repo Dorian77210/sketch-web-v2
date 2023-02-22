@@ -4,7 +4,6 @@
             <router-link to="/">
                 <img :src="require('@/assets/images/logo.png')" id="logo"/>
             </router-link>
-
                 <v-btn>
                     File
                     <v-menu activator="parent">
@@ -20,7 +19,6 @@
                         </v-list>
                     </v-menu>
                 </v-btn>
-
         </v-toolbar-title>
     </v-toolbar>
 </template>
