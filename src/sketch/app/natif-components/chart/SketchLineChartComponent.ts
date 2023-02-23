@@ -34,7 +34,6 @@ export class SketchLineChartComponent extends SketchComponent<void> {
     get wrapper() : SketchWrapper<DataFrame> { return this.dataWrapper; }
 }
 
-
 export const configuration: ComponentConfiguration = {
     namespace: 'Chart',
     name: 'Line chart',

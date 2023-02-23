@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar color="rgba(111,203,226,255)">
+    <v-toolbar color="white" style="border-bottom: 1px solid black">
         <v-toolbar-title>
             <router-link to="/">
                 <img :src="require('@/assets/images/logo.png')" id="logo"/>
