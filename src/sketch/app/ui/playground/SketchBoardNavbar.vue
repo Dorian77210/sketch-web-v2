@@ -1,24 +1,24 @@
 <template>
-    <v-toolbar color="white" style="border-bottom: 1px solid black">
+    <v-toolbar color="white" style="border-bottom: 1px solid black; max-height: 8vh;">
         <v-toolbar-title>
             <router-link to="/">
                 <img :src="require('@/assets/images/logo.png')" id="logo"/>
             </router-link>
-                <v-btn>
-                    File
-                    <v-menu activator="parent">
-                        <v-list>
-                            <v-list-item 
-                                v-for="(fileItem, index) in fileItems"
-                                :key="index"
-                                @click="fileItem.onClick"
-                                class="navbar-item"
-                            >
-                                {{  fileItem.title }}
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                </v-btn>
+            <v-btn>
+                File
+                <v-menu activator="parent">
+                    <v-list>
+                        <v-list-item 
+                            v-for="(fileItem, index) in fileItems"
+                            :key="index"
+                            @click="fileItem.onClick"
+                            class="navbar-item"
+                        >
+                            {{  fileItem.title }}
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
+            </v-btn>
         </v-toolbar-title>
     </v-toolbar>
 </template>

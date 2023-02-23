@@ -117,6 +117,8 @@ export default defineComponent({
 #sketch-view {
     margin: auto;
     position: relative;
+    bottom: 0;
+    left: 0;
 }
 
 #spinner {

@@ -83,7 +83,7 @@ export default defineComponent({
                         associatedConfigurations.push({
                             configuration,
                             componentClass
-                        })
+                        });
                     }
                 })
 
@@ -127,7 +127,7 @@ export default defineComponent({
 <style>
 
 #component-list {
-    min-height: 100vh;
+    max-height: 92vh;
     width: calc(100%/4);
     overflow-y: scroll;
 }
