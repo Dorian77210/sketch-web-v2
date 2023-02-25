@@ -17,7 +17,7 @@
 <script lang="ts">
 
 import { defineComponent, PropType } from 'vue';
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
 import { SketchMathFunctionComponent } from '../../math/SketchMathFunctionComponent';
 

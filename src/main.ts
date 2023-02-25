@@ -20,6 +20,9 @@ import { faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamat
 
 library.add(faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation);
 
+// css for the konect-api-vue
+import 'konect-api-vue/dist/konect-api.css';
+
 import '@/assets/css/style.css';
 
 import "@mdi/font/css/materialdesignicons.css";

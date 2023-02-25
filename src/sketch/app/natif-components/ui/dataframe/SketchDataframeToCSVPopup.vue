@@ -17,8 +17,8 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
 
 import { SketchDataframeToCSVComponent } from '../../dataframe/SketchDataframeToCSVComponent';
 

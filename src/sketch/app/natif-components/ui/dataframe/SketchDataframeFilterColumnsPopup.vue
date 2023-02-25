@@ -24,11 +24,11 @@
 
 import { defineComponent } from 'vue';
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
 import { SketchDataframeFilterColumnsComponent } from '../../dataframe/SketchDataframeFilterColumnsComponent';
 
-import SketchColumnSelector from '@/sketch/api/ui/SketchColumnSelector.vue';
+import {SketchColumnSelector} from 'konect-api-vue';
 
 export default defineComponent({
     props: {

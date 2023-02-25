@@ -22,7 +22,7 @@ import { defineComponent, PropType } from 'vue';
 
 import { SketchLineChartComponent } from '../../chart/SketchLineChartComponent';
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 import { LineChart } from 'vue-chart-3';
 import { Chart, ChartData, registerables } from 'chart.js';
 

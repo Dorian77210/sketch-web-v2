@@ -16,7 +16,7 @@
 
 import { defineComponent, PropType } from 'vue';
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
 import { SketchDerivativeFunctionComponent } from '../../math/SketchDerivativeFunctionComponent';
 import { SketchCustomFunctionComponent } from '../../math/SketchCustomFunctionComponent';

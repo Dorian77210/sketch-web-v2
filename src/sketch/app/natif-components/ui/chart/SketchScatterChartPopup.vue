@@ -22,7 +22,7 @@ import { defineComponent, PropType } from 'vue';
 
 import { SketchScatterChartComponent } from '../../chart/SketchScatterChartComponent';
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 import { ScatterChart } from 'vue-chart-3';
 import { Chart, ChartData, registerables } from 'chart.js';
 

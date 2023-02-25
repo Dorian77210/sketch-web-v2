@@ -16,7 +16,7 @@
 
 import { defineComponent } from 'vue';
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
 import { SketchKMeansComponent } from '../../dataframe/SketchKMeans';
 

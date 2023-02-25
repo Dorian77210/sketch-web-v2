@@ -15,7 +15,7 @@
 
 <script lang="ts">
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
 import { defineComponent } from 'vue';
 

@@ -20,7 +20,7 @@
 <script lang="ts">
 
 import { opt } from '@/sketch/api/types';
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
 import { defineComponent } from 'vue';
 

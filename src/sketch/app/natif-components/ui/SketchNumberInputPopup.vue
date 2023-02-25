@@ -15,7 +15,7 @@ import { defineComponent, PropType } from 'vue';
 
 import { SketchNumberInputComponent } from '../SketchNumberInputComponent';
 
-import SketchComponentModal from '@/sketch/api/ui/SketchComponentModal.vue';
+import { SketchComponentModal  } from 'konect-api-vue'
 
 export default defineComponent({
     components: {
