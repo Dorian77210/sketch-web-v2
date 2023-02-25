@@ -1,5 +1,5 @@
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import { GenericSketchComponentClass } from "@/sketch/api/types";
+import { ComponentConfiguration } from "konect-api-types";
+import { GenericSketchComponentClass } from "konect-api-types";
 import { Component } from 'vue';
 
 // ----- Import of component with their configuration ----- //
@@ -35,7 +35,7 @@ import SketchKMeansPopup from '@/sketch/app/natif-components/ui/dataframe/Sketch
 import SketchCustomFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchCustomFunctionPopup.vue';
 import SketchMathFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchMathFunctionPopup.vue';
 import SketchSequencePopup from "@/sketch/app/natif-components/ui/math/SketchSequencePopup.vue";
-import SketchComponentFactory from "@/sketch/api/factory/SketchComponentFactory";
+import { SketchComponentFactory } from "konect-api-types";
 
 // ----- Imports of the factories ----- //
 import SketchNumberFactory from "./factory/SketchNumberFactory";
@@ -53,7 +53,7 @@ import SketchDataframeToCSVFactory from "./factory/dataframe/SketchDataframeToCS
 import SketchDataframeUnionFactory from "./factory/dataframe/SketchDataframeUnionFactory";
 import SketchCustomFunctionFactory from "./factory/math/SketchCustomFunctionFactory";
 import SketchDerivativeFunctionFactory from "./factory/math/SketchDerivativeFunctionFactory";
-import SketchComponent from "@/sketch/api/sketch-component";
+import { SketchComponent } from "konect-api-types";
 
 // Register all configurations for the components
 export const mapComponentWithConfiguration = new Map<GenericSketchComponentClass, ComponentConfiguration>();

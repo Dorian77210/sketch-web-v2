@@ -21,13 +21,12 @@ import LeaderLine from 'leader-line-new';
 
 import SketchBoardManager from '../../core/sketch-board-manager';
 
-import SketchComponent from '@/sketch/api/sketch-component';
-import { ComponentConfiguration } from '@/sketch/api/component-configuration';
+import { ComponentConfiguration } from 'konect-api-types';
 import { getConfigurationOf } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import SketchComponentUI from './SketchComponentUI.vue';
 
-import { ArrayStack } from '@/sketch/api/data-structures';
+import { ArrayStack, SketchComponent } from 'konect-api-types';
 import { ComponentSlotModel } from '../utils';
 
 import { canCreateLinkBetween } from '@/sketch/app/core/sketch-component-configuration-manager';
@@ -36,7 +35,7 @@ import store from '@/store';
 
 import bus from '../../core/bus';
 
-import { GenericSketchComponentClass, opt } from '@/sketch/api/types';
+import { GenericSketchComponentClass, opt } from 'konect-api-types';
 
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
 
@@ -84,7 +83,7 @@ export default defineComponent({
             if (selectedComponentClass) {
                 const associatedConfiguration : ComponentConfiguration = getConfigurationOf(selectedComponentClass);
                 if (associatedConfiguration) {
-                    const component: SketchComponent<unknown> = new selectedComponentClass();
+                    const component = new selectedComponentClass();
                     const model: ComponentModel = {
                         component: component,
                         x,

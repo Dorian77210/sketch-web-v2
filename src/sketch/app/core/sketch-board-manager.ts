@@ -1,11 +1,8 @@
-import SketchComponentFactory from "@/sketch/api/factory/SketchComponentFactory";
-import SketchComponent from "@/sketch/api/sketch-component";
 import SketchComponentWorkflow from "./sketch-component-workflow";
 import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration, SAVE_EXTENSION } from "./save";
 import { ComponentModel } from "../ui/utils";
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import saveFile from "@/sketch/api/file-saver";
-import { GenericSketchComponentClass } from "@/sketch/api/types";
+import { ComponentConfiguration } from "konect-api-types";
+import {saveFile, GenericSketchComponentClass, SketchComponentFactory, SketchComponent } from "konect-api-types";
 
 import getFactoryFor from "./sketch-factory-manager";
 

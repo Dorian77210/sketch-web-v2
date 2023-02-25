@@ -1,11 +1,11 @@
-import SketchComponent from "@/sketch/api/sketch-component";
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchWrapper from "@/sketch/api/sketch-wrapper";
+import { SketchComponent } from "konect-api-types";
+import { ComponentConfiguration } from "konect-api-types";
+import { SketchWrapper } from "konect-api-types";
 import DataFrame from "dataframe-js";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 
 /**
- * @author Dorian TERBAH
+ * @author Dorian TERBAH 
  * 
  * This component will display a line chart
  * 

@@ -72,11 +72,11 @@
 import { defineComponent, PropType, Component } from 'vue';
 
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
-import { ComponentConfiguration } from '@/sketch/api/component-configuration';
+import { ComponentConfiguration } from 'konect-api-types';
 
 import { ComponentSlotModel } from '../utils';
-import { opt } from '@/sketch/api/types';
-import { GenericSketchComponentClass } from '@/sketch/api/types';
+import { opt } from 'konect-api-types';
+import { GenericSketchComponentClass } from 'konect-api-types';
 import bus from '../../core/bus';
 import { ComponentModel } from '../utils';
 import getPopupByComponentClass from '../../core/sketch-popup-manager';

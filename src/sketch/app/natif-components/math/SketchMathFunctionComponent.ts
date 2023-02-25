@@ -1,9 +1,9 @@
-import SketchComponent from "@/sketch/api/sketch-component";
+import { SketchComponent } from "konect-api-types";
 import DataFrame from "dataframe-js";
 import { faWaveSquare } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import { NumberList } from "@/sketch/api/data-structures";
-import SketchWrapper from "@/sketch/api/sketch-wrapper";
+import { ComponentConfiguration } from "konect-api-types";
+import { NumberList } from "konect-api-types";
+import { SketchWrapper } from "konect-api-types";
 
 type MathFunction = (value: number) => number;
 

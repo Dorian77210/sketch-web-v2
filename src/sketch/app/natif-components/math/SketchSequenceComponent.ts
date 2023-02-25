@@ -1,8 +1,8 @@
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchComponent from "@/sketch/api/sketch-component";
+import { ComponentConfiguration } from "konect-api-types";
+import { SketchComponent } from "konect-api-types";
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
 import SequenceData from "../data/SequenceData";
-import { NumberList } from "@/sketch/api/data-structures";
+import { NumberList } from "konect-api-types";
 
 /**
  * @author Dorian TERBAH

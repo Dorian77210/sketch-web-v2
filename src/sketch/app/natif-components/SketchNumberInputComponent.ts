@@ -1,6 +1,6 @@
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
-import SketchComponent from "@/sketch/api/sketch-component";
-import SketchWrapper from "@/sketch/api/sketch-wrapper";
+import { ComponentConfiguration } from "konect-api-types";
+import {SketchComponent} from "konect-api-types";
+import {SketchWrapper} from "konect-api-types";
 import { faKeyboard } from "@fortawesome/free-solid-svg-icons";
 
 export class SketchNumberInputComponent extends SketchComponent<number> {

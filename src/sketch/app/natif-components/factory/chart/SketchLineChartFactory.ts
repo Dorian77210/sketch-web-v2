@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import SketchComponentFactory from "@/sketch/api/factory/SketchComponentFactory";
+import { SketchComponentFactory } from "konect-api-types";
 
 import { SketchLineChartComponent } from "../../chart/SketchLineChartComponent";
 

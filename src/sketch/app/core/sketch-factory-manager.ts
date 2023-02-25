@@ -1,4 +1,4 @@
-import { GenericSketchComponentClass } from "@/sketch/api/types";
+import { GenericSketchComponentClass } from "konect-api-types";
 
 import { mapComponentWithFactory } from "../natif-components";
 

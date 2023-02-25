@@ -1,6 +1,6 @@
-import SketchComponent from "@/sketch/api/sketch-component";
+import { SketchComponent } from "konect-api-types";
 import DataFrame from "dataframe-js";
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
+import { ComponentConfiguration } from "konect-api-types";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 /**

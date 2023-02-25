@@ -77,7 +77,7 @@ import { defineComponent } from 'vue';
 
 import bus from '../../core/bus';
 
-import { opt } from '@/sketch/api/types';
+import { opt } from 'konect-api-types';
 
 import { ComponentModel, ComponentModelConfig } from '../utils';
 
