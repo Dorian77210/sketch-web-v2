@@ -1,4 +1,4 @@
-import { getConfigurationOf, getSlotByEntryName } from "@/sketch/api/sketch-component-configuration-manager";
+import { getConfigurationOf, getSlotByEntryName } from "@/sketch/app/core/sketch-component-configuration-manager";
 import SketchComponent from "../../api/sketch-component";
 
 import { GenericSketchComponentClass } from "../../api/types";

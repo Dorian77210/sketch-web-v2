@@ -1,6 +1,6 @@
 import { Class } from "@/sketch/api/types";
 import SketchComponent from "@/sketch/api/sketch-component";
-import { getConfigurationOf, getSlotByEntryName } from "@/sketch/api/sketch-component-configuration-manager";
+import { getConfigurationOf, getSlotByEntryName } from "@/sketch/app/core/sketch-component-configuration-manager";
 import { ComponentConfiguration } from "@/sketch/api/component-configuration";
 import { Stack, ArrayStack } from "@/sketch/api/data-structures";
 import injectData from "@/sketch/app/core/inject-data";

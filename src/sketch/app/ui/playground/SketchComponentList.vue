@@ -30,7 +30,8 @@ import { defineComponent } from 'vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 
-import { getConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
+import { getConfigurations } from '../../core/sketch-component-configuration-manager';
+
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
 
 import { opt, GenericSketchComponentClass } from '@/sketch/api/types';

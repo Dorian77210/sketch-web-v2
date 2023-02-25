@@ -23,14 +23,14 @@ import SketchBoardManager from '../../core/sketch-board-manager';
 
 import SketchComponent from '@/sketch/api/sketch-component';
 import { ComponentConfiguration } from '@/sketch/api/component-configuration';
-import { getConfigurationOf } from '@/sketch/api/sketch-component-configuration-manager';
+import { getConfigurationOf } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import SketchComponentUI from './SketchComponentUI.vue';
 
 import { ArrayStack } from '@/sketch/api/data-structures';
 import { ComponentSlotModel } from '../utils';
 
-import { canCreateLinkBetween } from '@/sketch/api/sketch-component-configuration-manager';
+import { canCreateLinkBetween } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import store from '@/store';
 

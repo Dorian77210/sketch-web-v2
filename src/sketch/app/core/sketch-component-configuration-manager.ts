@@ -1,7 +1,7 @@
-import { ComponentConfiguration, ComponentSlotConfiguration } from "./component-configuration";
-import SketchComponent from "./sketch-component";
+import { ComponentConfiguration, ComponentSlotConfiguration } from "../../api/component-configuration";
+import SketchComponent from "../../api/sketch-component";
 
-import { GenericSketchComponentClass } from "./types";
+import { GenericSketchComponentClass } from "../../api/types";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -10,7 +10,7 @@ export type SketchComponentConfigurations = Map<GenericSketchComponentClass, Com
 const configurations: SketchComponentConfigurations = new Map<GenericSketchComponentClass, ComponentConfiguration>();
 const strToComponentClass = new Map<string, GenericSketchComponentClass>();
 
-import { mapComponentWithConfiguration } from "../app/natif-components";
+import { mapComponentWithConfiguration } from "../natif-components";
 
 export const registerConfigurations = () => {
     mapComponentWithConfiguration.forEach((config, componentClass) => {

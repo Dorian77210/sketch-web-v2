@@ -28,7 +28,8 @@ import SketchMessages from '@/sketch/app/ui/playground/SketchMessages.vue';
 import SketchBoardNavbar from '@/sketch/app/ui/playground/SketchBoardNavbar.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
-import { registerConfigurations } from '@/sketch/api/sketch-component-configuration-manager';
+
+import { registerConfigurations } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import SketchNavigationDrawer from '@/sketch/app/ui/playground/SketchNavigationDrawer.vue';
 
