@@ -135,10 +135,12 @@
 import { defineComponent } from 'vue';
 
 import SketchHomeNavBar from '@/sketch/app/ui/home/SketchHomeNavBar.vue'
+import SketchFooter from '@/sketch/app/ui/home/SketchFooter.vue';
 
 export default defineComponent({
     components: {
-        SketchHomeNavBar
+        SketchHomeNavBar,
+        SketchFooter
     }
 });
 

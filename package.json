@@ -25,6 +25,7 @@
     "bootstrap-vue-3": "^0.5.1",
     "chart.js": "^3.9.1",
     "dataframe-js": "^1.4.4",
+    "konect-api-types": "file://../konect-api-types/konect-api-types-1.0.0.tgz",
     "konect-api-vue": "^0.0.1",
     "leader-line-new": "^1.1.9",
     "lzstring.ts": "^2.0.2",
@@ -38,8 +39,7 @@
     "vue3-draggable-resizable": "^1.6.5",
     "vue3-popper": "^1.5.0",
     "vuetify": "^3.1.4",
-    "vuex": "^4.0.0",
-    "konect-api-types": "file://../konect-api-types/konect-api-types-1.0.0.tgz"
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",
