@@ -1,8 +1,8 @@
-import SketchComponent from "@/sketch/api/sketch-component";
-import SketchWrapper from "@/sketch/api/sketch-wrapper";
+import { SketchComponent } from "konect-api-types";
+import { SketchWrapper } from "konect-api-types";
 import DataFrame from "dataframe-js";
 import { faCodeMerge } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
+import { ComponentConfiguration } from "konect-api-types";
 
 /**
  * @author Dorian TERBAH

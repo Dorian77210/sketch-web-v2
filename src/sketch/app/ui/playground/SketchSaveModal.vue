@@ -2,6 +2,7 @@
     <SketchComponentModal
         title="Save file as ..."
         :before-close="() => saveBoard(filename)"
+        @close-popup="onClose"
     >
         <template v-slot:modal-body>
             <v-text-field
@@ -25,6 +26,10 @@ export default defineComponent({
     },
     props: {
         saveBoard: {
+            required: true,
+            type: Function
+        },
+        onClose: {
             required: true,
             type: Function
         }

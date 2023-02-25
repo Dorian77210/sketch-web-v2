@@ -2,6 +2,7 @@
     <SketchComponentModal
         title="Save file as ..."
         :before-close="() => onReceivedFile(file)"
+        @close-popup="onClose"
     >
         <template v-slot:modal-body>
             <v-file-input
@@ -19,7 +20,7 @@
 
 <script lang="ts">
 
-import { opt } from '@/sketch/api/types';
+import { opt } from 'konect-api-types';
 import { SketchComponentModal  } from 'konect-api-vue'
 
 import { defineComponent } from 'vue';
@@ -32,6 +33,10 @@ export default defineComponent({
     },
     props: {
         onReceivedFile: {
+            required: true,
+            type: Function
+        },
+        onClose: {
             required: true,
             type: Function
         }

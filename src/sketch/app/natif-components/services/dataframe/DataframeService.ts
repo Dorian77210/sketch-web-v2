@@ -1,4 +1,4 @@
-import HTTPService from "@/sketch/api/service/HTTPService";
+import {HTTPService} from "konect-api-types";
 import axios from "axios";
 
 import DataFrame from "dataframe-js";

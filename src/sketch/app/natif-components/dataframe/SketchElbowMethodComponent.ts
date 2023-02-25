@@ -1,9 +1,9 @@
-import SketchComponent from "@/sketch/api/sketch-component";
-import SketchWrapper from "@/sketch/api/sketch-wrapper";
+import { SketchComponent } from "konect-api-types";
+import { SketchWrapper } from "konect-api-types";
 import DataFrame from "dataframe-js";
 import DataframeService from "../services/dataframe/DataframeService";
 import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "@/sketch/api/component-configuration";
+import { ComponentConfiguration } from "konect-api-types";
 
 /**
  * 

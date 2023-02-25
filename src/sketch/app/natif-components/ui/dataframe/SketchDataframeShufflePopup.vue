@@ -51,7 +51,7 @@ import { SketchComponentModal  } from 'konect-api-vue'
 import { SketchDataframeShuffleComponent } from '../../dataframe/SketchDataframeShuffleComponent';
 
 import DataFrame from 'dataframe-js';
-import SketchWrapper from '@/sketch/api/sketch-wrapper';
+import {SketchWrapper} from 'konect-api-types';
 
 export default defineComponent({
     props: {

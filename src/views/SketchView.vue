@@ -13,8 +13,8 @@
         ></v-progress-circular>
         <SketchNavigationDrawer />
 
-        <SketchSaveModal :save-board="_saveBoard" v-if="needFilenameForSave" />
-        <SketchOpenFileModal :on-received-file="_onReceivedFile" v-if="needToOpenFile" />
+        <SketchSaveModal :save-board="_saveBoard" :on-close="() => needFilenameForSave = false" v-if="needFilenameForSave" />
+        <SketchOpenFileModal :on-close="() => needToOpenFile = false" :on-received-file="_onReceivedFile" v-if="needToOpenFile" />
     </div>
 </template>
 
@@ -59,7 +59,8 @@ export default defineComponent({
     methods: {
         onSaveBoard() {
             const filename = this.sketchBoardManager.saveFilename;
-            if (!filename) {
+            console.log('filename = ' + filename);
+            if (filename === '') {
                 this.needFilenameForSave = true;
             } else {
                 this._saveBoard(filename);

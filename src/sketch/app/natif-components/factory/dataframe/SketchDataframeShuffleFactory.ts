@@ -1,4 +1,4 @@
-import SketchComponentFactory from "@/sketch/api/factory/SketchComponentFactory";
+import { SketchComponentFactory } from "konect-api-types";
 
 import { SketchDataframeShuffleComponent } from "../../dataframe/SketchDataframeShuffleComponent";
 

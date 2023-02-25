@@ -1,7 +1,4 @@
-import { ComponentConfiguration, ComponentSlotConfiguration } from "../../api/component-configuration";
-import SketchComponent from "../../api/sketch-component";
-
-import { GenericSketchComponentClass } from "../../api/types";
+import { ComponentConfiguration, ComponentSlotConfiguration, SketchComponent, GenericSketchComponentClass } from "konect-api-types";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 
