@@ -1,10 +1,11 @@
 import SketchComponentWorkflow from "./sketch-component-workflow";
-import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration, SAVE_EXTENSION } from "./save";
+import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration, SAVE_EXTENSION, SaveReconstitution, ComponentLink } from "./save";
 import { ComponentModel } from "../ui/utils";
 import { ComponentConfiguration } from "konect-api-types";
 import {saveFile, GenericSketchComponentClass, SketchComponentFactory, SketchComponent } from "konect-api-types";
 
 import getFactoryFor from "./sketch-factory-manager";
+import { getSketchComponentClassByString } from "./sketch-component-configuration-manager";
 
 /**
  * @author Dorian Terbah
@@ -98,10 +99,56 @@ export default class SketchBoardManager
         saveFile(JSON.stringify(save), SAVE_EXTENSION, this.saveFilename);
     }
 
-    public reconstructWorkflow(data: string) {
+    public reconstructWorkflow(data: string) : SaveReconstitution {
         const save: Save = JSON.parse(data);
+        const idToComponents = new Map<string, SketchComponent<unknown>>();
 
-        console.log(save);
+        const componentModels = new Array<ComponentModel>();
+        const links = new Array<ComponentLink>();
+        
+        // reconstruct all the components
+        const componentsJSON = save.components;
+        componentsJSON.forEach(json => {
+            const type = json.type;
+            // retrieve the class component
+            const componentClass = getSketchComponentClassByString(type);
+            if (componentClass) {
+                // find factory and create the corresponding component
+                const factory = getFactoryFor(componentClass) as SketchComponentFactory<SketchComponent<unknown>>;
+                const component = factory.fromJSON(json.json);
+                const oldId = json.id;
+
+                idToComponents.set(oldId, component);
+
+                componentModels.push({
+                    x: json.componentConfiguration.x,
+                    y: json.componentConfiguration.y,
+                    component,
+                    config: json.componentConfiguration.style
+                });
+            }
+        });
+
+        // reconstitute links
+        save.links.forEach(link => {
+            const parent = idToComponents.get(link.parent);
+            const child = idToComponents.get(link.child);
+            const entryName = link.entryName;
+
+            if (parent && child && entryName) {
+                links.push({
+                    parent,
+                    child,
+                    entryName
+                });
+            }
+        });
+
+
+        return {
+            componentModels: componentModels,
+            links
+        };
     }
 
     private getComponents(): Array<SketchComponent<unknown>> {

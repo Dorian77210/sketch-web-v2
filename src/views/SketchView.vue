@@ -86,7 +86,11 @@ export default defineComponent({
             this.needToOpenFile = false;
             if (file) {
                 const fileContent = await file.text();
-                this.sketchBoardManager.reconstructWorkflow(fileContent);
+                const saveReconstitution = this.sketchBoardManager.reconstructWorkflow(fileContent);
+
+                console.log(saveReconstitution);
+
+                bus.emit('save-reconstitution', saveReconstitution);
             }
         }
     },

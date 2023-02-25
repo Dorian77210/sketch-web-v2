@@ -1,6 +1,6 @@
 <template>
     <SketchComponentModal
-        title="Save file as ..."
+        title="Open file ..."
         :before-close="() => onReceivedFile(file)"
         @close-popup="onClose"
     >
@@ -14,6 +14,13 @@
                 ref="upload"
             >
             </v-file-input>
+
+            <v-alert
+                density="compact"
+                type="warning"
+                title="Warning !"
+                text="Your current workflow will be erased if you load a save !"
+            ></v-alert>
         </template>
     </SketchComponentModal>
 </template>

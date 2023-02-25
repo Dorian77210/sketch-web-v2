@@ -21,6 +21,7 @@
                         class="slot input-slot"
                         :class="{ 'selected-slot': slotConfiguration.isSelected }"
                         @click="selectSlot($event, slotConfiguration as ComponentSlotModel)"
+                        :ref="`${componentModel.component.getID()}-${slotConfiguration.entryName}`"
                     >
                         <v-tooltip activator="parent" location="start">
                             {{  slotConfiguration.entryName }}
@@ -47,15 +48,18 @@
                 </div>
             </div>
 
-            <div v-if="outputSlotModel" class="slot-container d-flex flex-column w-25"
-            >
-                <font-awesome-icon
+            <div v-if="outputSlotModel" class="slot-container d-flex flex-column w-25">
+                <div
+                    :ref="`${componentModel.component.getID()}-out`"
+                    @click="selectSlot($event, outputSlotModel as ComponentSlotModel)"
+                >
+                    <font-awesome-icon
                     icon="fa-solid fa-play"
                     :style="{ 'color': outputSlotModel.isSelected ? 'red' : 'black' }"
                     class="play-icon"
                     style="height: 20px;"
-                    @click="selectSlot($event, outputSlotModel as ComponentSlotModel)"
-                ></font-awesome-icon>
+                    ></font-awesome-icon>
+                </div>
             </div>
         </div>
         </Vue3DraggableResizable>

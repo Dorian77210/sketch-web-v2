@@ -8,6 +8,7 @@
                 :configuration="configuration"
                 @on-slot-selected="onSlotSelected"
                 @on-drag="onDrag"
+                :ref="componentModel.component.getID()"
             />
         </div>
     </div>
@@ -40,6 +41,9 @@ import { GenericSketchComponentClass, opt } from 'konect-api-types';
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
 
 import { ComponentModel, ComponentModelConfig } from '../utils';
+import { SaveReconstitution } from '../../core/save';
+
+import { ComponentLink } from '../../core/save';
 
 type ComponentSlot = {
     ui: HTMLElement;
@@ -70,7 +74,9 @@ export default defineComponent({
             workflow: this.boardManager.workflow,
             links: new Map<LinkAssociation, LeaderLine>(),
             selectedComponent: opt<SketchComponent<unknown>>(),
-            selectedComponentModel: opt<ComponentModel>()
+            selectedComponentModel: opt<ComponentModel>(),
+            finishReconsitution: true,
+            linksToRestitute: Array<ComponentLink>()
         }
     },
 
@@ -252,6 +258,20 @@ export default defineComponent({
             // delete the component in the workflow
             this.workflow.deleteComponent(currentComponent);
             this.selectedComponent = undefined;
+        },
+
+        clear() {
+            this.boardManager.componentModels.clear();
+            this.slots.clear();
+            this.links.forEach(line => line.remove());
+            this.links.clear();
+            this.selectedComponent = undefined;
+            this.selectedComponentModel = undefined;
+        }
+    },
+    computed: {
+        refs() {
+            return this.$refs;
         }
     },
     
@@ -273,7 +293,44 @@ export default defineComponent({
                 this.selectedComponentModel.config = settings as ComponentModelConfig;
             }
         });
-    }
+
+        bus.on('save-reconstitution', (s) => {
+            this.clear();
+
+            const save = s as SaveReconstitution;
+
+            // create the component models
+            save.componentModels.forEach(model => {
+                const configuration = getConfigurationOf(model.component.constructor as GenericSketchComponentClass);
+                this.boardManager.componentModels.set(model, configuration);
+            });
+            
+            this.linksToRestitute = save.links;
+        })
+    },
+
+    updated() {
+        if (this.linksToRestitute.length > 0) {
+            // here, we need to recreate the links
+            this.linksToRestitute.forEach(link => {
+                const { child, parent, entryName } = link;
+
+                // find ref of parent and child
+                const childRef = this.$refs[child.getID()] as any;
+                const parentRef = this.$refs[parent.getID()] as any;
+
+                // simulate click on the slots for creating a link
+                // click on the parent, then the child entry name
+                const parentSlotRef = parentRef[0].$refs[`${parent.getID()}-out`] as HTMLElement;
+                const childSlotRef = childRef[0].$refs[`${child.getID()}-${entryName}`][0] as HTMLElement;
+
+                parentSlotRef.click();
+                childSlotRef.click();
+
+                this.linksToRestitute = [];
+            });
+        }
+    }    
 });
 
 </script>
