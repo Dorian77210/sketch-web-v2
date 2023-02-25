@@ -1,6 +1,6 @@
 <template>
     <div class="w-100">
-        <div id="sketch-board" @click="onBoardClick($event)" @keydown="onKeyDown" tabindex="1">
+        <div id="sketch-board" @click="onBoardClick($event)" @keydown="onKeyDown" tabindex="1" ref="board">
             <SketchComponentUI
                 v-for="[componentModel, configuration] in componentsMap"
                 :key="componentModel.component.getID()"
@@ -190,6 +190,7 @@ export default defineComponent({
             // update coords
             componentModel.x = x;
             componentModel.y = y;
+
             const component = componentModel.component;
 
             // update all the links of the component
@@ -306,7 +307,7 @@ export default defineComponent({
             });
             
             this.linksToRestitute = save.links;
-        })
+        });
     },
 
     updated() {

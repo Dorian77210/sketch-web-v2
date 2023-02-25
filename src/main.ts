@@ -16,9 +16,11 @@ import 'vue3-draggable-resizable/dist/Vue3DraggableResizable.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation, faSearch, faBook,
+  faLaptopCode
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation);
+library.add(faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation, faSearch, faBook, faLaptopCode);
 
 // css for the konect-api-vue
 import 'konect-api-vue/dist/konect-api.css';
