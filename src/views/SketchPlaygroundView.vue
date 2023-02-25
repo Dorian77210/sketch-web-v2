@@ -1,20 +1,22 @@
 <template>
-    <SketchBoardNavbar />
-    <div class="d-flex" id="sketch-view">
-        <SketchComponentList :board-manager="sketchBoardManager" />
-        <SketchBoard :board-manager="sketchBoardManager" />
-        <SketchMessages />
-
-        <v-progress-circular
-            v-if="spinnerVisible"
-            indeterminate
-            color="green"
-            id="spinner"
-        ></v-progress-circular>
-        <SketchNavigationDrawer />
-
-        <SketchSaveModal :save-board="_saveBoard" :on-close="() => needFilenameForSave = false" v-if="needFilenameForSave" />
-        <SketchOpenFileModal :on-close="() => needToOpenFile = false" :on-received-file="_onReceivedFile" v-if="needToOpenFile" />
+    <div>
+        <SketchHomeNavBar class="app-bg" />
+        <div class="d-flex" id="sketch-view">
+            <SketchComponentList :board-manager="sketchBoardManager" />
+            <SketchBoard :board-manager="sketchBoardManager" />
+            <SketchMessages />
+    
+            <v-progress-circular
+                v-if="spinnerVisible"
+                indeterminate
+                color="green"
+                id="spinner"
+            ></v-progress-circular>
+            <SketchNavigationDrawer />
+    
+            <SketchSaveModal :save-board="_saveBoard" :on-close="() => needFilenameForSave = false" v-if="needFilenameForSave" />
+            <SketchOpenFileModal :on-close="() => needToOpenFile = false" :on-received-file="_onReceivedFile" v-if="needToOpenFile" />
+        </div>
     </div>
 </template>
 
@@ -25,7 +27,8 @@ import { defineComponent } from 'vue';
 import SketchComponentList from '@/sketch/app/ui/playground/SketchComponentList.vue';
 import SketchBoard from '@/sketch/app/ui/playground/SketchBoard.vue';
 import SketchMessages from '@/sketch/app/ui/playground/SketchMessages.vue';
-import SketchBoardNavbar from '@/sketch/app/ui/playground/SketchBoardNavbar.vue';
+
+import SketchHomeNavBar from '@/sketch/app/ui/home/SketchHomeNavBar.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 
@@ -44,7 +47,7 @@ export default defineComponent({
         SketchBoard,
         SketchMessages,
         SketchNavigationDrawer,
-        SketchBoardNavbar,
+        SketchHomeNavBar,
         SketchSaveModal,
         SketchOpenFileModal
     },
@@ -87,9 +90,6 @@ export default defineComponent({
             if (file) {
                 const fileContent = await file.text();
                 const saveReconstitution = this.sketchBoardManager.reconstructWorkflow(fileContent);
-
-                console.log(saveReconstitution);
-
                 bus.emit('save-reconstitution', saveReconstitution);
             }
         }

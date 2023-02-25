@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-import SketchView from '@/views/SketchView.vue';
+import SketchPlaygroundView from '@/views/SketchPlaygroundView.vue';
 import SketchHomeView from '@/views/SketchHomeView.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -12,13 +12,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/playground',
     name: 'playground',
-    component: SketchView
+    component: SketchPlaygroundView
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  linkExactActiveClass: "link-active" // active class for *exact* links.
 })
 
 export default router
