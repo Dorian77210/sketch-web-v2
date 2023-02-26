@@ -8,7 +8,7 @@
 
         <div class="d-flex">
             <SketchComponentListDoc class="w-25" />
-            <router-view class="w-75"></router-view>
+            <router-view class="w-75" :key="$route.fullPath"></router-view>
         </div>
     </div>
 </template>
