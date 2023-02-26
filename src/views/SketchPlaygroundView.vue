@@ -1,9 +1,9 @@
 <template>
     <div>
-        <SketchHomeNavBar class="app-bg">
+        <SketchNavBar class="app-bg">
             <template v-slot:additional-content>
                 <v-btn
-                    preprend-icon="mdi-file"
+                    prepend-icon="mdi-file"
                     color="rgb(38,48,66)"
                     variant="plain"
                     style="color: white"
@@ -15,15 +15,23 @@
                                 v-for="(fileItem, index) in fileItems"
                                 :key="index"
                                 @click="fileItem.onClick"
-                                class="navbar-item"
                             >
                                 {{  fileItem.title }}
                             </v-list-item>
                         </v-list>
                     </v-menu>
                 </v-btn>
+
+                <v-btn
+                    prepend-icon="mdi-shopping"
+                    color="rgb(38,48,66)"
+                    variant="plain"
+                    style="color: white"
+                >
+                    Marketplace
+                </v-btn>
             </template>
-        </SketchHomeNavBar>
+        </SketchNavBar>
 
         <div class="d-flex" id="sketch-view">
             <SketchComponentList :board-manager="sketchBoardManager" />
@@ -52,11 +60,9 @@ import SketchComponentList from '@/sketch/app/ui/playground/SketchComponentList.
 import SketchBoard from '@/sketch/app/ui/playground/SketchBoard.vue';
 import SketchMessages from '@/sketch/app/ui/playground/SketchMessages.vue';
 
-import SketchHomeNavBar from '@/sketch/app/ui/common/SketchHomeNavBar.vue';
+import SketchNavBar from '@/sketch/app/ui/common/SketchNavBar.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
-
-import { registerConfigurations } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import SketchNavigationDrawer from '@/sketch/app/ui/playground/SketchNavigationDrawer.vue';
 
@@ -71,7 +77,7 @@ export default defineComponent({
         SketchBoard,
         SketchMessages,
         SketchNavigationDrawer,
-        SketchHomeNavBar,
+        SketchNavBar,
         SketchSaveModal,
         SketchOpenFileModal
     },
@@ -138,7 +144,6 @@ export default defineComponent({
 
 
     beforeCreate() {
-        registerConfigurations();
         bus.on('start-execution', () => {
             this.spinnerVisible = true;
         });

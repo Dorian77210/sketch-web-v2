@@ -2,7 +2,7 @@
     <v-app>
         <div class="app-bg">
             <div id="home">
-                <SketchHomeNavBar />
+                <SketchNavBar />
             
                 <section id="project-description">
                     <div style="color: white">
@@ -134,12 +134,12 @@
 
 import { defineComponent } from 'vue';
 
-import SketchHomeNavBar from '@/sketch/app/ui/common/SketchHomeNavBar.vue'
+import SketchNavBar from '@/sketch/app/ui/common/SketchNavBar.vue'
 import SketchFooter from '@/sketch/app/ui/home/SketchFooter.vue';
 
 export default defineComponent({
     components: {
-        SketchHomeNavBar,
+        SketchNavBar,
         SketchFooter
     }
 });

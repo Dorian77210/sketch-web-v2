@@ -166,7 +166,7 @@ export default defineComponent({
                         const line = new LeaderLine({
                             start: source.ui,
                             end: destination.ui,
-                            color: 'black'
+                            color: 'black',
                         })
                         
                         // insert the line
