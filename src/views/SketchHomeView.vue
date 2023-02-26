@@ -151,7 +151,7 @@ export default defineComponent({
 
 
 #project-description div:first-child {
-    padding-top: 5%;
+    padding-top: 2.5%;
     width: 100%;
 }
 
@@ -168,7 +168,7 @@ export default defineComponent({
 }
 
 #services div:first-child {
-    padding-top: 5%;
+    padding-top: 4%;
 }
 
 #services-card > div > div{
