@@ -41,9 +41,6 @@ export default defineComponent({
                 'mdi-instagram',
             ],
         }
-    },
-    created() {
-        console.log("'ok);");
     }
 });
 
