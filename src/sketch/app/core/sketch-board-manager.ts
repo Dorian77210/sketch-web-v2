@@ -141,6 +141,9 @@ export default class SketchBoardManager
                     child,
                     entryName
                 });
+
+                // recreated in the workflow the link
+                this.workflow.createLinkBetween(child, parent, entryName);
             }
         });
 
