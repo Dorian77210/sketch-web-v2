@@ -1,6 +1,30 @@
 <template>
     <div>
-        <SketchBoardNavbar/>
+        <SketchHomeNavBar class="app-bg">
+            <template v-slot:additional-content>
+                <v-btn
+                    preprend-icon="mdi-file"
+                    color="rgb(38,48,66)"
+                    variant="plain"
+                    style="color: white"
+                >
+                    File
+                    <v-menu activator="parent">
+                        <v-list>
+                            <v-list-item 
+                                v-for="(fileItem, index) in fileItems"
+                                :key="index"
+                                @click="fileItem.onClick"
+                                class="navbar-item"
+                            >
+                                {{  fileItem.title }}
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </v-btn>
+            </template>
+        </SketchHomeNavBar>
+
         <div class="d-flex" id="sketch-view">
             <SketchComponentList :board-manager="sketchBoardManager" />
             <SketchBoard :board-manager="sketchBoardManager" />
@@ -28,8 +52,7 @@ import SketchComponentList from '@/sketch/app/ui/playground/SketchComponentList.
 import SketchBoard from '@/sketch/app/ui/playground/SketchBoard.vue';
 import SketchMessages from '@/sketch/app/ui/playground/SketchMessages.vue';
 
-import SketchHomeNavBar from '@/sketch/app/ui/home/SketchHomeNavBar.vue';
-import SketchBoardNavbar from '@/sketch/app/ui/playground/SketchBoardNavbar.vue';
+import SketchHomeNavBar from '@/sketch/app/ui/common/SketchHomeNavBar.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 
@@ -48,7 +71,7 @@ export default defineComponent({
         SketchBoard,
         SketchMessages,
         SketchNavigationDrawer,
-        SketchBoardNavbar,
+        SketchHomeNavBar,
         SketchSaveModal,
         SketchOpenFileModal
     },
@@ -57,7 +80,24 @@ export default defineComponent({
             sketchBoardManager: new SketchBoardManager(),
             spinnerVisible: false,
             needFilenameForSave: false,
-            needToOpenFile: false
+            needToOpenFile: false,
+            fileItems: [{
+                title: 'Save',
+                onClick: () => {
+                    bus.emit('save-board');
+                }
+            }, {
+                title: 'Save as',
+                onClick: () => {
+                    bus.emit('save-board-as');
+                }
+            }, {
+                title: 'Open file',
+                divider: true,
+                onClick: () => {
+                    bus.emit('open-file');
+                }
+            }],
         }
     },
     methods: {

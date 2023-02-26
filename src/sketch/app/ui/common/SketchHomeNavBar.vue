@@ -6,6 +6,7 @@
             </router-link>
         </div>
         <ul>
+            <slot name="additional-content"></slot>
             <router-link to="/doc" class="no-style" active-class="link-active">
                 <li>Documentation</li>
             </router-link>
