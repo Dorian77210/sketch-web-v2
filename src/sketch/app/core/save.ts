@@ -1,4 +1,4 @@
-import { SketchComponent } from "konect-api-types";
+import { SketchComponent } from "konect-api-types-ts";
 import { ComponentModel, ComponentModelConfig } from "../ui/utils";
 
 export interface ComponentSaveConfiguration {

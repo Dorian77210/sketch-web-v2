@@ -1,4 +1,4 @@
-import {HTTPService} from "konect-api-types";
+import {HTTPService} from "konect-api-types-ts";
 import axios from "axios";
 
 import DataFrame from "dataframe-js";

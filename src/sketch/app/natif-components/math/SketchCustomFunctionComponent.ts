@@ -1,9 +1,9 @@
-import { SketchComponent } from "konect-api-types";
-import { NumberList } from "konect-api-types";
+import { SketchComponent } from "konect-api-types-ts";
+import { NumberList } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
-import { SketchWrapper } from "konect-api-types";
+import { SketchWrapper } from "konect-api-types-ts";
 import { parse, MathNode } from 'mathjs';
-import { ComponentConfiguration } from "konect-api-types";
+import { ComponentConfiguration } from "konect-api-types-ts";
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
 
 /**

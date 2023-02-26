@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SketchHomeNavBar class="app-bg" />
+        <SketchBoardNavbar/>
         <div class="d-flex" id="sketch-view">
             <SketchComponentList :board-manager="sketchBoardManager" />
             <SketchBoard :board-manager="sketchBoardManager" />
@@ -29,6 +29,7 @@ import SketchBoard from '@/sketch/app/ui/playground/SketchBoard.vue';
 import SketchMessages from '@/sketch/app/ui/playground/SketchMessages.vue';
 
 import SketchHomeNavBar from '@/sketch/app/ui/home/SketchHomeNavBar.vue';
+import SketchBoardNavbar from '@/sketch/app/ui/playground/SketchBoardNavbar.vue';
 
 import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 
@@ -47,7 +48,7 @@ export default defineComponent({
         SketchBoard,
         SketchMessages,
         SketchNavigationDrawer,
-        SketchHomeNavBar,
+        SketchBoardNavbar,
         SketchSaveModal,
         SketchOpenFileModal
     },

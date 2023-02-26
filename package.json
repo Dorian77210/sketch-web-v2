@@ -25,7 +25,7 @@
     "bootstrap-vue-3": "^0.5.1",
     "chart.js": "^3.9.1",
     "dataframe-js": "^1.4.4",
-    "konect-api-types": "file://../konect-api-types/konect-api-types-1.0.0.tgz",
+    "konect-api-types-ts": "file://../konect-api-types-ts/konect-api-types-ts-1.0.0.tgz",
     "konect-api-vue": "^0.0.1",
     "leader-line-new": "^1.1.9",
     "lzstring.ts": "^2.0.2",

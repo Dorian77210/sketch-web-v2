@@ -1,6 +1,6 @@
 import { SketchKMeansComponent } from "../../dataframe/SketchKMeans";
 
-import { SketchComponentFactory } from "konect-api-types";
+import { SketchComponentFactory } from "konect-api-types-ts";
 
 interface SketchKMeansJSON {
     clusters: number;

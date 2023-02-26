@@ -1,6 +1,6 @@
 import { mapComponentWithPopup } from "../natif-components";
 
-import { GenericSketchComponentClass } from "konect-api-types";
+import { GenericSketchComponentClass } from "konect-api-types-ts";
 
 export default function getPopupByComponentClass(componentClass: GenericSketchComponentClass) {
     return mapComponentWithPopup.get(componentClass);

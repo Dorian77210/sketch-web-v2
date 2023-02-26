@@ -1,8 +1,8 @@
-import { ComponentConfiguration } from "konect-api-types";
-import { SketchComponent } from "konect-api-types";
+import { ComponentConfiguration } from "konect-api-types-ts";
+import { SketchComponent } from "konect-api-types-ts";
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
 import SequenceData from "../data/SequenceData";
-import { NumberList } from "konect-api-types";
+import { NumberList } from "konect-api-types-ts";
 
 /**
  * @author Dorian TERBAH

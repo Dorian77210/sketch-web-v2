@@ -1,10 +1,10 @@
-import { Class } from "konect-api-types";
+import { Class } from "konect-api-types-ts";
 import { getConfigurationOf, getSlotByEntryName } from "@/sketch/app/core/sketch-component-configuration-manager";
-import { ComponentConfiguration } from "konect-api-types";
-import { Stack, ArrayStack } from "konect-api-types";
+import { ComponentConfiguration } from "konect-api-types-ts";
+import { Stack, ArrayStack } from "konect-api-types-ts";
 import injectData from "@/sketch/app/core/inject-data";
 
-import { GenericSketchComponentClass, SketchComponent } from "konect-api-types";
+import { GenericSketchComponentClass, SketchComponent } from "konect-api-types-ts";
 
 /**
  * @author Dorian TERBAH

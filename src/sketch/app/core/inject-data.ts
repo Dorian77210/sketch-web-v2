@@ -1,5 +1,5 @@
 import { getConfigurationOf, getSlotByEntryName } from "@/sketch/app/core/sketch-component-configuration-manager";
-import { GenericSketchComponentClass, SketchComponent } from "konect-api-types";
+import { GenericSketchComponentClass, SketchComponent } from "konect-api-types-ts";
 
 export default function injectData(component: SketchComponent<unknown>, entryName: string, parentResult: any) : boolean {
     const configuration = getConfigurationOf(component.constructor as GenericSketchComponentClass);

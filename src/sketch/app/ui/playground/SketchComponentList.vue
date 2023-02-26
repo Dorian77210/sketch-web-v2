@@ -32,9 +32,9 @@ import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 
 import { getConfigurations } from '../../core/sketch-component-configuration-manager';
 
-import { ComponentConfiguration } from 'konect-api-types';
+import { ComponentConfiguration } from 'konect-api-types-ts';
 
-import { opt, GenericSketchComponentClass } from 'konect-api-types';
+import { opt, GenericSketchComponentClass } from 'konect-api-types-ts';
 
 import bus from '../../core/bus';
 

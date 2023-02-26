@@ -22,12 +22,12 @@ import LeaderLine from 'leader-line-new';
 
 import SketchBoardManager from '../../core/sketch-board-manager';
 
-import { ComponentConfiguration } from 'konect-api-types';
+import { ComponentConfiguration } from 'konect-api-types-ts';
 import { getConfigurationOf } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import SketchComponentUI from './SketchComponentUI.vue';
 
-import { ArrayStack, SketchComponent } from 'konect-api-types';
+import { ArrayStack, SketchComponent } from 'konect-api-types-ts';
 import { ComponentSlotModel } from '../utils';
 
 import { canCreateLinkBetween } from '@/sketch/app/core/sketch-component-configuration-manager';
@@ -36,7 +36,7 @@ import store from '@/store';
 
 import bus from '../../core/bus';
 
-import { GenericSketchComponentClass, opt } from 'konect-api-types';
+import { GenericSketchComponentClass, opt } from 'konect-api-types-ts';
 
 import { isDeleteKey } from '@/sketch/app/core/keyboard-combination';
 

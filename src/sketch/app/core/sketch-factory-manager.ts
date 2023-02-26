@@ -1,4 +1,4 @@
-import { GenericSketchComponentClass } from "konect-api-types";
+import { GenericSketchComponentClass } from "konect-api-types-ts";
 
 import { mapComponentWithFactory } from "../natif-components";
 

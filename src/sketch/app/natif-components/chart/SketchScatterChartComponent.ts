@@ -1,7 +1,7 @@
-import { SketchComponent } from "konect-api-types";
+import { SketchComponent } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
-import { SketchWrapper } from "konect-api-types";
-import { ComponentConfiguration } from "konect-api-types";
+import { SketchWrapper } from "konect-api-types-ts";
+import { ComponentConfiguration } from "konect-api-types-ts";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 /**

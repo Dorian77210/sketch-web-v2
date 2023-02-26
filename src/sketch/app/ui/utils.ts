@@ -1,4 +1,4 @@
-import { SketchComponent } from "konect-api-types";
+import { SketchComponent } from "konect-api-types-ts";
 
 export type ComponentUIConfiguration = {
     x: number;

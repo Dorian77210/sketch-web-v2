@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types";
+import { SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchElbowMethodComponent } from "../../dataframe/SketchElbowMethodComponent";
 
