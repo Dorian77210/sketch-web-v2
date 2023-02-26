@@ -82,8 +82,9 @@ export default defineComponent({
 
     methods: {
         onBoardClick(event: MouseEvent) {
+            const board = this.$refs.board as HTMLElement;
             const x: number = event.x;
-            const y: number = event.y;
+            const y: number = event.y - board.getBoundingClientRect().top;
             const selectedComponentClass: GenericSketchComponentClass | undefined = this.$props.boardManager.getAndRemoveComponentClass();
 
             if (selectedComponentClass) {
