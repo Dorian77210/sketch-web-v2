@@ -64,7 +64,7 @@ export default defineComponent({
 
 #home-logo {
     vertical-align: middle;
-    width: 20%;
+    width: 25%;
     margin-left: 10%;
 }
 
