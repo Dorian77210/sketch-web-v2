@@ -6,7 +6,10 @@
             <SketchNavBar />
         </div>
 
-        <SketchComponentListDoc /> 
+        <div class="d-flex">
+            <SketchComponentListDoc class="w-25" />
+            <router-view class="w-75"></router-view>
+        </div>
     </div>
 </template>
 

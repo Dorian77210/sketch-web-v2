@@ -13,14 +13,20 @@
                 label="Component search"
                 v-model="search"           
             ></v-text-field>
-
-            <v-list-item
-                v-for="(config, index) in filteredConfigurations" :key="index"
-                class="doc-item"
+            
+            <router-link
+                v-for="(config, index) in filteredConfigurations"
+                :key="index"
+                :to="{ name: 'component-doc', params: { componentName: componentsClass[index].name }}"
+                class="white no-style doc-link"
             >
-                <font-awesome-icon :icon="`fa-solid ${config.icon.name}`"></font-awesome-icon>
-                <span class="pl-4">{{ config.name }}</span>
-            </v-list-item>
+                <v-list-item
+                    class="doc-item"
+                >
+                    <font-awesome-icon :icon="`fa-solid ${config.icon.name}`"></font-awesome-icon>
+                    <span class="pl-4">{{ config.name }}</span>
+                </v-list-item>
+            </router-link>
         </v-card>
     </div>
 </template>
@@ -36,12 +42,12 @@ export default defineComponent({
     data() {
         return {
             configurations: Array.from(getConfigurations().values()),
+            componentsClass: Array.from(getConfigurations().keys()),
             search: '',
         }
     },
     computed: {
         filteredConfigurations() : Array<ComponentConfiguration> {
-            console.log("ok");
             return this.configurations.filter(conf => conf.name.toLowerCase().includes(this.search.toLowerCase()));
         }
     }
@@ -53,12 +59,18 @@ export default defineComponent({
 
 #doc-container {
     width: 20%;
-    min-height: 100vh;
+    min-height: 90vh;
+    max-height: 90vh;
+    overflow: scroll;
 }
 
 .doc-item:hover {
     cursor: pointer;
     background-color: red;
+}
+
+.doc-link:hover {
+    color: inherit;
 }
 
 </style>

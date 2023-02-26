@@ -4,6 +4,8 @@ import SketchPlaygroundView from '@/views/SketchPlaygroundView.vue';
 import SketchHomeView from '@/views/SketchHomeView.vue';
 import SketchDocumentationView from '@/views/SketchDocumentationView.vue';
 
+import SketchComponentDoc from '@/sketch/app/ui/doc/SketchComponentDoc.vue';
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -18,7 +20,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/doc',
     name: 'doc',
-    component: SketchDocumentationView
+    component: SketchDocumentationView,
+    children: [{
+      path: ':componentName',
+      component: SketchComponentDoc,
+      name: 'component-doc'
+    }]
   }
 ]
 
