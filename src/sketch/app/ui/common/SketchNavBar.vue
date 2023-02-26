@@ -18,7 +18,7 @@
             <router-link to="/dev-guide" class="no-style" active-class="link-active">
                 <li>Dev guide</li>
             </router-link>
-            <div class="d-flex align-center w-25">
+            <div class="d-flex align-center" style="width: 30%;">
                     <v-btn
                         color="rgb(4,122,159)"
                         icon="mdi-search-web"
