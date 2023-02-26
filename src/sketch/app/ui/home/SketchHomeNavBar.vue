@@ -17,8 +17,25 @@
             <router-link to="/dev-guide" class="no-style" active-class="link-active">
                 <li>Dev guide</li>
             </router-link>
+            <div class="d-flex align-center w-25">
+                    <v-btn
+                        color="rgb(4,122,159)"
+                        icon="mdi-search-web"
+                        size="small"
+                        @click="show = !show"
+                    ></v-btn>
+                    <Transition name="bounce">
+                        <v-text-field
+                            v-if="show"
+                            class="ml-5 mt-2"
+                            v-model="search"
+                            color="rgb(4,122,159)"
+                            style="color: rgb(4,122,159)"
+                            label="Search component documentation"
+                        ></v-text-field>
+                    </Transition>
+            </div>
         </ul>
-        <div class="dot"></div>
     </nav>
 </template>
 
@@ -34,14 +51,17 @@ export default defineComponent({
                 'mdi-twitter',
                 'mdi-linkedin',
                 'mdi-instagram',
-            ]
+            ],
+            search: '',
+            show: false
         }
     }
 });
 
 </script>
 
-<style>
+<style scoped>
+
 #home-logo {
     vertical-align: middle;
     width: 20%;
@@ -50,10 +70,6 @@ export default defineComponent({
 
 #home-logo:hover {
     cursor: pointer;
-}
-
-.no-style {
-    text-decoration: none; color: inherit;
 }
 
 nav {
@@ -88,5 +104,23 @@ nav a {
     width: 15%;
     text-align: center;
 }
+
+.bounce-enter-active {
+    animation: bounce-in 0.5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
 </style>

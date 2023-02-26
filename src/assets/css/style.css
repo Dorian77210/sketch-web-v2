@@ -55,3 +55,7 @@
 .link-active {
   color: rgb(4,122,159);
 }
+
+.no-style {
+  text-decoration: none;
+}
