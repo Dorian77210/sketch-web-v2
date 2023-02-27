@@ -92,5 +92,22 @@ export const configuration: ComponentConfiguration = {
     icon: {
         name: 'fa-wave-square',
         fa: faWaveSquare
+    },
+    documentation: {
+        description: `This component will apply a mathematical function on a sequence of number.
+            You can choose the function in a dropdown.
+        `,
+        slotsDocumentation: [{
+            name: 'sequence',
+            description: 'This is a sequence of numbers',
+            type: 'NumberList'
+        }],
+        output: {
+            name: 'dataframe',
+            description: `It will compute a dataframe with two columns.
+            The first one, the x column, corresponds to the numbers passed to the component.
+            The second one, the y column, corresponds to the computed values according to the function and the input.`,
+            type: 'DataFrame'
+        }
     }
 }
