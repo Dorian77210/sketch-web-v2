@@ -67,7 +67,11 @@ export default defineComponent({
             docAsComponentDocumentation: getDocumentationOf(this.$route.params.componentName as string) as ComponentDocumentation
         }
     },
-    computed: {
+    created() {
+        if (this.docAsComponent === undefined && this.docAsComponentDocumentation === undefined) {
+            // redirect the user to the doc route
+            this.$router.push('/doc');
+        }
     }
 });
 
