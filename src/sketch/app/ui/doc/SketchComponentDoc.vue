@@ -15,14 +15,15 @@
                 <h4>Description of the inputs</h4>
                 <ul>
                     <li v-for="(slotDoc, index) in docAsComponentDocumentation.slotsDocumentation" :key="index">
-                        {{  slotDoc.name }} : {{ slotDoc.description }}
+                        {{  slotDoc.name }} : {{ slotDoc.description }}. Corresponding type : {{ slotDoc.type }}
                     </li>
                 </ul>
             </div>
 
             <div v-if="docAsComponentDocumentation.output" class="ml-4">
                 <h4>Description of the output</h4>
-                <p>Output name :{{ docAsComponentDocumentation.output.name }}</p>
+                <p>Output name : {{ docAsComponentDocumentation.output.name }}</p>
+                <p>Type of the output : {{  docAsComponentDocumentation.output.type }} </p>
                 <p>Description : {{ docAsComponentDocumentation.output.description }}</p>
             </div>
 

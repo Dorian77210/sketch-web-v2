@@ -71,5 +71,24 @@ export const configuration: ComponentConfiguration = {
     icon: {
         name: 'fa-arrow-down-1-9',
         fa: faArrowDown19
+    },
+    documentation: {
+        description: `This component will compute a sequence of number,
+        between the begin and the end, with an interval of the step.`,
+        slotsDocumentation: [{
+            name: 'begin',
+            description: 'This corresponds to the begin of the sequence',
+            type: 'Number'
+        }, {
+            name: 'end',
+            description: 'This corresponds to the end of the sequence',
+            type: 'Number'
+        }],
+        output: {
+            name: 'sequence',
+            description: `This corresponds to the computed sequence. If the begin value is greater than the end value, but the step is positive, it will
+            show an error. If the begin is less than the end value, but the step is negative, it will also show an error.`,
+            type: 'NumberList'
+        }
     }
 }
