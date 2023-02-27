@@ -29,6 +29,16 @@ export function getConfigurationOf(componentClass: GenericSketchComponentClass) 
     return configurations.get(componentClass) as ComponentConfiguration;
 }
 
+export function getDocumentationOf(componentClass: string) {
+    const clazz = getSketchComponentClassByString(componentClass);
+    if (!clazz) {
+        return undefined;
+    }
+    
+    const configuration = getConfigurationOf(clazz);
+    return configuration.documentation;
+}
+
 /**
  * 
  * @returns All the registered configurations.

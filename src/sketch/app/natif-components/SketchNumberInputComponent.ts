@@ -45,5 +45,12 @@ export const configuration: ComponentConfiguration = {
     icon: {
         name: 'fa-keyboard',
         fa: faKeyboard
+    },
+    documentation: {
+        description: 'This component will provide the user to enter a numeric value.',
+        output: {
+            name: 'Number input',
+            description: 'This corresponds to the value entered in the popup.'
+        }
     }
 }

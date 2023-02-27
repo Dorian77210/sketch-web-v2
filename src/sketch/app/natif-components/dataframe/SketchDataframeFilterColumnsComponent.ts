@@ -59,5 +59,5 @@ export const configuration: ComponentConfiguration = {
     icon: {
         name: 'fa-filter',
         fa: faFilter
-    }
+    },
 }
