@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
 import SketchNumberFactory from '@/sketch/app/natif-components/factory/SketchNumberFactory';
-import { SketchNumberInputComponent } from '@/sketch/app/natif-components/SketchNumberInputComponent';
+import SketchNumberInputComponent from '@/sketch/app/natif-components/SketchNumberInputComponent';
 
 const factory = new SketchNumberFactory();
 let component: SketchNumberInputComponent;

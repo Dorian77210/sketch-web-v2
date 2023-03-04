@@ -32,7 +32,7 @@
             </div>
             <div class="table p-1 w-50">
                 <div class="row-fluid">
-                    <font-awesome-icon :icon="`fa-solid ${configuration.icon.name}`"
+                    <font-awesome-icon :icon="`fa-solid ${configuration.config.icon.name}`"
                         :style="{ color: componentModel.config.iconColor }"
                     ></font-awesome-icon>
                     <br/>
@@ -40,7 +40,7 @@
                         {{ componentModel.config.text.value }}
                     </span>
                     <br/>
-                    <font-awesome-icon v-if="configuration.returnType"
+                    <font-awesome-icon v-if="configuration.config.returnType"
                         icon="fa-solid fa-play"
                         class="play-icon"
                         @click="bus.emit('ask-for-execution', componentModel.component)"    
@@ -76,7 +76,7 @@
 import { defineComponent, PropType, Component } from 'vue';
 
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
-import { ComponentConfiguration } from 'konect-api-types-ts';
+import { ComponentConfiguration } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import { ComponentSlotModel } from '../utils';
 import { opt } from 'konect-api-types-ts';
@@ -110,13 +110,14 @@ export default defineComponent({
             inputSlotModels: Array<ComponentSlotModel>(),
             outputSlotModel: opt<ComponentSlotModel>(),
             popupVisible: false,
-            componentName: this.configuration.name,
+            componentName: this.configuration.config.name,
             bus
         }
     },
     beforeMount() {
-        if (this.$props.configuration.slotsConfigurations) {
-            const models: Array<ComponentSlotModel> = this.$props.configuration.slotsConfigurations.map(configuration => {
+        if (this.$props.configuration) {
+            const entries = this.$props.configuration.entries ?? [];
+            const models: Array<ComponentSlotModel> = entries.map(configuration => {
                 return {
                     isSelected: false,
                     targetComponent: this.componentModel.component,
@@ -128,7 +129,7 @@ export default defineComponent({
             this.inputSlotModels.push(...models);
         }
 
-        if (this.$props.configuration.returnType) {
+        if (this.$props.configuration.config.returnType) {
             this.outputSlotModel = {
                 isSelected: false,
                 targetComponent: this.componentModel.component,

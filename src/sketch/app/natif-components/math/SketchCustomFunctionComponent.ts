@@ -1,9 +1,8 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import { NumberList } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import { SketchWrapper } from "konect-api-types-ts";
 import { parse, MathNode } from 'mathjs';
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
 
 /**
@@ -13,6 +12,16 @@ import { faCalculator } from "@fortawesome/free-solid-svg-icons";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Math',
+    name: 'Custom function',
+    returnType: DataFrame,
+    icon: {
+        name: 'fa-calculator',
+        fa: faCalculator
+    }
+})
 export class SketchCustomFunctionComponent extends SketchComponent<DataFrame> {
 
     private _numbers: SketchWrapper<NumberList>;
@@ -27,6 +36,7 @@ export class SketchCustomFunctionComponent extends SketchComponent<DataFrame> {
     get numbers(): SketchWrapper<NumberList> { return this._numbers; }
     get customFunction(): string { return this._customFunction; }
 
+    @Entry("numbers", NumberList)
     setData(list: NumberList) {
         this.numbers.setData(list);
     }
@@ -55,20 +65,5 @@ export class SketchCustomFunctionComponent extends SketchComponent<DataFrame> {
 
     setCustomFunction(fn: string) {
         this._customFunction = fn;
-    }
-}
-
-export const configuration : ComponentConfiguration = {
-    namespace: 'Math',
-    name: 'Custom function',
-    returnType: DataFrame,
-    slotsConfigurations: [{
-        entryName: 'numbers',
-        methodName: 'setData',
-        type: NumberList
-    }],
-    icon: {
-        name: 'fa-calculator',
-        fa: faCalculator
     }
 }

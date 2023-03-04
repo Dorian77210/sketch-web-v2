@@ -1,23 +1,22 @@
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { GenericSketchComponentClass } from "konect-api-types-ts";
 import { Component } from 'vue';
 
 // ----- Import of component with their configuration ----- //
-import { SketchNumberInputComponent, configuration as SketchNumberInputConfiguration } from "../natif-components/SketchNumberInputComponent";
-import { SketchSequenceComponent, configuration as SketchSequenceConfiguration } from "..//natif-components/math/SketchSequenceComponent";
-import { SketchMathFunctionComponent, configuration as SketchMathFunctionConfiguration } from "..//natif-components/math/SketchMathFunctionComponent";
-import { SketchLineChartComponent, configuration as SketchLineChartConfiguration } from "..//natif-components/chart/SketchLineChartComponent";
-import { SketchDataframeFromCSVComponent, configuration as SketchDataframeFromCSVConfiguration } from "..//natif-components/dataframe/SketchDataframeFromCSVComponent";
-import { SketchDataframeViewerComponent, configuration as SketchDataframeViewerConfiguration } from "..//natif-components/dataframe/SketchDataframeViewerComponent";
-import { SketchDataframeFilterColumnsComponent, configuration as SketchDataFilterColumnsConfiguration } from "..//natif-components/dataframe/SketchDataframeFilterColumnsComponent";
-import { SketchKMeansComponent, configuration as SketchKMeansConfiguration } from "..//natif-components/dataframe/SketchKMeans";
-import { SketchScatterChartComponent, configuration as SketchScatterChartConfiguration } from "..//natif-components/chart/SketchScatterChartComponent";
-import { SketchElbowMethodComponent, configuration as SketchElbowMethodConfiguration } from "..//natif-components/dataframe/SketchElbowMethodComponent";
-import { SketchDataframeShuffleComponent, configuration as SketchDataframeShuffleConfiguration } from "..//natif-components/dataframe/SketchDataframeShuffleComponent";
-import { SketchDataframeToCSVComponent, configuration as SketchDataframeToCSVConfiguration } from "..//natif-components/dataframe/SketchDataframeToCSVComponent";
-import { SketchDataframeUnionComponent, configuration as SketchDataframeUnionConfiguration } from "..//natif-components/dataframe/SketchDataframeUnionComponent";
-import { SketchCustomFunctionComponent, configuration as SketchCustomFunctionConfiguration } from "..//natif-components/math/SketchCustomFunctionComponent";
-import { SketchDerivativeFunctionComponent, configuration as SketchDerivativeFunctionConfiguration } from "..//natif-components/math/SketchDerivativeFunctionComponent";
+import SketchNumberInputComponent from "../natif-components/SketchNumberInputComponent";
+import SketchSequenceComponent from "..//natif-components/math/SketchSequenceComponent";
+import { SketchMathFunctionComponent } from "..//natif-components/math/SketchMathFunctionComponent";
+import { SketchLineChartComponent } from "..//natif-components/chart/SketchLineChartComponent";
+import { SketchDataframeFromCSVComponent } from "..//natif-components/dataframe/SketchDataframeFromCSVComponent";
+import { SketchDataframeViewerComponent } from "..//natif-components/dataframe/SketchDataframeViewerComponent";
+import { SketchDataframeFilterColumnsComponent } from "..//natif-components/dataframe/SketchDataframeFilterColumnsComponent";
+import { SketchKMeansComponent } from "..//natif-components/dataframe/SketchKMeans";
+import { SketchScatterChartComponent } from "..//natif-components/chart/SketchScatterChartComponent";
+import { SketchElbowMethodComponent } from "..//natif-components/dataframe/SketchElbowMethodComponent";
+import { SketchDataframeShuffleComponent } from "..//natif-components/dataframe/SketchDataframeShuffleComponent";
+import { SketchDataframeToCSVComponent } from "..//natif-components/dataframe/SketchDataframeToCSVComponent";
+import { SketchDataframeUnionComponent } from "..//natif-components/dataframe/SketchDataframeUnionComponent";
+import { SketchCustomFunctionComponent } from "..//natif-components/math/SketchCustomFunctionComponent";
+import { SketchDerivativeFunctionComponent } from "../natif-components/math/SketchDerivativeFunctionComponent";
 
 // ----- Import of the popups ----- //
 import SketchLineChartPopup from '@/sketch/app/natif-components/ui/chart/SketchLineChartPopup.vue';
@@ -55,23 +54,23 @@ import SketchCustomFunctionFactory from "./factory/math/SketchCustomFunctionFact
 import SketchDerivativeFunctionFactory from "./factory/math/SketchDerivativeFunctionFactory";
 import { SketchComponent } from "konect-api-types-ts";
 
-// Register all configurations for the components
-export const mapComponentWithConfiguration = new Map<GenericSketchComponentClass, ComponentConfiguration>();
-mapComponentWithConfiguration.set(SketchNumberInputComponent, SketchNumberInputConfiguration);
-mapComponentWithConfiguration.set(SketchSequenceComponent, SketchSequenceConfiguration);
-mapComponentWithConfiguration.set(SketchMathFunctionComponent, SketchMathFunctionConfiguration);
-mapComponentWithConfiguration.set(SketchLineChartComponent, SketchLineChartConfiguration);
-mapComponentWithConfiguration.set(SketchDataframeFromCSVComponent, SketchDataframeFromCSVConfiguration);
-mapComponentWithConfiguration.set(SketchDataframeViewerComponent, SketchDataframeViewerConfiguration);
-mapComponentWithConfiguration.set(SketchDataframeFilterColumnsComponent, SketchDataFilterColumnsConfiguration);
-mapComponentWithConfiguration.set(SketchKMeansComponent, SketchKMeansConfiguration);
-mapComponentWithConfiguration.set(SketchScatterChartComponent, SketchScatterChartConfiguration);
-mapComponentWithConfiguration.set(SketchElbowMethodComponent, SketchElbowMethodConfiguration);
-mapComponentWithConfiguration.set(SketchDataframeShuffleComponent, SketchDataframeShuffleConfiguration);
-mapComponentWithConfiguration.set(SketchDataframeUnionComponent, SketchDataframeUnionConfiguration);
-mapComponentWithConfiguration.set(SketchDataframeToCSVComponent, SketchDataframeToCSVConfiguration);
-mapComponentWithConfiguration.set(SketchCustomFunctionComponent, SketchCustomFunctionConfiguration);
-mapComponentWithConfiguration.set(SketchDerivativeFunctionComponent, SketchDerivativeFunctionConfiguration);
+export default [
+    SketchNumberInputComponent,
+    SketchSequenceComponent,
+    SketchDataframeFromCSVComponent,
+    SketchDataframeFilterColumnsComponent,
+    SketchDerivativeFunctionComponent,
+    SketchCustomFunctionComponent,
+    SketchKMeansComponent,
+    SketchElbowMethodComponent,
+    SketchDataframeViewerComponent,
+    SketchDataframeUnionComponent,
+    SketchMathFunctionComponent,
+    SketchDataframeToCSVComponent,
+    SketchDataframeShuffleComponent,
+    SketchLineChartComponent,
+    SketchScatterChartComponent
+]
 
 // register all popup for the components
 export const mapComponentWithPopup = new Map<GenericSketchComponentClass, Component>();

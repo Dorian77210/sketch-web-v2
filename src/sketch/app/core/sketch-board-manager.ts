@@ -1,7 +1,7 @@
 import SketchComponentWorkflow from "./sketch-component-workflow";
 import Save, { ComponentSaveConfiguration, ComponentLinkConfiguration, SAVE_EXTENSION, SaveReconstitution, ComponentLink } from "./save";
 import { ComponentModel } from "../ui/utils";
-import { ComponentConfiguration } from "konect-api-types-ts";
+import { ComponentConfiguration } from "@/sketch/app/core/sketch-component-configuration-manager";
 import {saveFile, GenericSketchComponentClass, SketchComponentFactory, SketchComponent } from "konect-api-types-ts";
 
 import getFactoryFor from "./sketch-factory-manager";

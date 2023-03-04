@@ -1,9 +1,8 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import { SketchWrapper } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import DataframeService from "../services/dataframe/DataframeService";
 import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "konect-api-types-ts";
 
 /**
  * 
@@ -13,6 +12,15 @@ import { ComponentConfiguration } from "konect-api-types-ts";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Dataframe',
+    name: 'Elbow method',
+    icon: {
+        name: 'fa-magnifying-glass-chart',
+        fa: faMagnifyingGlassChart
+    }
+})
 export class SketchElbowMethodComponent extends SketchComponent<DataFrame> {
 
     private _wrapper: SketchWrapper<DataFrame>;
@@ -51,22 +59,8 @@ export class SketchElbowMethodComponent extends SketchComponent<DataFrame> {
         throw new Error("Method not implemented.");
     }
 
+    @Entry("dataframe", DataFrame)
     setData(data: DataFrame) {
         this.wrapper.setData(data);
-    }
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Dataframe',
-    name: 'Elbow method',
-    returnType: DataFrame,
-    slotsConfigurations: [{
-        entryName: 'dataframe',
-        methodName: 'setData',
-        type: DataFrame
-    }],
-    icon: {
-        name: 'fa-magnifying-glass-chart',
-        fa: faMagnifyingGlassChart
     }
 }

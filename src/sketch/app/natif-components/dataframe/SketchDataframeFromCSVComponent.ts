@@ -1,7 +1,6 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, SketchComponent } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { SketchWrapper } from "konect-api-types-ts";
 
 /**
@@ -14,6 +13,15 @@ import { SketchWrapper } from "konect-api-types-ts";
  * @since 1.0
  */
 
+@Component({
+    namespace: 'Dataframe',
+    name: 'CSV Loader',
+    returnType: DataFrame,
+    icon: {
+        name: 'fa-file-csv',
+        fa: faFileCsv
+    }
+})
 export class SketchDataframeFromCSVComponent extends SketchComponent<DataFrame> {
     
     private _wrapper: SketchWrapper<File>;
@@ -52,15 +60,5 @@ export class SketchDataframeFromCSVComponent extends SketchComponent<DataFrame> 
     async setCSVFile(file: File) {
         this.wrapper.setData(file);
         this.data = await DataFrame.fromCSV(file);
-    }
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Dataframe',
-    name: 'CSV Loader',
-    returnType: DataFrame,
-    icon: {
-        name: 'fa-file-csv',
-        fa: faFileCsv
     }
 }

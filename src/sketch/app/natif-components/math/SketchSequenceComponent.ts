@@ -1,4 +1,4 @@
-import { ComponentConfiguration } from "konect-api-types-ts";
+import { Component, Documentation, Entry } from "konect-api-types-ts";
 import { SketchComponent } from "konect-api-types-ts";
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
 import SequenceData from "../data/SequenceData";
@@ -12,7 +12,36 @@ import { NumberList } from "konect-api-types-ts";
  * 
  * @since 1.0
  */
-export class SketchSequenceComponent extends SketchComponent<Array<number>> {
+
+@Component({
+    namespace: 'Math',
+    name: 'Sequence number',
+    returnType: NumberList,
+    icon: {
+        name: 'fa-arrow-down-1-9',
+        fa: faArrowDown19
+    }
+})
+@Documentation({
+    description: `This component will compute a sequence of number,
+    between the begin and the end, with an interval of the step.`,
+    slotsDocumentation: [{
+        name: 'begin',
+        description: 'This corresponds to the begin of the sequence',
+        type: 'Number'
+    }, {
+        name: 'end',
+        description: 'This corresponds to the end of the sequence',
+        type: 'Number'
+    }],
+    output: {
+        name: 'sequence',
+        description: `This corresponds to the computed sequence. If the begin value is greater than the end value, but the step is positive, it will
+        show an error. If the begin is less than the end value, but the step is negative, it will also show an error.`,
+        type: 'NumberList'
+    }
+})
+export default class SketchSequenceComponent extends SketchComponent<Array<number>> {
 
     private _sequenceData: SequenceData = new SequenceData();
 
@@ -44,51 +73,15 @@ export class SketchSequenceComponent extends SketchComponent<Array<number>> {
         throw new Error("Method not implemented.");
     }
 
+    @Entry("begin", Number)
     setBegin(begin: number) {
         this._sequenceData.begin = begin;
     }
 
+    @Entry("end", Number)
     setEnd(end: number) {
         this._sequenceData.end = end;
     }
 
     getSequenceData(): SequenceData { return this._sequenceData; }
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Math',
-    name: 'Sequence number',
-    returnType: NumberList,
-    slotsConfigurations: [{
-        entryName: 'begin',
-        methodName: 'setBegin',
-        type: Number
-    }, {
-        entryName: 'end',
-        methodName: 'setEnd',
-        type: Number
-    }],
-    icon: {
-        name: 'fa-arrow-down-1-9',
-        fa: faArrowDown19
-    },
-    documentation: {
-        description: `This component will compute a sequence of number,
-        between the begin and the end, with an interval of the step.`,
-        slotsDocumentation: [{
-            name: 'begin',
-            description: 'This corresponds to the begin of the sequence',
-            type: 'Number'
-        }, {
-            name: 'end',
-            description: 'This corresponds to the end of the sequence',
-            type: 'Number'
-        }],
-        output: {
-            name: 'sequence',
-            description: `This corresponds to the computed sequence. If the begin value is greater than the end value, but the step is positive, it will
-            show an error. If the begin is less than the end value, but the step is negative, it will also show an error.`,
-            type: 'NumberList'
-        }
-    }
 }

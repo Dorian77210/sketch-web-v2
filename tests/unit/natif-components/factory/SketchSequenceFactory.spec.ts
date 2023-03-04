@@ -2,7 +2,7 @@ import { expect } from 'chai'
 
 import SketchSequenceFactory from "@/sketch/app/natif-components/factory/math/SketchSequenceFactory";
 
-import { SketchSequenceComponent } from "@/sketch/app/natif-components/math/SketchSequenceComponent";
+import SketchSequenceComponent from "@/sketch/app/natif-components/math/SketchSequenceComponent";
 
 const factory = new SketchSequenceFactory();
 let component: SketchSequenceComponent;

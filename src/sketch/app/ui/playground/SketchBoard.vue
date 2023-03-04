@@ -22,7 +22,6 @@ import LeaderLine from 'leader-line-new';
 
 import SketchBoardManager from '../../core/sketch-board-manager';
 
-import { ComponentConfiguration } from 'konect-api-types-ts';
 import { getConfigurationOf } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import SketchComponentUI from './SketchComponentUI.vue';
@@ -88,7 +87,7 @@ export default defineComponent({
             const selectedComponentClass: GenericSketchComponentClass | undefined = this.$props.boardManager.getAndRemoveComponentClass();
 
             if (selectedComponentClass) {
-                const associatedConfiguration : ComponentConfiguration = getConfigurationOf(selectedComponentClass);
+                const associatedConfiguration  = getConfigurationOf(selectedComponentClass);
                 if (associatedConfiguration) {
                     const component = new selectedComponentClass();
                     const model: ComponentModel = {
@@ -97,7 +96,7 @@ export default defineComponent({
                         y,
                         config: {
                             text: {
-                                value: associatedConfiguration.name,
+                                value: associatedConfiguration.config.name,
                                 color: 'black'
                             },
                             backgroundColor: '#ceeaee',

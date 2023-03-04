@@ -13,7 +13,7 @@
 
 import { defineComponent, PropType } from 'vue';
 
-import { SketchNumberInputComponent } from '../SketchNumberInputComponent';
+import SketchNumberInputComponent from '../SketchNumberInputComponent';
 
 import { SketchComponentModal  } from 'konect-api-vue'
 

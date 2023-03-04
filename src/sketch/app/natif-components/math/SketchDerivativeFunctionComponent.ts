@@ -1,10 +1,9 @@
-import { NumberList } from "konect-api-types-ts";
+import { Component, Entry, NumberList } from "konect-api-types-ts";
 import { SketchComponent } from "konect-api-types-ts";
 import { SketchWrapper } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import { MathNode, derivative } from "mathjs";
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "konect-api-types-ts";
 
 /**
  * @author Dorian TERBAH
@@ -15,6 +14,15 @@ import { ComponentConfiguration } from "konect-api-types-ts";
  * @since 1.0
  */
 
+@Component({
+    namespace: 'Math',
+    name: 'Derivative function',
+    returnType: DataFrame,
+    icon: {
+        name: 'fa-calculator',
+        fa: faCalculator
+    }
+})
 export class SketchDerivativeFunctionComponent extends SketchComponent<DataFrame> {
 
     private _numbers: SketchWrapper<NumberList>;
@@ -29,6 +37,7 @@ export class SketchDerivativeFunctionComponent extends SketchComponent<DataFrame
     get numbers(): SketchWrapper<NumberList> { return this._numbers; }
     get customFunction(): string { return this._customFunction; }
 
+    @Entry("numbers", NumberList)
     setData(list: NumberList) {
         this.numbers.setData(list);
     }
@@ -56,20 +65,5 @@ export class SketchDerivativeFunctionComponent extends SketchComponent<DataFrame
 
     setCustomFunction(fn: string) {
         this._customFunction = fn;
-    }
-}
-
-export const configuration : ComponentConfiguration = {
-    namespace: 'Math',
-    name: 'Derivative function',
-    returnType: DataFrame,
-    slotsConfigurations: [{
-        entryName: 'numbers',
-        methodName: 'setData',
-        type: NumberList
-    }],
-    icon: {
-        name: 'fa-calculator',
-        fa: faCalculator
     }
 }

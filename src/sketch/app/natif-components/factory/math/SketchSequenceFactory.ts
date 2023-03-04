@@ -1,6 +1,6 @@
 import { SketchComponentFactory } from "konect-api-types-ts";
 
-import { SketchSequenceComponent } from "../../math/SketchSequenceComponent";
+import SketchSequenceComponent from "../../math/SketchSequenceComponent";
 
 interface SketchSequenceJSON {
     begin: number;
