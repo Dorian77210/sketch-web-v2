@@ -23,8 +23,8 @@
                 <v-list-item
                     class="doc-item"
                 >
-                    <font-awesome-icon :icon="`fa-solid ${config.icon.name}`"></font-awesome-icon>
-                    <span class="pl-4">{{ config.name }}</span>
+                    <font-awesome-icon :icon="`fa-solid ${config.config.icon.name}`"></font-awesome-icon>
+                    <span class="pl-4">{{ config.config.name }}</span>
                 </v-list-item>
             </router-link>
         </v-card>
@@ -33,7 +33,7 @@
 
 <script lang="ts">
 
-import { ComponentConfiguration } from 'konect-api-types-ts';
+import { ComponentConfiguration } from '@/sketch/app/core/sketch-component-configuration-manager';
 import { defineComponent } from 'vue';
 
 import { getConfigurations } from '../../core/sketch-component-configuration-manager';
@@ -48,7 +48,7 @@ export default defineComponent({
     },
     computed: {
         filteredConfigurations() : Array<ComponentConfiguration> {
-            return this.configurations.filter(conf => conf.name.toLowerCase().includes(this.search.toLowerCase()));
+            return this.configurations.filter(conf => conf.config.name.toLowerCase().includes(this.search.toLowerCase()));
         }
     }
 });

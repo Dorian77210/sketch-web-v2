@@ -1,9 +1,8 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import {saveFile} from "konect-api-types-ts";
 import { SketchWrapper } from "konect-api-types-ts";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "konect-api-types-ts";
 
 /**
  * 
@@ -13,6 +12,15 @@ import { ComponentConfiguration } from "konect-api-types-ts";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Dataframe',
+    name: 'Save as CSV',
+    icon: {
+        name: 'fa-file-csv',
+        fa: faFileCsv
+    }
+})
 export class SketchDataframeToCSVComponent extends SketchComponent<DataFrame> {
     
     private _wrapper: SketchWrapper<DataFrame>;
@@ -47,6 +55,7 @@ export class SketchDataframeToCSVComponent extends SketchComponent<DataFrame> {
         return dataframe;
     }
 
+    @Entry("dataframe", DataFrame)
     setData(data: DataFrame) {
         this.wrapper.setData(data);
     }
@@ -56,19 +65,4 @@ export class SketchDataframeToCSVComponent extends SketchComponent<DataFrame> {
         throw new Error("Method not implemented.");
     }
     
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Dataframe',
-    name: 'Save as CSV',
-    slotsConfigurations: [{
-        entryName: 'dataframe',
-        methodName: 'setData',
-        type: DataFrame
-    }],
-    returnType: DataFrame,
-    icon: {
-        name: 'fa-file-csv',
-        fa: faFileCsv
-    }
 }

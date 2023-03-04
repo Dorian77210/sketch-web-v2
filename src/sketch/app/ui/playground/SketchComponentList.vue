@@ -14,8 +14,8 @@
                         class="d-flex flex-column component-list-item"
                         @click="onComponentSelected($event, sketchConfiguration.componentClass)"
                     >
-                        <font-awesome-icon :icon="`fa-solid ${sketchConfiguration.configuration.icon.name}`"></font-awesome-icon>
-                        <span class="text-center">{{ sketchConfiguration.configuration.name }}</span>
+                        <font-awesome-icon :icon="`fa-solid ${sketchConfiguration.configuration.config.icon.name}`"></font-awesome-icon>
+                        <span class="text-center">{{ sketchConfiguration.configuration.config.name }}</span>
                     </div>
                 </div>
             </div>
@@ -32,20 +32,20 @@ import SketchBoardManager from '@/sketch/app/core/sketch-board-manager';
 
 import { getConfigurations } from '../../core/sketch-component-configuration-manager';
 
-import { ComponentConfiguration } from 'konect-api-types-ts';
-
 import { opt, GenericSketchComponentClass } from 'konect-api-types-ts';
+import { ComponentConfiguration } from '@/sketch/app/core/sketch-component-configuration-manager';
 
 import bus from '../../core/bus';
 
-type SketchComponentConfiguration = {
-    configuration: ComponentConfiguration;
+type ComponentConfigurationForList = {
     componentClass: GenericSketchComponentClass;
+    configuration: ComponentConfiguration;
 }
 
 interface ConfigurationsByNamespace {
-    [name: string]: Array<SketchComponentConfiguration>;
+    [name: string]: Array<ComponentConfigurationForList>;
 }
+
 
 export default defineComponent({
     props: {
@@ -69,18 +69,18 @@ export default defineComponent({
             // retrieve all namespaces
             const namespaces: Array<string> = [];
             this.configurations.forEach(configuration => {
-                const currentNamespace: string = configuration.namespace;
+                const currentNamespace: string = configuration.config.namespace;
                 if (!namespaces.includes(currentNamespace)) {
                     namespaces.push(currentNamespace);
                 }
             })
 
             namespaces.forEach(namespace => {
-                const associatedConfigurations: Array<SketchComponentConfiguration> = new Array<SketchComponentConfiguration>();
+                const associatedConfigurations: Array<ComponentConfigurationForList> = new Array<ComponentConfigurationForList>();
 
                 // filter components in the configurations maps
                 this.configurations.forEach((configuration, componentClass) => {
-                    if (configuration.name.toLowerCase().includes(this.componentFilter.toLowerCase()) && namespace === configuration.namespace) {
+                    if (configuration.config.name.toLowerCase().includes(this.componentFilter.toLowerCase()) && namespace === configuration.config.namespace) {
                         associatedConfigurations.push({
                             configuration,
                             componentClass
@@ -128,7 +128,7 @@ export default defineComponent({
 <style>
 
 #component-list {
-    max-height: 92vh;
+    min-height: 92vh;
     width: calc(100%/4);
     overflow-y: scroll;
 }

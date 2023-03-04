@@ -1,5 +1,4 @@
-import { SketchComponent } from "konect-api-types-ts";
-import { ComponentConfiguration } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import { SketchWrapper } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +10,15 @@ import { faChartLine } from "@fortawesome/free-solid-svg-icons";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Chart',
+    name: 'Line chart',
+    icon: {
+        name: 'fa-chart-line',
+        fa: faChartLine
+    }
+})
 export class SketchLineChartComponent extends SketchComponent<void> {
 
     private dataWrapper: SketchWrapper<DataFrame>;
@@ -27,23 +35,10 @@ export class SketchLineChartComponent extends SketchComponent<void> {
         throw new Error("Method not implemented.");
     }
 
+    @Entry("dataframe", DataFrame)
     setData(data: DataFrame) {
         this.dataWrapper.setData(data);
     }
 
     get wrapper() : SketchWrapper<DataFrame> { return this.dataWrapper; }
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Chart',
-    name: 'Line chart',
-    slotsConfigurations: [{
-        entryName: 'data',
-        methodName: 'setData',
-        type: DataFrame
-    }],
-    icon: {
-        name: 'fa-chart-line',
-        fa: faChartLine
-    }
 }

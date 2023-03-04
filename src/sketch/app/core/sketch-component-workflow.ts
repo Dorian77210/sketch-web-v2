@@ -1,6 +1,5 @@
 import { Class } from "konect-api-types-ts";
 import { getConfigurationOf, getSlotByEntryName } from "@/sketch/app/core/sketch-component-configuration-manager";
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { Stack, ArrayStack } from "konect-api-types-ts";
 import injectData from "@/sketch/app/core/inject-data";
 
@@ -119,15 +118,15 @@ export default class SketchComponentWorkflow {
     }
 
     private isAssociationPossible(parent: SketchComponent<unknown>, child: SketchComponent<unknown>, entryName: string) : boolean {
-        const parentConfiguration: ComponentConfiguration = getConfigurationOf(parent.constructor as GenericSketchComponentClass);
-        const childConfiguration: ComponentConfiguration = getConfigurationOf(child.constructor as GenericSketchComponentClass);
+        const parentConfiguration = getConfigurationOf(parent.constructor as GenericSketchComponentClass);
+        const childConfiguration = getConfigurationOf(child.constructor as GenericSketchComponentClass);
 
-        const parentTypeReturn: Class<unknown> | undefined = parentConfiguration.returnType;
-        if (!childConfiguration.slotsConfigurations) {
+        const parentTypeReturn: Class<unknown> | undefined = parentConfiguration.config.returnType;
+        if (!childConfiguration.entries) {
             return false;
         }
 
-        const slot = getSlotByEntryName(childConfiguration.slotsConfigurations, entryName);
+        const slot = getSlotByEntryName(childConfiguration.entries, entryName);
 
         // maybe to review
         return slot !== undefined && slot.type === parentTypeReturn;

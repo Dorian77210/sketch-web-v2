@@ -3,11 +3,11 @@ import { GenericSketchComponentClass, SketchComponent } from "konect-api-types-t
 
 export default function injectData(component: SketchComponent<unknown>, entryName: string, parentResult: any) : boolean {
     const configuration = getConfigurationOf(component.constructor as GenericSketchComponentClass);
-    if (!configuration.slotsConfigurations) {
+    if (!configuration.entries) {
         return false;
     }
     
-    const slotConfiguration = getSlotByEntryName(configuration.slotsConfigurations, entryName);
+    const slotConfiguration = getSlotByEntryName(configuration.entries, entryName);
     if (!slotConfiguration) {
         return false;
     }

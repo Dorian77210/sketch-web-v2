@@ -1,6 +1,5 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { SketchWrapper } from "konect-api-types-ts";
 import { faTable } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,6 +11,15 @@ import { faTable } from "@fortawesome/free-solid-svg-icons";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Dataframe',
+    name: 'Dataframe viewer',
+    icon: {
+        name: 'fa-table',
+        fa: faTable
+    }
+})
 export class SketchDataframeViewerComponent extends SketchComponent<void> {
     
     private _wrapper: SketchWrapper<DataFrame>;
@@ -30,21 +38,8 @@ export class SketchDataframeViewerComponent extends SketchComponent<void> {
 
     get wrapper(): SketchWrapper<DataFrame> { return this._wrapper; }
 
+    @Entry("dataframe", DataFrame)
     setData(data: DataFrame): void {
         this._wrapper.setData(data);
-    }
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Dataframe',
-    name: 'Dataframe viewer',
-    slotsConfigurations: [{
-        type: DataFrame,
-        entryName: 'dataframe',
-        methodName: 'setData'
-    }],
-    icon: {
-        name: 'fa-table',
-        fa: faTable
     }
 }

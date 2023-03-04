@@ -1,21 +1,53 @@
-import { ComponentConfiguration, ComponentSlotConfiguration, SketchComponent, GenericSketchComponentClass } from "konect-api-types-ts";
+import { ComponentConfiguration as _ComponentConfiguration, ComponentEntry, SketchComponent, GenericSketchComponentClass, ComponentDocumentation } from "konect-api-types-ts";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
+
+import natifComponents from '../natif-components';
+
+export type ComponentConfiguration = {
+    documentation?: ComponentDocumentation;
+    config: _ComponentConfiguration;
+    entries?: Array<ComponentEntry>;
+}
 
 export type SketchComponentConfigurations = Map<GenericSketchComponentClass, ComponentConfiguration>;
 
 const configurations: SketchComponentConfigurations = new Map<GenericSketchComponentClass, ComponentConfiguration>();
 const strToComponentClass = new Map<string, GenericSketchComponentClass>();
 
-import { mapComponentWithConfiguration } from "../natif-components";
 
 export const registerConfigurations = () => {
-    mapComponentWithConfiguration.forEach((config, componentClass) => {
-        configurations.set(componentClass, config);
-        library.add(config.icon.fa);
+    // Register natif component
+    natifComponents.forEach(componentClass => {
+        // get configuration of the component
+        if (Reflect.hasMetadata('configuration', componentClass)) {
+            const config: _ComponentConfiguration = Reflect.getMetadata('configuration', componentClass);
+            library.add(config.icon.fa);
 
-        // we need this when we will load a save
-        strToComponentClass.set(componentClass.name, componentClass);
+            const documentation: ComponentDocumentation | undefined = Reflect.getMetadata('documentation', componentClass);
+
+            const dummyInstance = new componentClass();
+
+            // find entry configuration
+            const entries = Array<ComponentEntry>();
+
+            const methodNames = Reflect.getMetadataKeys(dummyInstance);
+            methodNames.forEach(methodName => {
+                const entryConfiguration: ComponentEntry = Reflect.getMetadata(methodName, dummyInstance);
+                entryConfiguration.methodName = methodName;
+                entries.push(entryConfiguration);
+            })
+
+            // register now the config
+
+            const componentConfiguration = {
+                documentation,
+                config,
+                entries
+            }
+
+            configurations.set(componentClass, componentConfiguration);
+        }
     });
 }
 
@@ -24,7 +56,7 @@ export const registerConfigurations = () => {
  * @param componentClass The component type
  * @returns The component configuration associated to the class.
  */
-export function getConfigurationOf(componentClass: GenericSketchComponentClass) : ComponentConfiguration
+export function getConfigurationOf(componentClass: GenericSketchComponentClass) 
 {
     return configurations.get(componentClass) as ComponentConfiguration;
 }
@@ -62,7 +94,7 @@ export function getSketchComponentClassByString(componentClass: string) : Generi
  * @param entryName 
  * @returns 
  */
-export function getSlotByEntryName(entries: Array<ComponentSlotConfiguration>, entryName: string) : ComponentSlotConfiguration | undefined {
+export function getSlotByEntryName(entries: Array<ComponentEntry>, entryName: string) : ComponentEntry | undefined {
     const results = entries.filter(entry => entry.entryName === entryName);
     return results.length > 0 ? results[0] : undefined;
 }
@@ -75,19 +107,19 @@ export function canCreateLinkBetween(sourceComponent: SketchComponent<unknown>,
         return false;
     }
     
-    const sourceConfiguration: ComponentConfiguration = getConfigurationOf(sourceComponent.constructor as GenericSketchComponentClass);
-    const targetConfiguration: ComponentConfiguration = getConfigurationOf(targetComponent.constructor as GenericSketchComponentClass);
+    const sourceConfiguration = getConfigurationOf(sourceComponent.constructor as GenericSketchComponentClass);
+    const targetConfiguration = getConfigurationOf(targetComponent.constructor as GenericSketchComponentClass);
 
-    if (!targetConfiguration.slotsConfigurations) {
+    if (!targetConfiguration.entries) {
         return false;
     }
 
-    if (!sourceConfiguration.returnType) {
+    if (!sourceConfiguration.config.returnType) {
         return false;
     }
 
-    const targetSlot = getSlotByEntryName(targetConfiguration.slotsConfigurations, entryName);
-    if ((targetSlot?.type !== sourceConfiguration.returnType)) {
+    const targetSlot = getSlotByEntryName(targetConfiguration.entries, entryName);
+    if ((targetSlot?.type !== sourceConfiguration.config.returnType)) {
         return false;
     }
 

@@ -1,7 +1,6 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import { faCircleNodes } from "@fortawesome/free-solid-svg-icons";
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { SketchWrapper } from "konect-api-types-ts";
 import DataframeService from "../services/dataframe/DataframeService";
 
@@ -13,6 +12,15 @@ import DataframeService from "../services/dataframe/DataframeService";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Dataframe',
+    name: 'KMeans',
+    icon: {
+        name: 'fa-circle-nodes',
+        fa: faCircleNodes
+    }
+})
 export class SketchKMeansComponent extends SketchComponent<DataFrame> {
 
     private _wrapper : SketchWrapper<DataFrame>;
@@ -52,23 +60,8 @@ export class SketchKMeansComponent extends SketchComponent<DataFrame> {
         this._clusters = clusters;
     }
 
-
+    @Entry("dataframe", DataFrame)
     setData(data: DataFrame): void {
         this.wrapper.setData(data);
-    }
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Dataframe',
-    name: 'KMeans',
-    returnType: DataFrame,
-    slotsConfigurations: [{
-        entryName: 'dataframe',
-        methodName: 'setData',
-        type: DataFrame
-    }],
-    icon: {
-        name: 'fa-circle-nodes',
-        fa: faCircleNodes
     }
 }

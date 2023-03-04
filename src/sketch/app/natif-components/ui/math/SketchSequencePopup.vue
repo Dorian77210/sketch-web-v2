@@ -15,7 +15,7 @@
 
 import { defineComponent, PropType } from 'vue';
 
-import { SketchSequenceComponent } from '../../math/SketchSequenceComponent';
+import SketchSequenceComponent from '../../math/SketchSequenceComponent';
 
 import { SketchComponentModal  } from 'konect-api-vue'
 

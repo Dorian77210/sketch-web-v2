@@ -1,4 +1,4 @@
-import { SketchNumberInputComponent } from "../SketchNumberInputComponent";
+import SketchNumberInputComponent from "../SketchNumberInputComponent";
 
 import { SketchComponentFactory } from "konect-api-types-ts";
 

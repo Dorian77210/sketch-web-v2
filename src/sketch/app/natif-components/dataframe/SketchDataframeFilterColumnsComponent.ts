@@ -1,6 +1,5 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 /**
@@ -11,6 +10,16 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Dataframe',
+    name: 'Filter columns',
+    returnType: DataFrame,
+    icon: {
+        name: 'fa-filter',
+        fa: faFilter
+    },
+})
 export class SketchDataframeFilterColumnsComponent extends SketchComponent<DataFrame> {
     
     private _selectedColumns: Array<string>;
@@ -41,23 +50,9 @@ export class SketchDataframeFilterColumnsComponent extends SketchComponent<DataF
 
     get dataframe(): DataFrame | undefined { return this._dataframe; }
 
+    @Entry("dataframe", DataFrame)
     setData(data: DataFrame) {
         this._dataframe = data;
     }
 
-}
-
-export const configuration: ComponentConfiguration = {
-    namespace: 'Dataframe',
-    name: 'Filter columns',
-    returnType: DataFrame,
-    slotsConfigurations: [{
-        entryName: 'dataframe',
-        methodName: 'setData',
-        type: DataFrame
-    }],
-    icon: {
-        name: 'fa-filter',
-        fa: faFilter
-    },
 }

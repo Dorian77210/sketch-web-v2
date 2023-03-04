@@ -1,7 +1,6 @@
-import { SketchComponent } from "konect-api-types-ts";
+import { Component, Entry, SketchComponent } from "konect-api-types-ts";
 import DataFrame from "dataframe-js";
 import { SketchWrapper } from "konect-api-types-ts";
-import { ComponentConfiguration } from "konect-api-types-ts";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 /**
@@ -11,6 +10,15 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
  * 
  * @since 1.0
  */
+
+@Component({
+    namespace: 'Chart',
+    name: 'Scatter chart',
+    icon: {
+        name: 'fa-ellipsis',
+        fa: faEllipsis
+    }
+})
 export class SketchScatterChartComponent extends SketchComponent<void> {
     
     private _wrapper: SketchWrapper<DataFrame>;
@@ -29,21 +37,8 @@ export class SketchScatterChartComponent extends SketchComponent<void> {
 
     get wrapper() : SketchWrapper<DataFrame> { return this._wrapper; }
 
+    @Entry("dataframe", DataFrame)
     setData(data: DataFrame) {
         this.wrapper.setData(data);
-    }
-}
-
-export const configuration : ComponentConfiguration = {
-    namespace: 'Chart',
-    name: 'Scatter chart',
-    slotsConfigurations: [{
-        entryName: 'data',
-        methodName: 'setData',
-        type: DataFrame
-    }],
-    icon: {
-        name: 'fa-ellipsis',
-        fa: faEllipsis
     }
 }
