@@ -47,6 +47,8 @@ export const registerConfigurations = () => {
             }
 
             configurations.set(componentClass, componentConfiguration);
+
+            strToComponentClass.set(componentClass.name, componentClass);
         }
     });
 }

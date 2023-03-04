@@ -63,8 +63,8 @@ export default defineComponent({
                 title: this.$route.params.componentName,
                 disabled: false,
             }],
-            docAsComponent: getDocumentationOf(this.$route.params.componentName as string) as Component,
-            docAsComponentDocumentation: getDocumentationOf(this.$route.params.componentName as string) as ComponentDocumentation
+            docAsComponentDocumentation: getDocumentationOf(this.$route.params.componentName as string) as ComponentDocumentation,
+            docAsComponent: getDocumentationOf(this.$route.params.componentName as string) as Component
         }
     },
     created() {
