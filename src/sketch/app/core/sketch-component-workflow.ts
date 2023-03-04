@@ -23,7 +23,7 @@ export default class SketchComponentWorkflow {
     /**
      * Cache of results of component
      */
-    private resultCache: Map<SketchComponent<unknown>, any>;
+    private resultCache: Map<SketchComponent<unknown>, unknown>;
 
     /**
      * Map a component with his children
@@ -39,7 +39,7 @@ export default class SketchComponentWorkflow {
         this._edges = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
         this._children = new Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>>();
         this._orphanComponents = new Array<SketchComponent<unknown>>();
-        this.resultCache = new Map<SketchComponent<unknown>, any>();
+        this.resultCache = new Map<SketchComponent<unknown>, unknown>();
     }
 
     get edges(): Map<SketchComponent<unknown>, Map<string, SketchComponent<unknown>>> { return this._edges; }
@@ -168,7 +168,7 @@ export default class SketchComponentWorkflow {
         const componentStack = this.buildExecutionQueue(component);
 
         let currentComponent: SketchComponent<unknown> | undefined;
-        let result: any = null;
+        let result: unknown = null;
 
         while (!componentStack.isEmpty()) {
             currentComponent = componentStack.pop() as SketchComponent<unknown>;
