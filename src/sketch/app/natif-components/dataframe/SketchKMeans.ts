@@ -19,7 +19,8 @@ import DataframeService from "../services/dataframe/DataframeService";
     icon: {
         name: 'fa-circle-nodes',
         fa: faCircleNodes
-    }
+    },
+    returnType: DataFrame
 })
 export class SketchKMeansComponent extends SketchComponent<DataFrame> {
 

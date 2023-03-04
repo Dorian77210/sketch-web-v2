@@ -19,7 +19,8 @@ import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
     icon: {
         name: 'fa-magnifying-glass-chart',
         fa: faMagnifyingGlassChart
-    }
+    },
+    returnType: DataFrame
 })
 export class SketchElbowMethodComponent extends SketchComponent<DataFrame> {
 

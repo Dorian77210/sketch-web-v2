@@ -128,7 +128,8 @@ export default defineComponent({
 <style>
 
 #component-list {
-    min-height: 92vh;
+    min-height: 90vh;
+    max-height: 90vh;
     width: calc(100%/4);
     overflow-y: scroll;
 }

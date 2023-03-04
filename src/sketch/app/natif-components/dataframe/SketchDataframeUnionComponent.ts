@@ -17,7 +17,8 @@ import { faCodeMerge } from "@fortawesome/free-solid-svg-icons";
     icon: {
         name: 'fa-code-merge',
         fa: faCodeMerge
-    }
+    },
+    returnType: DataFrame
 })
 export class SketchDataframeUnionComponent extends SketchComponent<DataFrame> {
 
