@@ -47,7 +47,7 @@
 
 import { defineComponent, Component } from 'vue';
 
-import { getDocumentationOf } from '../../core/sketch-component-configuration-manager';
+import { getDocumentationOf, getConfigurations } from '../../core/sketch-component-configuration-manager';
 
 import { ComponentDocumentation } from 'konect-api-types-ts';
 
@@ -68,8 +68,11 @@ export default defineComponent({
         }
     },
     created() {
-        if (this.docAsComponent === undefined && this.docAsComponentDocumentation === undefined) {
-            // redirect the user to the doc route
+        const configurations = getConfigurations();
+        const availableComponents = Array.from(configurations.keys());
+        const currentComponents = availableComponents.filter(comp => comp.name === this.$route.params.componentName);
+        
+        if (currentComponents.length === 0) {
             this.$router.push('/doc');
         }
     }

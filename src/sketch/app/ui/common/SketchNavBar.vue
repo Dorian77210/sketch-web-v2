@@ -26,7 +26,8 @@
                         @click="show = !show"
                     ></v-btn>
                     <Transition name="bounce">
-                        <v-text-field
+                        <div class="w-75">
+                            <v-text-field
                             v-if="show"
                             class="ml-5 mt-2"
                             v-model="search"
@@ -34,6 +35,22 @@
                             style="color: rgb(4,122,159)"
                             label="Search component documentation"
                         ></v-text-field>
+                        <v-menu activator="parent" v-if="show">
+                            <v-list>
+                                <router-link
+                                    v-for="(result, index) in searchResults"
+                                    :key="index"
+                                    :to="{ name: 'component-doc', params: { componentName: result.className }}"
+                                    class="no-style"
+                                >
+                                    <v-list-item 
+                                    >
+                                        {{  result.componentName }}
+                                    </v-list-item>
+                                </router-link>
+                            </v-list>
+                        </v-menu>
+                        </div>
                     </Transition>
             </div>
         </ul>
@@ -43,6 +60,7 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
+import { getConfigurations } from '../../core/sketch-component-configuration-manager';
 
 export default defineComponent({
     data() {
@@ -56,6 +74,31 @@ export default defineComponent({
             search: '',
             show: false
         }
+    },
+
+    computed: {
+        searchResults() : Array<{
+            componentName: string;
+            className: string;
+        }> {
+            const result = new Array<{
+                componentName: string;
+                className: string,
+            }>();
+
+            const configurations = getConfigurations();
+
+            configurations.forEach((configuration, componentClass) => {
+                if (configuration.config.name.toLowerCase().includes(this.search.toLowerCase())) {
+                    result.push({
+                        componentName: configuration.config.name,
+                        className: componentClass.name
+                    });
+                }
+            })
+
+            return result;
+        },
     }
 });
 
