@@ -15,6 +15,7 @@ export default function getFactoryFor(componentClass: GenericSketchComponentClas
         })[0];
 
         currentFactory = new factoryClass();
+        factoriesCache.set(componentClass, currentFactory);
     }
 
     return currentFactory;
