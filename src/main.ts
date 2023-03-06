@@ -17,10 +17,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation, faSearch, faBook,
-  faLaptopCode
+  faLaptopCode, faCheck, faXmark
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation, faSearch, faBook, faLaptopCode);
+library.add(faPlay, faAngleUp, faAngleDown, faCircleExclamation, faTriangleExclamation, faSearch, faBook, faLaptopCode, faCheck, faXmark);
 
 // css for the konect-api-vue
 import 'konect-api-vue/dist/konect-api.css';

@@ -4,6 +4,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 
 import natifComponents from '../natif-components';
 
+// plugins of the app
+import { plugin } from 'konect-matrices';
+
 export type ComponentConfiguration = {
     documentation?: ComponentDocumentation;
     config: _ComponentConfiguration;

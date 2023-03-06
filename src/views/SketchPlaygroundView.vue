@@ -27,6 +27,7 @@
                     color="rgb(38,48,66)"
                     variant="plain"
                     style="color: white"
+                    @click="needMarketplace = true"
                 >
                     Marketplace
                 </v-btn>
@@ -48,6 +49,8 @@
     
             <SketchSaveModal :save-board="_saveBoard" :on-close="() => needFilenameForSave = false" v-if="needFilenameForSave" />
             <SketchOpenFileModal :on-close="() => needToOpenFile = false" :on-received-file="_onReceivedFile" v-if="needToOpenFile" />
+        
+            <SketchMarketplaceModal :on-close="() => needMarketplace = false" v-if="needMarketplace"/>
         </div>
     </div>
 </template>
@@ -70,6 +73,7 @@ import bus from '@/sketch/app/core/bus';
 
 import SketchSaveModal from '@/sketch/app/ui/playground/SketchSaveModal.vue';
 import SketchOpenFileModal from '@/sketch/app/ui/playground/SketchOpenFileModal.vue';
+import SketchMarketplaceModal from '@/sketch/app/ui/playground/SketchMarketplaceModal.vue';
 
 export default defineComponent({
     components: {
@@ -79,7 +83,8 @@ export default defineComponent({
         SketchNavigationDrawer,
         SketchNavBar,
         SketchSaveModal,
-        SketchOpenFileModal
+        SketchOpenFileModal,
+        SketchMarketplaceModal
     },
     data() {
         return {
@@ -87,6 +92,7 @@ export default defineComponent({
             spinnerVisible: false,
             needFilenameForSave: false,
             needToOpenFile: false,
+            needMarketplace: false,
             fileItems: [{
                 title: 'Save',
                 onClick: () => {

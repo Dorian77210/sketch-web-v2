@@ -29,10 +29,10 @@ export default createStore({
             localStorage.setItem('marketplace', json);
         },
         INIT_MARKETPLACE(state) {
-            const rawMarketplace = localStorage.getItem('marketplace');
-            if (rawMarketplace !== undefined) {
-                state.marketplace = JSON.parse(rawMarketplace as string);
-            }
+            const localMarketplace = localStorage.getItem('marketplace');
+            if (localMarketplace) {
+                state.marketplace = JSON.parse(localMarketplace);
+            }   
         }
     },
     actions: {
