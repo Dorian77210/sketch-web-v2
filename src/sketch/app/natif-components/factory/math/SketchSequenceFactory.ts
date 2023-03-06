@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import SketchSequenceComponent from "../../math/SketchSequenceComponent";
 
@@ -8,6 +8,7 @@ interface SketchSequenceJSON {
     step: number;
 }
 
+@Factory(SketchSequenceComponent)
 export default class SketchSequenceFactory implements SketchComponentFactory<SketchSequenceComponent> {
 
     fromJSON(rawJson: object): SketchSequenceComponent {

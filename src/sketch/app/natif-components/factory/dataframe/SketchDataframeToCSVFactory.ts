@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchDataframeToCSVComponent } from "../../dataframe/SketchDataframeToCSVComponent";
 
@@ -6,6 +6,7 @@ interface SketchDataframeToCSVJSON {
     filename: string;
 }
 
+@Factory(SketchDataframeToCSVComponent)
 export default class SketchDataframeToCSVFactory implements SketchComponentFactory<SketchDataframeToCSVComponent> {
     
     fromJSON(rawJson: object): SketchDataframeToCSVComponent {

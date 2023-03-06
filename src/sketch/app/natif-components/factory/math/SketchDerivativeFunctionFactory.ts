@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchDerivativeFunctionComponent } from "../../math/SketchDerivativeFunctionComponent";
 
@@ -6,6 +6,7 @@ type SketchCustomFunctionJSON = {
     customFunction: string;
 }
 
+@Factory(SketchDerivativeFunctionComponent)
 export default class SketchDerivativeFunctionFactory implements SketchComponentFactory<SketchDerivativeFunctionComponent> {
     
     fromJSON(rawJson: object): SketchDerivativeFunctionComponent {

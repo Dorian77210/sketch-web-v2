@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchCustomFunctionComponent } from "../../math/SketchCustomFunctionComponent";
 
@@ -6,6 +6,8 @@ type SketchCustomFunctionJSON = {
     customFunction: string;
 }
 
+
+@Factory(SketchCustomFunctionComponent)
 export default class SketchCustomFunctionFactory implements SketchComponentFactory<SketchCustomFunctionComponent> {
     
     fromJSON(rawJson: object): SketchCustomFunctionComponent {

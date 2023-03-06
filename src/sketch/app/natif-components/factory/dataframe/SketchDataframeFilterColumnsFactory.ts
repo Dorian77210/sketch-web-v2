@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchDataframeFilterColumnsComponent } from "../../dataframe/SketchDataframeFilterColumnsComponent";
 
@@ -6,7 +6,8 @@ interface SketchDataframeFilterColumnsJSON {
     selectedColumns: Array<string>;
 }
 
-export default class  SketchDataframeFilterColumnsFactory implements SketchComponentFactory<SketchDataframeFilterColumnsComponent> {
+@Factory(SketchDataframeFilterColumnsComponent)
+export default class SketchDataframeFilterColumnsFactory implements SketchComponentFactory<SketchDataframeFilterColumnsComponent> {
     
     fromJSON(rawJson: object): SketchDataframeFilterColumnsComponent {
         const component = new SketchDataframeFilterColumnsComponent();

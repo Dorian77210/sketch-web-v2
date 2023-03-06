@@ -1,11 +1,12 @@
 import { SketchKMeansComponent } from "../../dataframe/SketchKMeans";
 
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 interface SketchKMeansJSON {
     clusters: number;
 }
 
+@Factory(SketchKMeansComponent)
 export default class SketchKMeansFactory implements SketchComponentFactory<SketchKMeansComponent> {
     
     fromJSON(rawJson: object): SketchKMeansComponent {

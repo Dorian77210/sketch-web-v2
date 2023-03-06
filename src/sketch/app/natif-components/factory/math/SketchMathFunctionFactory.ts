@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { MathStringFunction, SketchMathFunctionComponent } from "../../math/SketchMathFunctionComponent";
 
@@ -8,6 +8,7 @@ type SketchMathFunctionJSON = {
 
 const DEFAULT_FUNCTION_NAME: MathStringFunction = 'cos';
 
+@Factory(SketchMathFunctionComponent)
 export default class SketchMathFunctionFactory implements SketchComponentFactory<SketchMathFunctionComponent> {
 
     private static DEFAULT_FUNCTION_NAME : 'cos';

@@ -1,11 +1,12 @@
 import SketchNumberInputComponent from "../SketchNumberInputComponent";
 
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { SketchComponentFactory, Factory } from "konect-api-types-ts";
 
 interface SketchNumberInputComponentJSON {
     value: number;
 } 
 
+@Factory(SketchNumberInputComponent)
 export default class SketchNumberFactory implements SketchComponentFactory<SketchNumberInputComponent> {
 
     fromJSON(rawJson: object) : SketchNumberInputComponent {

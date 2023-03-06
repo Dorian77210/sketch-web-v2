@@ -1,4 +1,4 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchElbowMethodComponent } from "../../dataframe/SketchElbowMethodComponent";
 
@@ -6,6 +6,8 @@ type SketchElbowMethodJSON = {
     maxClusters: number;
 }
 
+
+@Factory(SketchElbowMethodComponent)
 export default class SketchElbowMethodFactory implements SketchComponentFactory<SketchElbowMethodComponent> {
 
     fromJSON(rawJson: object): SketchElbowMethodComponent {

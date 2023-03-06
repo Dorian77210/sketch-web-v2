@@ -1,7 +1,8 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchDataframeShuffleComponent } from "../../dataframe/SketchDataframeShuffleComponent";
 
+@Factory(SketchDataframeShuffleComponent)
 export default class SketchDataframeShuffleFactory implements SketchComponentFactory<SketchDataframeShuffleComponent> {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

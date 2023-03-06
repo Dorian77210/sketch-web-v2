@@ -1,7 +1,8 @@
-import { SketchComponentFactory } from "konect-api-types-ts";
+import { Factory, SketchComponentFactory } from "konect-api-types-ts";
 
 import { SketchDataframeFromCSVComponent } from "../../dataframe/SketchDataframeFromCSVComponent";
 
+@Factory(SketchDataframeFromCSVComponent)
 export default class SketchDataframeFromCSVFactory implements SketchComponentFactory<SketchDataframeFromCSVComponent> {
     
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
