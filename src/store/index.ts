@@ -25,13 +25,13 @@ export default createStore({
         UPDATE_SELECTED_PLUGINS(state, plugins: Array<string>) {
             state.marketplace.plugins = plugins;
             // save the marketplace in the local storage
-            const json = JSON.stringify(state.marketplace.plugins);
+            const json = JSON.stringify(state.marketplace);
             localStorage.setItem('marketplace', json);
         },
         INIT_MARKETPLACE(state) {
             const rawMarketplace = localStorage.getItem('marketplace');
             if (rawMarketplace !== undefined) {
-                state.marketplace.plugins = JSON.parse(rawMarketplace as string);
+                state.marketplace = JSON.parse(rawMarketplace as string);
             }
         }
     },
