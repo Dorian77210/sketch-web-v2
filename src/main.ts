@@ -45,5 +45,5 @@ createApp(App).use(store)
     .use(vuetify)
     .use(Vue3DraggableResizable)
     .component('font-awesome-icon', FontAwesomeIcon)
-    .mount('#app')
+    .mount('#app');
 

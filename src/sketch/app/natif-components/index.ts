@@ -34,7 +34,6 @@ import SketchKMeansPopup from '@/sketch/app/natif-components/ui/dataframe/Sketch
 import SketchCustomFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchCustomFunctionPopup.vue';
 import SketchMathFunctionPopup from '@/sketch/app/natif-components/ui/math/SketchMathFunctionPopup.vue';
 import SketchSequencePopup from "@/sketch/app/natif-components/ui/math/SketchSequencePopup.vue";
-import { SketchComponentFactory } from "konect-api-types-ts";
 
 // ----- Imports of the factories ----- //
 import SketchNumberFactory from "./factory/SketchNumberFactory";
@@ -52,7 +51,6 @@ import SketchDataframeToCSVFactory from "./factory/dataframe/SketchDataframeToCS
 import SketchDataframeUnionFactory from "./factory/dataframe/SketchDataframeUnionFactory";
 import SketchCustomFunctionFactory from "./factory/math/SketchCustomFunctionFactory";
 import SketchDerivativeFunctionFactory from "./factory/math/SketchDerivativeFunctionFactory";
-import { SketchComponent } from "konect-api-types-ts";
 
 export default [
     SketchNumberInputComponent,
