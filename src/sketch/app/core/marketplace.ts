@@ -2,6 +2,8 @@ import store from "@/store";
 
 import { plugin as MatricesPlugin } from "konect-matrices";
 
+console.log(MatricesPlugin);
+
 export interface PluginInformation {
     name: string;
     description: string;

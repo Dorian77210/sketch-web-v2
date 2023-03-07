@@ -1,11 +1,13 @@
-import { ComponentConfiguration as _ComponentConfiguration, ComponentEntry, SketchComponent, GenericSketchComponentClass, ComponentDocumentation } from "konect-api-types-ts";
+import { ComponentConfiguration as _ComponentConfiguration, ComponentEntry, SketchComponent, GenericSketchComponentClass, ComponentDocumentation, KonectPlugin } from "konect-api-types-ts";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import natifComponents from '../natif-components';
 
+import { getActivatedPlugins } from "./marketplace";
+
 // plugins of the app
-import { plugin } from 'konect-matrices';
+import { plugin as MatricesPlugin } from 'konect-matrices';
 
 export type ComponentConfiguration = {
     documentation?: ComponentDocumentation;
@@ -54,6 +56,46 @@ export const registerConfigurations = () => {
             strToComponentClass.set(componentClass.name, componentClass);
         }
     });
+
+    // external modules
+    registerExternalPlugin(MatricesPlugin);
+}
+
+function registerExternalPlugin(plugin: KonectPlugin) {
+    if (getActivatedPlugins().includes(plugin.pluginInformation.name)) {
+        plugin.components.forEach(componentClass => {
+            if (Reflect.hasMetadata('configuration', componentClass)) {
+                const config: _ComponentConfiguration = Reflect.getMetadata('configuration', componentClass);
+                library.add(config.icon.fa);
+    
+                const documentation: ComponentDocumentation | undefined = Reflect.getMetadata('documentation', componentClass);
+    
+                const dummyInstance = new componentClass();
+    
+                // find entry configuration
+                const entries = Array<ComponentEntry>();
+    
+                const methodNames = Reflect.getMetadataKeys(dummyInstance);
+                methodNames.forEach(methodName => {
+                    const entryConfiguration: ComponentEntry = Reflect.getMetadata(methodName, dummyInstance);
+                    entryConfiguration.methodName = methodName;
+                    entries.push(entryConfiguration);
+                })
+    
+                // register now the config
+    
+                const componentConfiguration = {
+                    documentation,
+                    config,
+                    entries
+                }
+    
+                configurations.set(componentClass, componentConfiguration);
+    
+                strToComponentClass.set(componentClass.name, componentClass);
+            }
+        })
+    }
 }
 
 /**
