@@ -38,6 +38,14 @@
                     </v-list-item>
                 </v-list>
             </div>
+
+            <v-alert
+                type="warning"
+                title="Warning !"
+                text="When you will click on save, you current progression will be lost. Save your work before to 
+                change the modules preferences."
+            >
+            </v-alert>
         </template>
     </SketchComponentModal>
 </template>

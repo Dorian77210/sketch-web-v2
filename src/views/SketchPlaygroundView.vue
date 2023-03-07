@@ -49,8 +49,7 @@
     
             <SketchSaveModal :save-board="_saveBoard" :on-close="() => needFilenameForSave = false" v-if="needFilenameForSave" />
             <SketchOpenFileModal :on-close="() => needToOpenFile = false" :on-received-file="_onReceivedFile" v-if="needToOpenFile" />
-        
-            <SketchMarketplaceModal :on-close="() => needMarketplace = false" v-if="needMarketplace"/>
+            <SketchMarketplaceModal :on-close="closeMarketplace" v-if="needMarketplace"/>
         </div>
     </div>
 </template>
@@ -145,6 +144,11 @@ export default defineComponent({
                 const saveReconstitution = this.sketchBoardManager.reconstructWorkflow(fileContent);
                 bus.emit('save-reconstitution', saveReconstitution);
             }
+        },
+
+        closeMarketplace() {
+            this.needMarketplace = false;
+            window.location.reload();
         }
     },
 
