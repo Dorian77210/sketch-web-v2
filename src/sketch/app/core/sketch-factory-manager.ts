@@ -1,8 +1,14 @@
 import { GenericSketchComponentClass, SketchComponent, SketchComponentFactory } from "konect-api-types-ts";
 
-import { factories } from "../natif-components";
+import { factories as NativeFactories } from "../natif-components";
+
+import { plugin as MatricesPlugin } from "konect-matrices";
 
 const factoriesCache = new Map<GenericSketchComponentClass, SketchComponentFactory<SketchComponent<unknown>>>();
+const factories = [
+    ...NativeFactories,
+    ...MatricesPlugin.factories
+];
 
 export default function getFactoryFor(componentClass: GenericSketchComponentClass) {
     let currentFactory = factoriesCache.get(componentClass);
