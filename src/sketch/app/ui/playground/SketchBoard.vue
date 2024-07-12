@@ -270,11 +270,6 @@ export default defineComponent({
             this.selectedComponentModel = undefined;
         }
     },
-    computed: {
-        refs() {
-            return this.$refs;
-        }
-    },
     
     created() {
         bus.on('ask-for-execution', async (component) => {
