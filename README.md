@@ -1,4 +1,4 @@
-# sketch-web-v2
+# Konect
 
 ## Project setup
 ```
